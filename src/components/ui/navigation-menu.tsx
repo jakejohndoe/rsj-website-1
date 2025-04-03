@@ -4,6 +4,7 @@ import { ChevronDownIcon } from "lucide-react";
 import * as React from "react";
 
 import { cn } from "../../lib/utils";
+import { Button } from "./button"; // Import the Button component
 
 const NavigationMenu = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Root>,
@@ -26,17 +27,28 @@ NavigationMenu.displayName = NavigationMenuPrimitive.Root.displayName;
 const NavigationMenuList = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.List>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.List>
->(({ className, ...props }, ref) => (
+>(({ className, children, ...props }, ref) => (
   <NavigationMenuPrimitive.List
     ref={ref}
     className={cn(
-      "group flex flex-1 list-none items-center justify-center space-x-1",
-      className,
+      "flex space-x-4", // Adjust styles as needed
+      className
     )}
     {...props}
-  />
+  >
+    {React.Children.map(children, (child, index) => (
+      <Button
+        key={index}
+        variant="ghost" // Use appropriate variant
+        className="px-4 py-2 text-sm" // Adjust styles as needed
+      >
+        {child}
+      </Button>
+    ))}
+  </NavigationMenuPrimitive.List>
 ));
 NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName;
+
 
 const NavigationMenuItem = NavigationMenuPrimitive.Item;
 
