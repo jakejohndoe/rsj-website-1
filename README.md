@@ -1,6 +1,5 @@
 # RSJ Actor Portfolio Website
 
-![RSJ Website Preview](https://i.imgur.com/JQ8W0vA.png)  
 *A sleek, responsive portfolio website for professional actor Stevie Johnson.*
 
 ## 🚀 Features
