@@ -47,7 +47,8 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: [
+        fleur: ['"Fleur De Leah"', 'cursive'], // Fixed: Properly nested under extend
+        sans: [ // Moved inside fontFamily object
           "ui-sans-serif",
           "system-ui",
           "sans-serif",
@@ -72,7 +73,11 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
-    container: { center: true, padding: "2rem", screens: { "2xl": "1400px" } },
+    container: { 
+      center: true, 
+      padding: "2rem", 
+      screens: { "2xl": "1400px" } 
+    },
   },
   plugins: [],
   darkMode: ["class"],

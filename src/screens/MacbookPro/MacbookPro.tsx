@@ -37,24 +37,30 @@ export const MacbookPro = (): JSX.Element => {
         <div className="relative w-[1442px] h-[1017px] top-[103px] left-36">
           <div className="absolute w-[1440px] h-[1014px] top-0 left-0 bg-[#000000e3] rounded-[50px]" />
 
-          {/* Menu button */}
-          <div className="absolute w-[47px] h-[47px] top-[35px] left-[42px] bg-[#ffffff99] rounded-[23.5px] shadow-[inset_0px_4px_4px_#00000040]">
-            <div className="absolute w-3.5 h-7 top-2.5 left-2.5 bg-black" />
-            <div className="absolute w-[13px] h-3.5 top-2.5 left-[25px] bg-black" />
-            <div className="absolute w-[13px] h-3 top-[26px] left-[25px] bg-black" />
-          </div>
-
-          {/* SearchIcon button */}
-          <div className="absolute w-[47px] h-[47px] top-[35px] left-[1146px] bg-[#ffffff99] rounded-[23.5px] shadow-[inset_0px_4px_4px_#00000040] flex items-center justify-center">
-            <div className="relative w-7 h-[23px]">
-              <div className="w-[23px] h-5 left-0 rounded-[11.72px/10.12px] border-[3px] border-solid border-black absolute top-0" />
-              <img
-                className="absolute w-[11px] h-2.5 top-[13px] left-[17px]"
-                alt="Line"
-                src="/line-1.svg"
-              />
+         {/* Menu button - updated to use Button component */}
+        <Button 
+          className="absolute w-[47px] h-[47px] top-[35px] left-[42px] bg-[#ffffff99] rounded-[23.5px] border border-solid border-black shadow-[inset_0px_4px_4px_#00000040] flex items-center justify-center p-0 hover:bg-[#ffffffcc]"
+          >
+            <div className="relative w-6 h-6 flex flex-col justify-between items-center">
+            <div className="w-full h-1 bg-black rounded" />
+            <div className="w-full h-1 bg-black rounded" />
+            <div className="w-full h-1 bg-black rounded" />
             </div>
+        </Button>
+
+{/* SearchIcon button - updated to use Button component */}
+        <Button 
+          className="absolute w-[47px] h-[47px] top-[35px] left-[1146px] bg-[#ffffff99] rounded-[23.5px] border border-solid border-black shadow-[inset_0px_4px_4px_#00000040] flex items-center justify-center p-0 hover:bg-[#ffffffcc]"
+          >
+          <div className="relative w-7 h-[23px]">
+          <div className="w-[23px] h-5 left-0 rounded-[11.72px/10.12px] border-[3px] border-solid border-black absolute top-0" />
+        <img
+          className="absolute w-[11px] h-2.5 top-[13px] left-[17px]"
+          alt="Line"
+          src="/line-1.svg"
+        />
           </div>
+        </Button>
 
           {/* Sign in button */}
           <Button className="absolute w-[175px] h-[47px] top-[35px] left-[1221px] bg-[#ffffff99] rounded-[50px] border border-solid border-black shadow-[inset_0px_4px_4px_#00000040] text-black hover:bg-[#ffffffcc]">
@@ -73,13 +79,15 @@ export const MacbookPro = (): JSX.Element => {
              key={index}
              className={`px-4 ${index === 0 ? "mr-2" : ""}`}
             >
-             <Button 
-            variant="ghost"
-            aria-current={item.isActive ? "page" : undefined}
-            className={`${item.isActive ? "font-semibold" : ""} [font-family:'Pecita-Book',Helvetica] text-2xl bg-transparent hover:bg-gray-200 hover:bg-opacity-50`}
-             >
-      {item.name}
-    </Button>
+            <Button 
+              variant="ghost" 
+              asChild
+            className={`${item.isActive ? "font-semibold" : ""} [font-family:'Pecita-Book',Helvetica] text-2xl bg-transparent hover:bg-gray-800 hover:bg-opacity-50`}
+>
+  <a href={`/${item.name === "home" ? "" : item.name}`}>
+    {item.name}
+  </a>
+</Button>
   </NavigationMenuItem>
 ))}
 
@@ -118,17 +126,17 @@ export const MacbookPro = (): JSX.Element => {
           </div>
 
           {/* Name header */}
-          <div className="absolute w-full top-[129px] left-[285px] flex">
-            <h1 className="[font-family:'Pecita-Book',Helvetica] font-normal text-white text-9xl tracking-[0] leading-[normal]">
+          <div className="absolute w-full top-[129px] left-[285px] flex items-end"> {/* Align baselines */}
+            <h1 className="font-fleur text-white text-9xl leading-[0.8] tracking-tight">
               Stevie
             </h1>
-            <h1 className="[font-family:'Pecita-Book',Helvetica] font-normal text-white text-9xl tracking-[0] leading-[normal] ml-8">
+            <h1 className="font-fleur text-white text-9xl ml-6 leading-[0.8] -mb-2"> 
               Johnson
             </h1>
           </div>
 
           {/* Subtitle */}
-          <div className="absolute w-[555px] top-[287px] left-[428px] [font-family:'Pecita-Book',Helvetica] font-normal text-[#d1d1d1] text-2xl tracking-[0] leading-[normal] whitespace-nowrap">
+          <div className="absolute w-[555px] top-[287px] left-[428px] [font-family:'Pecita-Book',Helvetica] font-normal text-[#d1d1d1] text-1xl tracking-[0] leading-[normal] whitespace-nowrap">
             Actor / Professor / Director / Therapist / Father
           </div>
 
