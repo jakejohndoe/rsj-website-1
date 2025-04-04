@@ -6,6 +6,9 @@ import * as React from "react";
 import { cn } from "../../lib/utils";
 import { Button } from "./button"; // Import the Button component
 
+// ROOT NAVIGATION MENU
+// This is the main component that wraps the entire navigation menu
+
 const NavigationMenu = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Root>
@@ -13,7 +16,7 @@ const NavigationMenu = React.forwardRef<
   <NavigationMenuPrimitive.Root
     ref={ref}
     className={cn(
-      "relative z-10 flex max-w-max flex-1 items-center justify-center",
+      "relative z-10 flex max-w-max flex-1 items-center justify-center rounded-lg p-1",
       className,
     )}
     {...props}
@@ -31,19 +34,21 @@ const NavigationMenuList = React.forwardRef<
   <NavigationMenuPrimitive.List
     ref={ref}
     className={cn(
-      "flex space-x-4", // Adjust styles as needed
+      "group flex flex-1 list-none items-center justify-center space-x-1", // Adjust styles as needed
       className
     )}
     {...props}
   >
     {React.Children.map(children, (child, index) => (
-      <Button
-        key={index}
-        variant="ghost" // Use appropriate variant
-        className="px-4 py-2 text-sm" // Adjust styles as needed
-      >
-        {child}
-      </Button>
+      <Button 
+        asChild
+  key={index}
+  variant="ghost"
+  className="px-4 py-2 text-sm bg-transparent active:bg-transparent focus:bg-transparent hover:bg-gray-500" // Gray hover background for NavBar Buttons
+>
+  {child}
+</Button>
+
     ))}
   </NavigationMenuPrimitive.List>
 ));
@@ -52,26 +57,42 @@ NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName;
 
 const NavigationMenuItem = NavigationMenuPrimitive.Item;
 
+// Navigation Menu Trigger
+// This is the button that opens the dropdown menu
+// It uses the Button component for styling
+
 const navigationMenuTriggerStyle = cva(
-  "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50",
+  "group inline-flex h-10 items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors",
+  {
+    variants: {
+      variant: {
+        default: "bg-transparent text-foreground hover:bg-gray-800 hover:text-white active:bg-transparent", // Black hover with white text
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
 );
 
+// Update your NavigationMenuTrigger component
 const NavigationMenuTrigger = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Trigger>
 >(({ className, children, ...props }, ref) => (
   <NavigationMenuPrimitive.Trigger
     ref={ref}
-    className={cn(navigationMenuTriggerStyle(), "group", className)}
+    className={cn(navigationMenuTriggerStyle({ variant: "default" }), "group", className)}
     {...props}
   >
     {children}{" "}
     <ChevronDownIcon
-      className="relative top-[1px] ml-1 h-3 w-3 transition duration-300 group-data-[state=open]:rotate-180"
+      className="relative top-[1px] ml-1 h-3 w-3 transition duration-300 group-data-[state=open]:rotate-180 group-hover:text-white" // White icon on hover
       aria-hidden="true"
     />
   </NavigationMenuPrimitive.Trigger>
 ));
+
 NavigationMenuTrigger.displayName = NavigationMenuPrimitive.Trigger.displayName;
 
 const NavigationMenuContent = React.forwardRef<

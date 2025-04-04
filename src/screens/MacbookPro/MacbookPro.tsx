@@ -66,18 +66,25 @@ export const MacbookPro = (): JSX.Element => {
           {/* Navigation menu */}
           <NavigationMenu className="absolute w-[975px] h-[47px] top-[35px] left-[111px]">
             <NavigationMenuList className="w-[961px] h-[47px] bg-[#ffffff99] rounded-[50px] shadow-[inset_0px_4px_4px_#00000040] flex items-center px-[30px]">
-              {navItems.map((item, index) => (
-                <NavigationMenuItem
-                  key={index}
-                  className={`px-4 ${index === 0 ? "mr-2" : ""}`}
-                >
-                  <div
-                    className={`${item.isActive ? "bg-black text-[#d9d9d9] rounded-[100px] px-4 py-1" : "text-black"} [font-family:'Pecita-Book',Helvetica] font-normal text-2xl`}
-                  >
-                    {item.name}
-                  </div>
-                </NavigationMenuItem>
-              ))}
+
+
+            {navItems.map((item, index) => (
+              <NavigationMenuItem
+             key={index}
+             className={`px-4 ${index === 0 ? "mr-2" : ""}`}
+            >
+             <Button 
+            variant="ghost"
+            aria-current={item.isActive ? "page" : undefined}
+            className={`${item.isActive ? "font-semibold" : ""} [font-family:'Pecita-Book',Helvetica] text-2xl bg-transparent hover:bg-gray-200 hover:bg-opacity-50`}
+             >
+      {item.name}
+    </Button>
+  </NavigationMenuItem>
+))}
+
+
+
             </NavigationMenuList>
           </NavigationMenu>
 
