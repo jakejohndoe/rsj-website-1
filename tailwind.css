@@ -1,7 +1,4 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Fleur+De+Leah&display=swap');
-
-
 
 @tailwind components;
 @tailwind utilities;
@@ -92,5 +89,10 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    background-image: url('/ThickChrome 2.png');
+    background-size: cover;
+    background-position: center top;
+    background-attachment: fixed;
+    min-height: 100vh;
   }
 }
