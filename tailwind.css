@@ -1,13 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fleur+De+Leah&display=swap');
-
-@tailwind components;
-@tailwind utilities;
-
-@layer components {
-  .all-\[unset\] {
-    all: unset;
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Montserrat:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -15,69 +6,87 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 47.4% 11.2%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-
-    --card: transparent;
-    --card-foreground: 222.2 47.4% 11.2%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
+    /* Light mode - adjusted for chrome reflections */
+    --background: 0 0% 95%; /* Brighter base */
+    --foreground: 240 10% 15%; /* Dark gray instead of pure black */
+    
+    --muted: 210 20% 92%;
+    --muted-foreground: 215 10% 45%;
+    
+    --popover: 0 0% 98%;
+    --popover-foreground: 240 10% 15%;
+    
+    --border: 220 10% 85%; /* Softer borders */
+    --input: 220 10% 85%;
+    
+    --card: rgba(255 255 255 / 0.7); /* Glass effect */
+    --card-foreground: 240 10% 15%;
+    
+    --primary: 240 5% 20%; /* Less harsh contrast */
+    --primary-foreground: 0 0% 98%;
+    
+    --secondary: 210 20% 92%;
+    --secondary-foreground: 240 10% 15%;
+    
+    --accent: 220 15% 90%; /* Metallic accent */
+    --accent-foreground: 240 10% 15%;
+    
     --destructive: 0 100% 50%;
     --destructive-foreground: 210 40% 98%;
-
-    --ring: 215 20.2% 65.1%;
-
+    
+    --ring: 220 15% 70%; /* Subtle metallic ring */
+    
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 224 71% 4%;
-    --foreground: 213 31% 91%;
-
-    --muted: 223 47% 11%;
-    --muted-foreground: 215.4 16.3% 56.9%;
-
-    --accent: 216 34% 17%;
-    --accent-foreground: 210 40% 98%;
-
-    --popover: 224 71% 4%;
-    --popover-foreground: 215 20.2% 65.1%;
-
-    --border: 216 34% 17%;
-    --input: 216 34% 17%;
-
-    --card: transparent;
-    --card-foreground: 213 31% 91%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 1.2%;
-
-    --secondary: 222.2 47.4% 11.2%;
-    --secondary-foreground: 210 40% 98%;
-
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
-
-    --ring: 216 34% 17%;
-
+    /* Dark mode - optimized for chrome background */
+    --background: 240 5% 8%; /* Deep gray instead of pure black */
+    --foreground: 0 0% 93%; /* Soft white */
+    
+    --muted: 240 5% 15%;
+    --muted-foreground: 215 15% 65%;
+    
+    --accent: 240 5% 25%; /* Dark metallic */
+    --accent-foreground: 0 0% 98%;
+    
+    --popover: 240 5% 10%;
+    --popover-foreground: 0 0% 93%;
+    
+    --border: 240 5% 25%; /* Metallic borders */
+    --input: 240 5% 25%;
+    
+    --card: rgba(15 15 15 / 0.7); /* Smoked glass */
+    --card-foreground: 0 0% 93%;
+    
+    --primary: 0 0% 98%; /* Bright chrome */
+    --primary-foreground: 240 5% 10%;
+    
+    --secondary: 240 5% 20%;
+    --secondary-foreground: 0 0% 98%;
+    
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --ring: 240 5% 35%; /* Metallic ring */
+    
     --radius: 0.5rem;
+  }
+
+  /* Chrome-specific effects */
+  .chrome-text {
+    background: linear-gradient(135deg, #e0e0e0 0%, #a0a0a0 50%, #e0e0e0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+  }
+
+  .chrome-surface {
+    background: linear-gradient(145deg, #303030 0%, #202020 50%, #303030 100%);
+    border: 1px solid #505050;
+    box-shadow: 
+      0 2px 4px rgba(0,0,0,0.5),
+      inset 0 1px 1px rgba(255,255,255,0.1);
   }
 }
 
@@ -95,8 +104,42 @@
     background-attachment: scroll;
     min-height: 100vh;
     background-blend-mode: overlay;
-    background-color: rgba(0, 0, 0, 0.6); /* Slightly lighter overlay for better visibility */
-    filter: brightness(1.2) contrast(1.1); /* Increase brightness and contrast */
-    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5); /* Add a subtle shadow effect */
+    background-color: rgba(0, 0, 0, 0.1); /* Adjusted overlay */
+    
+      
+    /* More subtle effects */
+
+    backdrop-filter: blur(2px); /* Added slight blur */
+    filter: brightness(1.1) contrast(1.05); /* Toned down slightly */
+    box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.4); /* Reduced from 100px */
+
+    
+  /* New metallic sheen overlay */
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+    radial-gradient(circle at 70% 30%, rgba(255,255,255,0.05) 0%, transparent 40%),
+    linear-gradient(to bottom, transparent 90%, rgba(0,0,0,0.3) 100%);
+  pointer-events: none;
+  z-index: -1;
+  }
+}
+}
+
+@layer utilities {
+  /* New utility classes */
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.25);
+  }
+  .text-shadow-md {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  }
+  .reflect-light {
+    box-shadow: inset 0 0 50px rgba(255,255,255,0.1);
   }
 }
