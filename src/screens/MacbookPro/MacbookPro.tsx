@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../../components/ui/button";
-import { Card, CardContent } from "../../components/ui/card";
+import { Card } from "../../components/ui/card";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
 } from "../../components/ui/navigation-menu";
 import { Separator } from "../../components/ui/separator";
+import { Sun, Moon } from "lucide-react"; // For dark/light mode toggle
 
 export const MacbookPro = (): JSX.Element => {
+  const [darkMode, setDarkMode] = useState(false);
+  const [activeDot, setActiveDot] = useState(0);
+
   // Navigation menu items
   const navItems = [
     { name: "home", isActive: true },
@@ -20,8 +24,12 @@ export const MacbookPro = (): JSX.Element => {
     { name: "contact", isActive: false },
   ];
 
-  // Pagination dots
-  const paginationDots = Array(6).fill(null);
+  // Video reel data
+  const videoReels = [
+    { id: "_p5b5KJrIT4", title: "Theatrical Reel (2025)" },
+    { id: "example1", title: "Dramatic Work (2024)" },
+    { id: "example2", title: "Commercial Work (2023)" },
+  ];
 
   // Social media icons
   const socialIcons = [
@@ -32,174 +40,226 @@ export const MacbookPro = (): JSX.Element => {
   ];
 
   return (
-    <div className="bg-[#85848499] flex flex-row justify-center w-full">
-      <div className="bg-[#85848499] overflow-hidden w-[1728px] h-[1117px]">
-        <div className="relative w-[1442px] h-[1017px] top-[103px] left-36">
-          <div className="absolute w-[1440px] h-[1014px] top-0 left-0 bg-[#000000e3] rounded-[50px]" />
+    <div className={`flex flex-row justify-center w-full font-sans ${darkMode ? 'dark' : ''}`}>
+      {/* Custom font definitions */}
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap');
+        .font-fleur { font-family: 'Fleur De Leah', cursive; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .font-sans { font-family: 'Montserrat', sans-serif; }
+      `}</style>
 
-         {/* Menu button - updated to use Button component */}
-        <Button 
-          className="absolute w-[47px] h-[47px] top-[35px] left-[42px] bg-[#ffffff99] rounded-[23.5px] border border-solid border-black shadow-[inset_0px_4px_4px_#00000040] flex items-center justify-center p-0 hover:bg-[#ffffffcc]"
-          >
-            <div className="relative w-6 h-6 flex flex-col justify-between items-center">
-            <div className="w-full h-1 bg-black rounded" />
-            <div className="w-full h-1 bg-black rounded" />
-            <div className="w-full h-1 bg-black rounded" />
-            </div>
-        </Button>
+      <div className="bg-transparent overflow-hidden w-[1728px] h-[1117px]">
+        <div className="relative w-[1442px] h-[1017px] top-[103px] left-36 bg-transparent">
+          {/* Background container - now supports dark mode */}
+          <div className={`absolute w-[1440px] h-[1014px] top-0 left-0 rounded-[50px] backdrop-blur-sm
+            ${darkMode ? 'bg-black/70' : 'bg-white/20'}`} />
 
-{/* SearchIcon button - updated to use Button component */}
-        <Button 
-          className="absolute w-[47px] h-[47px] top-[35px] left-[1146px] bg-[#ffffff99] rounded-[23.5px] border border-solid border-black shadow-[inset_0px_4px_4px_#00000040] flex items-center justify-center p-0 hover:bg-[#ffffffcc]"
-          >
-          <div className="relative w-7 h-[23px]">
-          <div className="w-[23px] h-5 left-0 rounded-[11.72px/10.12px] border-[3px] border-solid border-black absolute top-0" />
-        <img
-          className="absolute w-[11px] h-2.5 top-[13px] left-[17px]"
-          alt="Line"
-          src="/line-1.svg"
-        />
-          </div>
-        </Button>
-
-          {/* Sign in button */}
-          <Button className="absolute w-[175px] h-[47px] top-[35px] left-[1221px] bg-[#ffffff99] rounded-[50px] border border-solid border-black shadow-[inset_0px_4px_4px_#00000040] text-black hover:bg-[#ffffffcc]">
-            <span className="[font-family:'Pecita-Book',Helvetica] font-normal text-2xl">
-              sign in
-            </span>
-          </Button>
-
-          {/* Navigation menu */}
-          <NavigationMenu className="absolute w-[975px] h-[47px] top-[35px] left-[111px]">
-            <NavigationMenuList className="w-[961px] h-[47px] bg-[#ffffff99] rounded-[50px] shadow-[inset_0px_4px_4px_#00000040] flex items-center px-[30px]">
-
-
-            {navItems.map((item, index) => (
-              <NavigationMenuItem
-             key={index}
-             className={`px-4 ${index === 0 ? "mr-2" : ""}`}
-            >
+          {/* Header/Navigation section */}
+          <div className="absolute top-8 w-full px-12 flex items-center justify-between">
+            {/* Menu button with animation */}
             <Button 
-              variant="ghost" 
-              asChild
-            className={`${item.isActive ? "font-semibold" : ""} [font-family:'Pecita-Book',Helvetica] text-2xl bg-transparent hover:bg-gray-800 hover:bg-opacity-50`}
->
-  <a href={`/${item.name === "home" ? "" : item.name}`}>
-    {item.name}
-  </a>
-</Button>
-  </NavigationMenuItem>
-))}
+              className="w-12 h-12 rounded-full bg-white/60 hover:bg-white/80 transition-all duration-300 hover:rotate-90"
+              aria-label="Menu"
+            >
+              <div className="relative w-6 h-6 flex flex-col justify-between items-center">
+                <div className={`w-full h-1 ${darkMode ? 'bg-white' : 'bg-black'} rounded transition-all`} />
+                <div className={`w-full h-1 ${darkMode ? 'bg-white' : 'bg-black'} rounded transition-all`} />
+                <div className={`w-full h-1 ${darkMode ? 'bg-white' : 'bg-black'} rounded transition-all`} />
+              </div>
+            </Button>
 
+            {/* Navigation menu */}
+            <NavigationMenu>
+              <NavigationMenuList className={`rounded-full px-8 py-2 space-x-6 transition-all duration-300
+                ${darkMode ? 'bg-white/20 hover:bg-white/30' : 'bg-black/20 hover:bg-black/30'}`}>
+                {navItems.map((item, index) => (
+                  <NavigationMenuItem key={index}>
+                    <Button 
+                      variant="ghost" 
+                      asChild
+                      className={`text-lg font-serif ${item.isActive ? 'font-medium' : 'font-normal'} 
+                        ${darkMode ? 'text-white hover:text-white/80' : 'text-black hover:text-black/80'}
+                        hover:bg-transparent hover:underline transition-all duration-200`}
+                    >
+                      <a href={`/${item.name === "home" ? "" : item.name}`}>
+                        {item.name}
+                      </a>
+                    </Button>
+                  </NavigationMenuItem>
+                ))}
+              </NavigationMenuList>
+            </NavigationMenu>
 
+            <div className="flex items-center space-x-4">
+              {/* Search button */}
+              <Button 
+                className={`w-12 h-12 rounded-full transition-all duration-300 hover:scale-110
+                  ${darkMode ? 'bg-white/20 hover:bg-white/30' : 'bg-black/20 hover:bg-black/30'}`}
+                aria-label="Search"
+              >
+                <div className="relative w-7 h-[23px]">
+                  <div className={`w-[23px] h-5 left-0 rounded-[11.72px/10.12px] border-[3px] border-solid 
+                    ${darkMode ? 'border-white' : 'border-black'} absolute top-0 transition-all`} />
+                  <img
+                    className="absolute w-[11px] h-2.5 top-[13px] left-[17px]"
+                    alt="Line"
+                    src="/line-1.svg"
+                  />
+                </div>
+              </Button>
 
-            </NavigationMenuList>
-          </NavigationMenu>
-
-          {/* Video/Image container */}
-          <div className="absolute w-[778px] h-[509px] top-[456px] left-[52px]">
-            <Card className="absolute w-[664px] h-[476px] top-0 left-[57px] bg-[#ffffff99] rounded-[100px] border-0">
-              <CardContent className="relative w-[637px] h-[456px] top-3 left-3.5 bg-black rounded-[100px] p-0" />
-            </Card>
-
-            {/* Navigation arrows */}
-            <img
-              className="top-[220px] left-[748px] absolute w-[30px] h-[35px]"
-              alt="Polygon"
-              src="/polygon-1.svg"
-            />
-            <img
-              className="top-56 left-0 absolute w-[30px] h-[35px]"
-              alt="Polygon"
-              src="/polygon-2.svg"
-            />
-
-            {/* Pagination dots */}
-            <div className="absolute w-[140px] h-[21px] top-[488px] left-[318px] flex space-x-1">
-              {paginationDots.map((_, index) => (
-                <div
-                  key={index}
-                  className="w-5 h-[21px] bg-[#4e4e4e] rounded-[10.24px/10.36px]"
-                />
-              ))}
+              {/* Dark/Light mode toggle */}
+              <Button 
+                className={`w-12 h-12 rounded-full transition-all duration-300 hover:scale-110
+                  ${darkMode ? 'bg-white/20 hover:bg-white/30' : 'bg-black/20 hover:bg-black/30'}`}
+                onClick={() => setDarkMode(!darkMode)}
+                aria-label="Toggle dark mode"
+              >
+                {darkMode ? (
+                  <Sun className={`w-5 h-5 ${darkMode ? 'text-white' : 'text-black'}`} />
+                ) : (
+                  <Moon className={`w-5 h-5 ${darkMode ? 'text-white' : 'text-black'}`} />
+                )}
+              </Button>
+              
+              {/* Sign in button */}
+              <Button 
+                className={`px-6 py-3 rounded-full transition-all duration-300 hover:scale-105
+                  ${darkMode ? 'bg-white/80 hover:bg-white text-black' : 'bg-black/80 hover:bg-black text-white'}`}
+              >
+                <span className="text-xl font-medium">sign in</span>
+              </Button>
             </div>
           </div>
 
-          {/* Name header */}
-          <div className="absolute w-full top-[129px] left-[285px] flex items-end"> {/* Align baselines */}
-            <h1 className="font-fleur text-white text-9xl leading-[0.8] tracking-tight">
-              Stevie
-            </h1>
-            <h1 className="font-fleur text-white text-9xl ml-6 leading-[0.8] -mb-2"> 
-              Johnson
-            </h1>
-          </div>
+          {/* Main Content */}
+          <div className="absolute top-48 w-full px-24">
+            {/* Name Header */}
+            <div className="text-center mb-6">
+              <div className="flex justify-center items-center space-x-4">
+                <h1 className={`text-[12rem] font-fleur leading-[0.8] tracking-tight transition-all duration-500
+                  ${darkMode ? 'text-white' : 'text-black'}`}>
+                  Stevie
+                </h1>
+                <h1 className={`text-[12rem] font-fleur leading-[0.8] transition-all duration-500
+                  ${darkMode ? 'text-white' : 'text-black'}`}>
+                  Johnson
+                </h1>
+              </div>
+              <p className={`text-xl mt-4 font-serif transition-all duration-300
+                ${darkMode ? 'text-white/80' : 'text-black/80'}`}>
+                Actor / Professor / Director / Therapist / Father
+              </p>
+            </div>
 
-          {/* Subtitle */}
-          <div className="absolute w-[555px] top-[287px] left-[428px] [font-family:'Pecita-Book',Helvetica] font-normal text-[#d1d1d1] text-1xl tracking-[0] leading-[normal] whitespace-nowrap">
-            Actor / Professor / Director / Therapist / Father
-          </div>
+            {/* Divider */}
+            <Separator className={`my-12 transition-all duration-300 ${darkMode ? 'bg-white/20' : 'bg-black/20'}`} />
 
-          {/* Dividing line */}
-          <Separator className="absolute w-[1198px] h-1 top-[435px] left-[121px]">
-            <img
-              className="w-full h-full object-cover"
-              alt="Dividing line"
-              src="/dividing-line--for-pic-.svg"
-            />
-          </Separator>
+            {/* Video Section */}
+            <div className="flex space-x-16">
+              <div className="w-2/3">
+                {/* Video title and actions */}
+                <div className={`transition-all duration-300 ${darkMode ? 'text-white' : 'text-black'}`}>
+                  <h2 className="text-3xl font-serif font-medium mb-1">
+                    {videoReels[activeDot].title}
+                  </h2>
+                  <div className={`flex space-x-4 text-sm font-sans transition-all duration-300
+                    ${darkMode ? 'text-white/60 hover:text-white/80' : 'text-black/60 hover:text-black/80'}`}>
+                    <button className="hover:underline">Watch later</button>
+                    <button className="hover:underline">Share</button>
+                  </div>
+                </div>
+                
+                {/* Video Player */}
+                <div className="relative group">
+                  <Card className={`aspect-video w-full rounded-3xl overflow-hidden transition-all duration-500
+                    ${darkMode ? 'bg-black/90' : 'bg-white/90'}`}>
+                    <iframe
+                      className="w-full h-full group-hover:opacity-90 transition-opacity duration-300"
+                      src={`https://www.youtube.com/embed/${videoReels[activeDot].id}`}
+                      title="YouTube video player"
+                      frameBorder="0"
+                      allowFullScreen
+                    />
+                  </Card>
+                  
+                  {/* Navigation Arrows */}
+                  <button 
+                    className="absolute -left-16 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    onClick={() => setActiveDot((prev) => (prev === 0 ? videoReels.length - 1 : prev - 1))}
+                  >
+                    <img 
+                      src="/polygon-2.svg" 
+                      alt="Previous" 
+                      className="h-10 w-10 hover:scale-110 transition-transform duration-200" 
+                    />
+                  </button>
+                  <button 
+                    className="absolute -right-16 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    onClick={() => setActiveDot((prev) => (prev === videoReels.length - 1 ? 0 : prev + 1))}
+                  >
+                    <img 
+                      src="/polygon-1.svg" 
+                      alt="Next" 
+                      className="h-10 w-10 hover:scale-110 transition-transform duration-200" 
+                    />
+                  </button>
+                </div>
+                
+                {/* Pagination Dots */}
+                <div className="flex justify-center mt-6 space-x-2">
+                  {videoReels.map((_, i) => (
+                    <button 
+                      key={i}
+                      onClick={() => setActiveDot(i)}
+                      className={`w-3 h-3 rounded-full transition-all duration-300
+                        ${i === activeDot ? 
+                          (darkMode ? 'bg-white w-6' : 'bg-black w-6') : 
+                          (darkMode ? 'bg-white/30' : 'bg-black/30')}`}
+                    />
+                  ))}
+                </div>
+              </div>
 
-          {/* About Me section */}
-          <div className="absolute w-[458px] h-[417px] top-[450px] left-[862px]">
-            <h2 className="absolute top-0 left-[94px] [font-family:'Pecita-Book',Helvetica] font-normal text-[#d1d1d1] text-[64px] tracking-[0] leading-[normal]">
-              About Me:
-            </h2>
-
-            <p className="absolute top-[93px] left-0 [font-family:'Pecita-Book',Helvetica] font-normal text-[#d1d1d1] text-[29px] tracking-[0] leading-[normal]">
-              Stevie Johnson is an actor,
-              <br />
-              director, producer, and professor
-              <br />
-              dedicated to storytelling <br />
-              in all its forms.
-              <br />
-              <br />A father, artist, and visionary, <br />
-              Stevie brings passion <br />
-              and authenticity to every <br />
-              project he undertakes.
-            </p>
-          </div>
-
-          {/* Social media icons */}
-          <div className="absolute w-[410px] h-[50px] top-[907px] left-[862px] flex justify-between">
-            {socialIcons.map((icon, index) => (
-              <img
-                key={index}
-                className="w-12 h-12 object-cover"
-                alt={icon.alt}
-                src={icon.src}
-              />
-            ))}
+              {/* About Me Section */}
+              <div className="w-1/3 pt-12">
+                <h2 className={`text-4xl font-serif font-medium mb-6 transition-all duration-300
+                  ${darkMode ? 'text-white' : 'text-black'}`}>
+                  About Me:
+                </h2>
+                <p className={`text-lg leading-relaxed font-sans transition-all duration-300
+                  ${darkMode ? 'text-white/80' : 'text-black/80'}`}>
+                  Stevie Johnson is an actor, director, producer, and professor dedicated to storytelling in all its forms.
+                  <br /><br />
+                  A father, artist, and visionary, Stevie brings passion and authenticity to every project he undertakes.
+                </p>
+                
+                {/* Social Icons */}
+                <div className="mt-12 flex space-x-4">
+                  {socialIcons.map((icon, index) => (
+                    <a 
+                      key={index}
+                      href="#"
+                      className="w-12 h-12 object-cover hover:opacity-80 transition-opacity duration-300 hover:-translate-y-1"
+                    >
+                      <img
+                        alt={icon.alt}
+                        src={icon.src}
+                        className="w-full h-full"
+                      />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Footer */}
-          <footer className="absolute w-[1442px] h-[30px] top-[987px] left-0 bg-transparent">
-            <div className="relative w-[1440px] h-[30px]">
-              <div className="absolute w-[1440px] h-[25px] top-0.5 left-0 bg-[#d9d9d90d]" />
-              <div className="absolute top-0 left-[623px] [font-family:'Pecita-Book',Helvetica] font-normal text-[#d9d9d938] text-2xl tracking-[0] leading-[normal]">
-                @2025 jakejohndoe
-              </div>
-            </div>
+          <footer className={`absolute bottom-8 w-full text-center text-sm font-sans transition-all duration-300
+            ${darkMode ? 'text-white/30' : 'text-black/30'}`}>
+            @2025 jakejohndoe
           </footer>
-
-          {/* Bottom separator */}
-          <Separator className="absolute w-[457px] h-px top-[889px] left-[862px]">
-            <img
-              className="w-full h-full object-cover"
-              alt="Line"
-              src="/line-2.svg"
-            />
-          </Separator>
         </div>
       </div>
     </div>
