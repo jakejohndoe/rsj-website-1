@@ -101,33 +101,10 @@
     background-image: url('/ThickChrome 2.png');
     background-size: cover;
     background-position: center top;
-    background-attachment: scroll;
+    background-attachment: fixed;
     min-height: 100vh;
-    background-blend-mode: overlay;
-    background-color: rgba(0, 0, 0, 0.1); /* Adjusted overlay */
-    
-      
-    /* More subtle effects */
-
-    backdrop-filter: blur(2px); /* Added slight blur */
-    filter: brightness(1.1) contrast(1.05); /* Toned down slightly */
-    box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.4); /* Reduced from 100px */
-
-    
-  /* New metallic sheen overlay */
-  &::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-    radial-gradient(circle at 70% 30%, rgba(255,255,255,0.05) 0%, transparent 40%),
-    linear-gradient(to bottom, transparent 90%, rgba(0,0,0,0.3) 100%);
-  pointer-events: none;
-  z-index: -1;
-  }
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
 }
 }
 

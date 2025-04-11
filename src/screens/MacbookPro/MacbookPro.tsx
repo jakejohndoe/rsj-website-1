@@ -7,31 +7,31 @@ import {
   NavigationMenuList,
 } from "../../components/ui/navigation-menu";
 import { Separator } from "../../components/ui/separator";
-import { Sun, Moon } from "lucide-react"; // For dark/light mode toggle
+import { Sun, Moon } from "lucide-react";
 
 export const MacbookPro = (): JSX.Element => {
+  // ===== STATE MANAGEMENT =====
+  // Controls dark/light mode toggle
   const [darkMode, setDarkMode] = useState(false);
-  const [activeDot, setActiveDot] = useState(0);
+  // Tracks which video is active in the carousel
+  const [activeVideoDot, setActiveVideoDot] = useState(0);
+  // Tracks which gallery image is active in the carousel
+  const [activeGalleryDot, setActiveGalleryDot] = useState(0);
 
-  // Navigation menu items
+  // ===== DATA COLLECTIONS =====
+  // Navigation items for the header menu
   const navItems = [
-    { name: "home", isActive: true },
-    { name: "actor", isActive: false },
-    { name: "author", isActive: false },
-    { name: "professor", isActive: false },
-    { name: "courses", isActive: false },
-    { name: "blog", isActive: false },
-    { name: "contact", isActive: false },
+    "home", "actor", "author", "professor", "courses", "blog", "contact"
   ];
 
-  // Video reel data
+  // Video reel data for the video player section
   const videoReels = [
-    { id: "_p5b5KJrIT4", title: "Theatrical Reel (2025)" },
+    { id: "_p5b5KJrIT4", title: "Theatrical Reel (2025)" }, // YouTube video IDs
     { id: "example1", title: "Dramatic Work (2024)" },
     { id: "example2", title: "Commercial Work (2023)" },
   ];
 
-  // Social media icons
+  // Social media icons data
   const socialIcons = [
     { src: "/img-icons8-1.png", alt: "Facebook" },
     { src: "/img-icons8-1-1.png", alt: "Instagram" },
@@ -39,215 +39,289 @@ export const MacbookPro = (): JSX.Element => {
     { src: "/img-icons8-3-1.png", alt: "TikTok" },
   ];
 
+  // Gallery images data
+  const galleryImages = [
+    { id: 1, src: "/gallery1.jpg", alt: "Performance shot 1" },
+    { id: 2, src: "/gallery2.jpg", alt: "Performance shot 2" },
+    { id: 3, src: "/gallery3.jpg", alt: "Behind the scenes" },
+    { id: 4, src: "/gallery4.jpg", alt: "Headshot" },
+  ];
+
+  // ===== THEME CLASSES =====
+  // Dynamic classes that change based on darkMode state
+  const themeClasses = {
+    text: darkMode ? 'text-white' : 'text-black', // Text color
+    textMuted: darkMode ? 'text-white/80' : 'text-black/80', // Secondary text
+    textDimmed: darkMode ? 'text-white/60' : 'text-black/60', // Tertiary text
+    textFooter: darkMode ? 'text-white/30' : 'text-black/30', // Footer text
+    bg: darkMode ? 'bg-black/2.5' : 'bg-gray-100/30', // Background
+    menuBg: darkMode ? 'bg-white/20 hover:bg-white/30' : 'bg-black/20 hover:bg-black/30', // Menu background
+    btnBg: darkMode ? 'bg-white/80 hover:bg-white text-black' : 'bg-black/80 hover:bg-black text-white', // Button styles
+    divider: darkMode ? 'bg-white/20' : 'bg-black/20', // Divider line
+    menuLines: darkMode ? 'bg-white' : 'bg-black' // Hamburger menu lines
+  };
+
+  // ===== GALLERY NAVIGATION =====
+  // Handles gallery image navigation (previous/next)
+  const navigateGallery = (direction: 'prev' | 'next') => {
+    setActiveGalleryDot(prev => {
+      if (direction === 'prev') {
+        return prev === 0 ? galleryImages.length - 1 : prev - 1; // Loop to end if at start
+      } else {
+        return prev === galleryImages.length - 1 ? 0 : prev + 1; // Loop to start if at end
+      }
+    });
+  };
+
   return (
+    // ===== ROOT CONTAINER =====
+    // Applies dark mode class and centers content
     <div className={`flex flex-row justify-center w-full font-sans ${darkMode ? 'dark' : ''}`}>
-      {/* Custom font definitions */}
+      
+      {/* ===== GLOBAL STYLES ===== */}
+      {/* Imports and defines custom fonts for the entire application */}
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap');
-        .font-fleur { font-family: 'Fleur De Leah', cursive; }
-        .font-serif { font-family: 'Playfair Display', serif; }
-        .font-sans { font-family: 'Montserrat', sans-serif; }
+        .font-fleur { font-family: 'Fleur De Leah', cursive; } // Decorative font for name
+        .font-serif { font-family: 'Playfair Display', serif; } // Elegant serif font
+        .font-sans { font-family: 'Montserrat', sans-serif; } // Clean sans-serif font
       `}</style>
 
-      <div className="bg-transparent overflow-hidden w-[1728px] h-[1117px]">
-        <div className="relative w-[1442px] h-[1017px] top-[103px] left-36 bg-transparent">
-          {/* Background container - now supports dark mode */}
-          <div className={`absolute w-[1440px] h-[1014px] top-0 left-0 rounded-[50px] backdrop-blur-sm
-            ${darkMode ? 'bg-black/70' : 'bg-white/20'}`} />
+      {/* ===== MAIN LAYOUT CONTAINER ===== */}
+      {/* Sets max width and ensures full viewport height */}
+      <div className="bg-transparent overflow-hidden w-full max-w-[1800px] min-h-screen">
+        
+        {/* ===== CONTENT WRAPPER ===== */}
+        {/* Positions all content relative to this container */}
+        <div className="relative w-full h-[1600px] top-[50px] bg-transparent">
+          
+          {/* ===== BACKGROUND PANEL ===== */}
+          {/* Creates the rounded background behind content */}
+          <div className={`absolute w-full h-[1550px] top-0 rounded-[50px] ${themeClasses.bg}`} />
 
-          {/* Header/Navigation section */}
+          {/* ===== HEADER/NAVIGATION SECTION ===== */}
+          {/* Fixed header with menu, navigation, and theme controls */}
           <div className="absolute top-8 w-full px-12 flex items-center justify-between">
-            {/* Menu button with animation */}
+            
+            {/* ===== MENU BUTTON ===== */}
+            {/* Hamburger menu button with animated rotation */}
             <Button 
               className="w-12 h-12 rounded-full bg-white/60 hover:bg-white/80 transition-all duration-300 hover:rotate-90"
               aria-label="Menu"
             >
               <div className="relative w-6 h-6 flex flex-col justify-between items-center">
-                <div className={`w-full h-1 ${darkMode ? 'bg-white' : 'bg-black'} rounded transition-all`} />
-                <div className={`w-full h-1 ${darkMode ? 'bg-white' : 'bg-black'} rounded transition-all`} />
-                <div className={`w-full h-1 ${darkMode ? 'bg-white' : 'bg-black'} rounded transition-all`} />
+                {[...Array(3)].map((_, i) => (
+                  <div key={i} className={`w-full h-1 ${themeClasses.menuLines} rounded transition-all`} />
+                ))}
               </div>
             </Button>
 
-            {/* Navigation menu */}
+            {/* ===== NAVIGATION MENU ===== */}
+            {/* Centered navigation links in a pill-shaped container */}
             <NavigationMenu>
-              <NavigationMenuList className={`rounded-full px-8 py-2 space-x-6 transition-all duration-300
-                ${darkMode ? 'bg-white/20 hover:bg-white/30' : 'bg-black/20 hover:bg-black/30'}`}>
+              <NavigationMenuList className={`rounded-full px-8 py-2 space-x-6 transition-all duration-300 ${themeClasses.menuBg}`}>
                 {navItems.map((item, index) => (
                   <NavigationMenuItem key={index}>
                     <Button 
                       variant="ghost" 
                       asChild
-                      className={`text-lg font-serif ${item.isActive ? 'font-medium' : 'font-normal'} 
-                        ${darkMode ? 'text-white hover:text-white/80' : 'text-black hover:text-black/80'}
-                        hover:bg-transparent hover:underline transition-all duration-200`}
+                      className={`text-lg font-serif ${index === 0 ? 'font-medium' : 'font-normal'} 
+                        ${themeClasses.text} hover:bg-transparent hover:underline transition-all duration-200`}
                     >
-                      <a href={`/${item.name === "home" ? "" : item.name}`}>
-                        {item.name}
-                      </a>
+                      <a href={`/${item === "home" ? "" : item}`}>{item}</a>
                     </Button>
                   </NavigationMenuItem>
                 ))}
               </NavigationMenuList>
             </NavigationMenu>
 
+            {/* ===== RIGHT CONTROLS ===== */}
+            {/* Theme toggle and sign-in button */}
             <div className="flex items-center space-x-4">
-              {/* Search button */}
+              
+              {/* Dark/Light Mode Toggle */}
               <Button 
-                className={`w-12 h-12 rounded-full transition-all duration-300 hover:scale-110
-                  ${darkMode ? 'bg-white/20 hover:bg-white/30' : 'bg-black/20 hover:bg-black/30'}`}
-                aria-label="Search"
-              >
-                <div className="relative w-7 h-[23px]">
-                  <div className={`w-[23px] h-5 left-0 rounded-[11.72px/10.12px] border-[3px] border-solid 
-                    ${darkMode ? 'border-white' : 'border-black'} absolute top-0 transition-all`} />
-                  <img
-                    className="absolute w-[11px] h-2.5 top-[13px] left-[17px]"
-                    alt="Line"
-                    src="/line-1.svg"
-                  />
-                </div>
-              </Button>
-
-              {/* Dark/Light mode toggle */}
-              <Button 
-                className={`w-12 h-12 rounded-full transition-all duration-300 hover:scale-110
-                  ${darkMode ? 'bg-white/20 hover:bg-white/30' : 'bg-black/20 hover:bg-black/30'}`}
+                className={`w-12 h-12 rounded-full transition-all duration-300 hover:scale-110 ${themeClasses.menuBg}`}
                 onClick={() => setDarkMode(!darkMode)}
                 aria-label="Toggle dark mode"
               >
-                {darkMode ? (
-                  <Sun className={`w-5 h-5 ${darkMode ? 'text-white' : 'text-black'}`} />
-                ) : (
-                  <Moon className={`w-5 h-5 ${darkMode ? 'text-white' : 'text-black'}`} />
-                )}
+                {darkMode ? 
+                  <Sun className={themeClasses.text} /> : 
+                  <Moon className={themeClasses.text} />
+                }
               </Button>
               
-              {/* Sign in button */}
-              <Button 
-                className={`px-6 py-3 rounded-full transition-all duration-300 hover:scale-105
-                  ${darkMode ? 'bg-white/80 hover:bg-white text-black' : 'bg-black/80 hover:bg-black text-white'}`}
-              >
+              {/* Sign In Button */}
+              <Button className={`px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 ${themeClasses.btnBg}`}>
                 <span className="text-xl font-medium">sign in</span>
               </Button>
             </div>
           </div>
 
-          {/* Main Content */}
-          <div className="absolute top-48 w-full px-24">
-            {/* Name Header */}
-            <div className="text-center mb-6">
+          {/* ===== MAIN CONTENT AREA ===== */}
+          {/* All page content below the header */}
+          <div className="absolute top-40 w-full px-24">
+            
+            {/* ===== NAME HEADER ===== */}
+            {/* Large decorative name display */}
+            <div className="text-center mb-4">
               <div className="flex justify-center items-center space-x-4">
-                <h1 className={`text-[12rem] font-fleur leading-[0.8] tracking-tight transition-all duration-500
-                  ${darkMode ? 'text-white' : 'text-black'}`}>
-                  Stevie
-                </h1>
-                <h1 className={`text-[12rem] font-fleur leading-[0.8] transition-all duration-500
-                  ${darkMode ? 'text-white' : 'text-black'}`}>
-                  Johnson
-                </h1>
+                {["Stevie", "Johnson"].map((name, i) => (
+                  <h1 key={i} className={`text-[10rem] font-fleur leading-[0.8] ${i === 0 ? 'tracking-tight' : ''} transition-all duration-500 ${themeClasses.text}`}>
+                    {name}
+                  </h1>
+                ))}
               </div>
-              <p className={`text-xl mt-4 font-serif transition-all duration-300
-                ${darkMode ? 'text-white/80' : 'text-black/80'}`}>
-                Actor / Professor / Director / Therapist / Father
+              <p className={`text-xl mt-6 font-serif transition-all duration-300 ${themeClasses.textMuted}`}>
+                Actor / Author / Professor / Director
               </p>
             </div>
 
-            {/* Divider */}
-            <Separator className={`my-12 transition-all duration-300 ${darkMode ? 'bg-white/20' : 'bg-black/20'}`} />
+            {/* ===== DIVIDER ===== */}
+            {/* Horizontal separator line */}
+            <Separator className={`my-8 transition-all duration-300 ${themeClasses.divider}`} />
 
-            {/* Video Section */}
-            <div className="flex space-x-16">
-              <div className="w-2/3">
-                {/* Video title and actions */}
-                <div className={`transition-all duration-300 ${darkMode ? 'text-white' : 'text-black'}`}>
-                  <h2 className="text-3xl font-serif font-medium mb-1">
-                    {videoReels[activeDot].title}
+            {/* ===== MEDIA SECTION ===== */}
+            {/* Contains video player and image gallery side-by-side */}
+            <div className="flex space-x-24">
+              
+              {/* ===== VIDEO PLAYER (2/3 WIDTH) ===== */}
+              <div className="w-2/3 flex flex-col">
+                
+                {/* Video Title and Actions */}
+                <div className={`transition-all duration-300 ${themeClasses.text} mb-3`}>
+                  <h2 className="text-3xl font-serif font-medium">
+                    {videoReels[activeVideoDot].title}
                   </h2>
-                  <div className={`flex space-x-4 text-sm font-sans transition-all duration-300
-                    ${darkMode ? 'text-white/60 hover:text-white/80' : 'text-black/60 hover:text-black/80'}`}>
-                    <button className="hover:underline">Watch later</button>
-                    <button className="hover:underline">Share</button>
+                  <div className={`flex space-x-4 text-sm font-sans mt-2 transition-all duration-300 ${themeClasses.textDimmed}`}>
+                    {["Watch later", "Share"].map((action, i) => (
+                      <button key={i} className="hover:underline">{action}</button>
+                    ))}
                   </div>
                 </div>
                 
-                {/* Video Player */}
-                <div className="relative group">
-                  <Card className={`aspect-video w-full rounded-3xl overflow-hidden transition-all duration-500
-                    ${darkMode ? 'bg-black/90' : 'bg-white/90'}`}>
+                {/* Video Player Container */}
+                <div className="relative group" style={{ height: '600px' }}>
+                  <Card className={`rounded-3xl overflow-hidden transition-all duration-500 h-full ${darkMode ? 'bg-black' : 'bg-black'}`}>
                     <iframe
                       className="w-full h-full group-hover:opacity-90 transition-opacity duration-300"
-                      src={`https://www.youtube.com/embed/${videoReels[activeDot].id}`}
+                      src={`https://www.youtube.com/embed/${videoReels[activeVideoDot].id}`}
                       title="YouTube video player"
                       frameBorder="0"
                       allowFullScreen
                     />
                   </Card>
                   
-                  {/* Navigation Arrows */}
-                  <button 
-                    className="absolute -left-16 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    onClick={() => setActiveDot((prev) => (prev === 0 ? videoReels.length - 1 : prev - 1))}
-                  >
-                    <img 
-                      src="/polygon-2.svg" 
-                      alt="Previous" 
-                      className="h-10 w-10 hover:scale-110 transition-transform duration-200" 
-                    />
-                  </button>
-                  <button 
-                    className="absolute -right-16 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    onClick={() => setActiveDot((prev) => (prev === videoReels.length - 1 ? 0 : prev + 1))}
-                  >
-                    <img 
-                      src="/polygon-1.svg" 
-                      alt="Next" 
-                      className="h-10 w-10 hover:scale-110 transition-transform duration-200" 
-                    />
-                  </button>
+                  {/* Video Navigation Arrows */}
+                  {["polygon-2.svg", "polygon-1.svg"].map((src, i) => (
+                    <button 
+                      key={i}
+                      className={`absolute ${i === 0 ? '-left-16' : '-right-16'} top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                      onClick={() => setActiveVideoDot((prev) => {
+                        if (i === 0) return prev === 0 ? videoReels.length - 1 : prev - 1;
+                        return prev === videoReels.length - 1 ? 0 : prev + 1;
+                      })}
+                    >
+                      <img 
+                        src={`/${src}`} 
+                        alt={i === 0 ? "Previous" : "Next"} 
+                        className="h-12 w-12 hover:scale-110 transition-transform duration-200" 
+                      />
+                    </button>
+                  ))}
                 </div>
                 
-                {/* Pagination Dots */}
-                <div className="flex justify-center mt-6 space-x-2">
+                {/* Video Progress Dots */}
+                <div className="flex justify-center mt-6 space-x-3 p-2 bg-black/0 dark:bg-white/0 rounded-full">
                   {videoReels.map((_, i) => (
                     <button 
                       key={i}
-                      onClick={() => setActiveDot(i)}
-                      className={`w-3 h-3 rounded-full transition-all duration-300
-                        ${i === activeDot ? 
-                          (darkMode ? 'bg-white w-6' : 'bg-black w-6') : 
-                          (darkMode ? 'bg-white/30' : 'bg-black/30')}`}
+                      onClick={() => setActiveVideoDot(i)}
+                      className={`h-3 rounded-full transition-all duration-300 
+                        ${i === activeVideoDot ? 'w-8 bg-black dark:bg-white' : 'w-4 bg-black/30 dark:bg-white/30'}`}
                     />
                   ))}
                 </div>
               </div>
 
-              {/* About Me Section */}
-              <div className="w-1/3 pt-12">
-                <h2 className={`text-4xl font-serif font-medium mb-6 transition-all duration-300
-                  ${darkMode ? 'text-white' : 'text-black'}`}>
-                  About Me:
-                </h2>
-                <p className={`text-lg leading-relaxed font-sans transition-all duration-300
-                  ${darkMode ? 'text-white/80' : 'text-black/80'}`}>
-                  Stevie Johnson is an actor, director, producer, and professor dedicated to storytelling in all its forms.
-                  <br /><br />
-                  A father, artist, and visionary, Stevie brings passion and authenticity to every project he undertakes.
-                </p>
+              {/* ===== GALLERY (1/3 WIDTH) ===== */}
+              <div className="w-1/3 flex flex-col">
                 
-                {/* Social Icons */}
-                <div className="mt-12 flex space-x-4">
+                {/* Gallery Title */}
+                <div className={`transition-all duration-300 ${themeClasses.text} mb-3`}>
+                  <h2 className="text-3xl font-serif font-medium">
+                    Gallery
+                  </h2>
+                  {/* Hidden spacer for alignment */}
+                  <div className={`flex space-x-4 text-sm font-sans mt-2 transition-all duration-300 ${themeClasses.textDimmed}`}>
+                    <span className="opacity-0">Spacer</span>
+                  </div>
+                </div>
+                
+                {/* Gallery Image Container */}
+                <div className="relative group" style={{ height: '600px' }}>
+                  <Card className={`rounded-3xl overflow-hidden transition-all duration-500 h-full ${darkMode ? 'bg-black/20' : 'bg-white/20'}`}>
+                    <img
+                      src={galleryImages[activeGalleryDot].src}
+                      alt={galleryImages[activeGalleryDot].alt}
+                      className="w-full h-full object-cover group-hover:opacity-90 transition-opacity duration-300"
+                    />
+                  </Card>
+                  
+                  {/* Gallery Navigation Arrows */}
+                  {["polygon-2.svg", "polygon-1.svg"].map((src, i) => (
+                    <button 
+                      key={i}
+                      className={`absolute ${i === 0 ? '-left-12' : '-right-12'} top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                      onClick={() => navigateGallery(i === 0 ? 'prev' : 'next')}
+                    >
+                      <img 
+                        src={`/${src}`} 
+                        alt={i === 0 ? "Previous" : "Next"} 
+                        className="h-10 w-10 hover:scale-110 transition-transform duration-200" 
+                      />
+                    </button>
+                  ))}
+                </div>
+                
+                {/* Gallery Progress Dots */}
+                <div className="flex justify-center mt-4 space-x-2">
+                  {galleryImages.map((_, i) => (
+                    <button 
+                      key={i}
+                      onClick={() => setActiveGalleryDot(i)}
+                      className={`h-3 rounded-full transition-all duration-300 
+                        ${i === activeGalleryDot ? 'w-8 bg-black dark:bg-white' : 'w-4 bg-black/30 dark:bg-white/30'}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* ===== ABOUT ME SECTION ===== */}
+            <div className="mt-12 w-full">
+              <Separator className={`my-6 transition-all duration-300 ${themeClasses.divider}`} />
+              
+              <div className="flex flex-col items-center">
+                <h2 className={`text-4xl font-serif font-medium mb-4 transition-all duration-300 ${themeClasses.text}`}>
+                  About Me
+                </h2>
+                <ul className={`text-lg leading-relaxed font-sans text-center max-w-3xl transition-all duration-300 ${themeClasses.textMuted} space-y-2 list-none pl-0`}>
+                  <li><strong>Stevie Johnson is an actor, director, producer, and professor dedicated to storytelling.</strong></li>
+                  <li>• A father, artist, and visionary</li>
+                  <li>• Brings passion and authenticity to every project</li>
+                  <li>• Committed to artistic excellence</li>
+                </ul>
+                
+                {/* ===== SOCIAL ICONS ===== */}
+                <div className="mt-8 flex space-x-6">
                   {socialIcons.map((icon, index) => (
                     <a 
                       key={index}
                       href="#"
                       className="w-12 h-12 object-cover hover:opacity-80 transition-opacity duration-300 hover:-translate-y-1"
                     >
-                      <img
-                        alt={icon.alt}
-                        src={icon.src}
-                        className="w-full h-full"
-                      />
+                      <img alt={icon.alt} src={icon.src} className="w-full h-full" />
                     </a>
                   ))}
                 </div>
@@ -255,9 +329,9 @@ export const MacbookPro = (): JSX.Element => {
             </div>
           </div>
 
-          {/* Footer */}
-          <footer className={`absolute bottom-8 w-full text-center text-sm font-sans transition-all duration-300
-            ${darkMode ? 'text-white/30' : 'text-black/30'}`}>
+          {/* ===== FOOTER ===== */}
+          {/* Fixed footer at bottom of viewport */}
+          <footer className={`fixed bottom-0 left-0 right-0 py-4 text-center text-sm font-sans transition-all duration-300 ${themeClasses.textFooter}`}>
             @2025 jakejohndoe
           </footer>
         </div>
