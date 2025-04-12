@@ -1,4 +1,4 @@
-// components/layout/MacbookProLayout.tsx
+// src/components/layout/MacbookProLayout.tsx
 import React from "react";
 import { Button } from "../ui/button";
 import { Card } from "../ui/card";
@@ -9,6 +9,7 @@ import {
 } from "../ui/navigation-menu";
 import { Separator } from "../ui/separator";
 import { Sun, Moon } from "lucide-react";
+import { SignInModal } from "../auth/SignInModal";
 
 interface MacbookProLayoutProps {
   children: React.ReactNode;
@@ -23,6 +24,7 @@ export const MacbookProLayout = ({
   toggleDarkMode = () => {},
   activeNavItem = "home"
 }: MacbookProLayoutProps) => {
+  const [showSignInModal, setShowSignInModal] = React.useState(false);
   const navItems = ["home", "actor", "author", "professor", "courses", "blog", "contact"];
 
   const themeClasses = {
@@ -53,14 +55,14 @@ export const MacbookProLayout = ({
           {/* Header/Navigation */}
           <div className="absolute top-8 w-full px-12 flex items-center justify-between">
             <Button 
-              className="w-12 h-12 rounded-full bg-white/60 hover:bg-white/80 transition-all duration-300 hover:rotate-90"
+              className="w-12 h-12 rounded-full bg-transparent hover:bg-white/20 transition-all duration-300 hover:rotate-[360deg] overflow-hidden p-0"
               aria-label="Menu"
             >
-              <div className="relative w-6 h-6 flex flex-col justify-between items-center">
-                {[...Array(3)].map((_, i) => (
-                  <div key={i} className={`w-full h-1 ${themeClasses.menuLines} rounded transition-all`} />
-                ))}
-              </div>
+              <img 
+                src="/ChromeTransparent.png" 
+                alt="Menu" 
+                className="w-full h-full object-cover"
+              />
             </Button>
 
             <NavigationMenu>
@@ -89,7 +91,10 @@ export const MacbookProLayout = ({
                 {darkMode ? <Sun className={themeClasses.text} /> : <Moon className={themeClasses.text} />}
               </Button>
               
-              <Button className={`px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 ${themeClasses.btnBg}`}>
+              <Button 
+                className={`px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 ${themeClasses.btnBg}`}
+                onClick={() => setShowSignInModal(true)}
+              >
                 <span className="text-xl font-medium">sign in</span>
               </Button>
             </div>
@@ -105,6 +110,14 @@ export const MacbookProLayout = ({
           </footer>
         </div>
       </div>
+
+      {/* Sign In Modal */}
+      {showSignInModal && (
+        <SignInModal 
+          darkMode={darkMode}
+          onClose={() => setShowSignInModal(false)}
+        />
+      )}
     </div>
   );
 };

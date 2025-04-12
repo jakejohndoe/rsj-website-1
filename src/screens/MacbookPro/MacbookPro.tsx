@@ -8,32 +8,27 @@ import {
 } from "../../components/ui/navigation-menu";
 import { Separator } from "../../components/ui/separator";
 import { Sun, Moon } from "lucide-react";
-import { MacbookProLayout } from "../../components/layout/MacbookProLayout";
+import { SignInModal } from "../../components/auth/SignInModal";
 
 export const MacbookPro = (): JSX.Element => {
   // ===== STATE MANAGEMENT =====
-  // Controls dark/light mode toggle
   const [darkMode, setDarkMode] = useState(false);
-  // Tracks which video is active in the carousel
   const [activeVideoDot, setActiveVideoDot] = useState(0);
-  // Tracks which gallery image is active in the carousel
   const [activeGalleryDot, setActiveGalleryDot] = useState(0);
+  const [showSignInModal, setShowSignInModal] = useState(false); // Added for sign-in modal
 
   // ===== DATA COLLECTIONS =====
-  // Navigation items for the header menu
   const navItems = [
     "home", "actor", "author", "professor", "courses", "blog", "contact"
   ];
 
-  // Video reel data for the video player section
   const videoReels = [
-    { id: "_p5b5KJrIT4", title: "Theatrical Reel (2025)" }, // YouTube video IDs
-    { id: "i1S82a1Ag1Q", title: "History of Breakfast (Commercial)" }, // Extracted YouTube video ID
+    { id: "_p5b5KJrIT4", title: "Theatrical Reel (2025)" },
+    { id: "i1S82a1Ag1Q", title: "History of Breakfast (Commercial)" },
     { id: "G8KOUnPRwJE", title: "Real Spit! (Trailer)" },
-    { id: "enrZJWfOL6s", title: "Blueberry - Short Film (Full)" }, // Extracted YouTube video ID
+    { id: "enrZJWfOL6s", title: "Blueberry - Short Film (Full)" },
   ];
 
-  // Social media icons data
   const socialIcons = [
     { src: "/img-icons8-1.png", alt: "Facebook" },
     { src: "/img-icons8-1-1.png", alt: "Instagram" },
@@ -41,7 +36,6 @@ export const MacbookPro = (): JSX.Element => {
     { src: "/img-icons8-3-1.png", alt: "TikTok" },
   ];
 
-  // Gallery images data
   const galleryImages = [
     { id: 1, src: "/stevie_headshot_008.jpg", alt: "Headshot (1)" },
     { id: 2, src: "/stevie_headshot_207.jpg", alt: "Headshot (2)" },
@@ -50,76 +44,56 @@ export const MacbookPro = (): JSX.Element => {
   ];
 
   // ===== THEME CLASSES =====
-  // Dynamic classes that change based on darkMode state
   const themeClasses = {
-    text: darkMode ? 'text-white' : 'text-black', // Text color
-    textMuted: darkMode ? 'text-white/80' : 'text-black/80', // Secondary text
-    textDimmed: darkMode ? 'text-white/60' : 'text-black/60', // Tertiary text
-    textFooter: darkMode ? 'text-white/30' : 'text-black/30', // Footer text
-    bg: darkMode ? 'bg-black/2.5' : 'bg-gray-100/30', // Background
-    menuBg: darkMode ? 'bg-white/20 hover:bg-white/30' : 'bg-black/20 hover:bg-black/30', // Menu background
-    btnBg: darkMode ? 'bg-white/80 hover:bg-white text-black' : 'bg-black/80 hover:bg-black text-white', // Button styles
-    divider: darkMode ? 'bg-white/20' : 'bg-black/20', // Divider line
-    menuLines: darkMode ? 'bg-white' : 'bg-black' // Hamburger menu lines
+    text: darkMode ? 'text-white' : 'text-black',
+    textMuted: darkMode ? 'text-white/80' : 'text-black/80',
+    textDimmed: darkMode ? 'text-white/60' : 'text-black/60',
+    textFooter: darkMode ? 'text-white/30' : 'text-black/30',
+    bg: darkMode ? 'bg-black/2.5' : 'bg-gray-100/30',
+    menuBg: darkMode ? 'bg-white/20 hover:bg-white/30' : 'bg-black/20 hover:bg-black/30',
+    btnBg: darkMode ? 'bg-white/80 hover:bg-white text-black' : 'bg-black/80 hover:bg-black text-white',
+    divider: darkMode ? 'bg-white/20' : 'bg-black/20',
+    menuLines: darkMode ? 'bg-white' : 'bg-black'
   };
 
   // ===== GALLERY NAVIGATION =====
-  // Handles gallery image navigation (previous/next)
   const navigateGallery = (direction: 'prev' | 'next') => {
     setActiveGalleryDot(prev => {
       if (direction === 'prev') {
-        return prev === 0 ? galleryImages.length - 1 : prev - 1; // Loop to end if at start
+        return prev === 0 ? galleryImages.length - 1 : prev - 1;
       } else {
-        return prev === galleryImages.length - 1 ? 0 : prev + 1; // Loop to start if at end
+        return prev === galleryImages.length - 1 ? 0 : prev + 1;
       }
     });
   };
 
   return (
-    // ===== ROOT CONTAINER =====
-    // Applies dark mode class and centers content
     <div className={`flex flex-row justify-center w-full font-sans ${darkMode ? 'dark' : ''}`}>
-      
-      {/* ===== GLOBAL STYLES ===== */}
-      {/* Imports and defines custom fonts for the entire application */}
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap');
-        .font-fleur { font-family: 'Fleur De Leah', cursive; } // Decorative font for name
-        .font-serif { font-family: 'Playfair Display', serif; } // Elegant serif font
-        .font-sans { font-family: 'Montserrat', sans-serif; } // Clean sans-serif font
+        .font-fleur { font-family: 'Fleur De Leah', cursive; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .font-sans { font-family: 'Montserrat', sans-serif; }
       `}</style>
 
-      {/* ===== MAIN LAYOUT CONTAINER ===== */}
-      {/* Sets max width and ensures full viewport height */}
       <div className="bg-transparent overflow-hidden w-full max-w-[1800px] min-h-screen">
-        
-        {/* ===== CONTENT WRAPPER ===== */}
-        {/* Positions all content relative to this container */}
         <div className="relative w-full h-[1600px] top-[50px] bg-transparent">
-          
-          {/* ===== BACKGROUND PANEL ===== */}
-          {/* Creates the rounded background behind content */}
           <div className={`absolute w-full h-[1550px] top-0 rounded-[50px] ${themeClasses.bg}`} />
 
-          {/* ===== HEADER/NAVIGATION SECTION ===== */}
-          {/* Fixed header with menu, navigation, and theme controls */}
+          {/* ===== UPDATED HEADER ===== */}
           <div className="absolute top-8 w-full px-12 flex items-center justify-between">
-            
-            {/* ===== MENU BUTTON ===== */}
-            {/* Hamburger menu button with animated rotation */}
+            {/* Updated Hamburger Menu Button */}
             <Button 
-              className="w-12 h-12 rounded-full bg-white/60 hover:bg-white/80 transition-all duration-300 hover:rotate-90"
+              className="w-12 h-12 rounded-full bg-transparent hover:bg-white/20 transition-all duration-300 hover:rotate-[360deg] overflow-hidden p-0"
               aria-label="Menu"
             >
-              <div className="relative w-6 h-6 flex flex-col justify-between items-center">
-                {[...Array(3)].map((_, i) => (
-                  <div key={i} className={`w-full h-1 ${themeClasses.menuLines} rounded transition-all`} />
-                ))}
-              </div>
+              <img 
+                src="/ChromeTransparent.png" 
+                alt="Menu" 
+                className="w-full h-full object-cover"
+              />
             </Button>
 
-            {/* ===== NAVIGATION MENU ===== */}
-            {/* Centered navigation links in a pill-shaped container */}
             <NavigationMenu>
               <NavigationMenuList className={`rounded-full px-8 py-2 space-x-6 transition-all duration-300 ${themeClasses.menuBg}`}>
                 {navItems.map((item, index) => (
@@ -137,35 +111,27 @@ export const MacbookPro = (): JSX.Element => {
               </NavigationMenuList>
             </NavigationMenu>
 
-            {/* ===== RIGHT CONTROLS ===== */}
-            {/* Theme toggle and sign-in button */}
             <div className="flex items-center space-x-4">
-              
-              {/* Dark/Light Mode Toggle */}
               <Button 
                 className={`w-12 h-12 rounded-full transition-all duration-300 hover:scale-110 ${themeClasses.menuBg}`}
                 onClick={() => setDarkMode(!darkMode)}
                 aria-label="Toggle dark mode"
               >
-                {darkMode ? 
-                  <Sun className={themeClasses.text} /> : 
-                  <Moon className={themeClasses.text} />
-                }
+                {darkMode ? <Sun className={themeClasses.text} /> : <Moon className={themeClasses.text} />}
               </Button>
               
-              {/* Sign In Button */}
-              <Button className={`px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 ${themeClasses.btnBg}`}>
+              {/* Updated Sign In Button */}
+              <Button 
+                className={`px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 ${themeClasses.btnBg}`}
+                onClick={() => setShowSignInModal(true)}
+              >
                 <span className="text-xl font-medium">sign in</span>
               </Button>
             </div>
           </div>
 
-          {/* ===== MAIN CONTENT AREA ===== */}
-          {/* All page content below the header */}
+          {/* ===== MAIN CONTENT ===== */}
           <div className="absolute top-40 w-full px-24">
-            
-            {/* ===== NAME HEADER ===== */}
-            {/* Large decorative name display */}
             <div className="text-center mb-4">
               <div className="flex justify-center items-center space-x-4">
                 {["Stevie", "Johnson"].map((name, i) => (
@@ -179,18 +145,10 @@ export const MacbookPro = (): JSX.Element => {
               </p>
             </div>
 
-            {/* ===== DIVIDER ===== */}
-            {/* Horizontal separator line */}
             <Separator className={`my-8 transition-all duration-300 ${themeClasses.divider}`} />
 
-            {/* ===== MEDIA SECTION ===== */}
-            {/* Contains video player and image gallery side-by-side */}
             <div className="flex space-x-24">
-              
-              {/* ===== VIDEO PLAYER (2/3 WIDTH) ===== */}
               <div className="w-2/3 flex flex-col">
-                
-                {/* Video Title and Actions */}
                 <div className={`transition-all duration-300 ${themeClasses.text} mb-3`}>
                   <h2 className="text-3xl font-serif font-medium">
                     {videoReels[activeVideoDot].title}
@@ -202,7 +160,6 @@ export const MacbookPro = (): JSX.Element => {
                   </div>
                 </div>
                 
-                {/* Video Player Container */}
                 <div className="relative group" style={{ height: '600px' }}>
                   <Card className={`rounded-3xl overflow-hidden transition-all duration-500 h-full ${darkMode ? 'bg-black' : 'bg-black'}`}>
                     <iframe
@@ -214,7 +171,6 @@ export const MacbookPro = (): JSX.Element => {
                     />
                   </Card>
                   
-                  {/* Video Navigation Arrows */}
                   {["polygon-2.svg", "polygon-1.svg"].map((src, i) => (
                     <button 
                       key={i}
@@ -233,7 +189,6 @@ export const MacbookPro = (): JSX.Element => {
                   ))}
                 </div>
                 
-                {/* Video Progress Dots */}
                 <div className="flex justify-center mt-6 space-x-3 p-2 bg-black/0 dark:bg-white/0 rounded-full">
                   {videoReels.map((_, i) => (
                     <button 
@@ -246,21 +201,16 @@ export const MacbookPro = (): JSX.Element => {
                 </div>
               </div>
 
-              {/* ===== GALLERY (1/3 WIDTH) ===== */}
               <div className="w-1/3 flex flex-col">
-                
-                {/* Gallery Title */}
                 <div className={`transition-all duration-300 ${themeClasses.text} mb-3`}>
                   <h2 className="text-3xl font-serif font-medium">
                     Gallery
                   </h2>
-                  {/* Hidden spacer for alignment */}
                   <div className={`flex space-x-4 text-sm font-sans mt-2 transition-all duration-300 ${themeClasses.textDimmed}`}>
                     <span className="opacity-0">Spacer</span>
                   </div>
                 </div>
                 
-                {/* Gallery Image Container */}
                 <div className="relative group" style={{ height: '600px' }}>
                   <Card className={`rounded-3xl overflow-hidden transition-all duration-500 h-full ${darkMode ? 'bg-black/20' : 'bg-white/20'}`}>
                     <img
@@ -270,7 +220,6 @@ export const MacbookPro = (): JSX.Element => {
                     />
                   </Card>
                   
-                  {/* Gallery Navigation Arrows */}
                   {["polygon-2.svg", "polygon-1.svg"].map((src, i) => (
                     <button 
                       key={i}
@@ -286,7 +235,6 @@ export const MacbookPro = (): JSX.Element => {
                   ))}
                 </div>
                 
-                {/* Gallery Progress Dots */}
                 <div className="flex justify-center mt-4 space-x-2">
                   {galleryImages.map((_, i) => (
                     <button 
@@ -300,7 +248,6 @@ export const MacbookPro = (): JSX.Element => {
               </div>
             </div>
 
-            {/* ===== ABOUT ME SECTION ===== */}
             <div className="mt-12 w-full">
               <Separator className={`my-6 transition-all duration-300 ${themeClasses.divider}`} />
               
@@ -315,7 +262,6 @@ export const MacbookPro = (): JSX.Element => {
                   <li>• Committed to artistic excellence</li>
                 </ul>
                 
-                {/* ===== SOCIAL ICONS ===== */}
                 <div className="mt-8 flex space-x-6">
                   {socialIcons.map((icon, index) => (
                     <a 
@@ -331,13 +277,19 @@ export const MacbookPro = (): JSX.Element => {
             </div>
           </div>
 
-          {/* ===== FOOTER ===== */}
-          {/* Fixed footer at bottom of viewport */}
           <footer className={`fixed bottom-0 left-0 right-0 py-4 text-center text-sm font-sans transition-all duration-300 ${themeClasses.textFooter}`}>
             @2025 jakejohndoe
           </footer>
         </div>
       </div>
+
+      {/* ===== SIGN IN MODAL ===== */}
+      {showSignInModal && (
+        <SignInModal 
+          darkMode={darkMode}
+          onClose={() => setShowSignInModal(false)}
+        />
+      )}
     </div>
   );
 };

@@ -37,7 +37,7 @@ export const Contact = () => {
           {/* Header */}
           <div className="text-center mb-8">
             <h1 className={`text-[3rem] md:text-[5rem] font-fleur leading-[0.8] ${darkMode ? 'text-white' : 'text-black'}`}>
-              Contact Stevie
+              Contact
             </h1>
             <p className={`text-lg md:text-xl font-serif ${darkMode ? 'text-white/80' : 'text-black/80'}`}>
               For booking inquiries, speaking engagements, or general questions

@@ -88,7 +88,7 @@ export const Actor = () => {
               {/* Right Column - Reel */}
               <div className="space-y-6">
                 <h2 className={`text-2xl font-serif font-medium ${darkMode ? 'text-white' : 'text-black'}`}>
-                  Demo Reel
+                  Theatrical Reel
                 </h2>
                 <div className="aspect-video bg-black rounded-lg overflow-hidden">
                   <iframe
