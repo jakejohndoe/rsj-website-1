@@ -8,6 +8,7 @@ import {
 } from "../../components/ui/navigation-menu";
 import { Separator } from "../../components/ui/separator";
 import { Sun, Moon } from "lucide-react";
+import { MacbookProLayout } from "../../components/layout/MacbookProLayout";
 
 export const MacbookPro = (): JSX.Element => {
   // ===== STATE MANAGEMENT =====
@@ -27,8 +28,9 @@ export const MacbookPro = (): JSX.Element => {
   // Video reel data for the video player section
   const videoReels = [
     { id: "_p5b5KJrIT4", title: "Theatrical Reel (2025)" }, // YouTube video IDs
-    { id: "example1", title: "Dramatic Work (2024)" },
-    { id: "example2", title: "Commercial Work (2023)" },
+    { id: "i1S82a1Ag1Q", title: "History of Breakfast (Commercial)" }, // Extracted YouTube video ID
+    { id: "G8KOUnPRwJE", title: "Real Spit! (Trailer)" },
+    { id: "enrZJWfOL6s", title: "Blueberry - Short Film (Full)" }, // Extracted YouTube video ID
   ];
 
   // Social media icons data
@@ -41,10 +43,10 @@ export const MacbookPro = (): JSX.Element => {
 
   // Gallery images data
   const galleryImages = [
-    { id: 1, src: "/gallery1.jpg", alt: "Performance shot 1" },
-    { id: 2, src: "/gallery2.jpg", alt: "Performance shot 2" },
-    { id: 3, src: "/gallery3.jpg", alt: "Behind the scenes" },
-    { id: 4, src: "/gallery4.jpg", alt: "Headshot" },
+    { id: 1, src: "/stevie_headshot_008.jpg", alt: "Headshot (1)" },
+    { id: 2, src: "/stevie_headshot_207.jpg", alt: "Headshot (2)" },
+    { id: 3, src: "/stevie_headshot_287.jpg", alt: "Headshot (3)" },
+    { id: 4, src: "/stevie_lovepotion.jpg", alt: "Headshot (4)" },
   ];
 
   // ===== THEME CLASSES =====
