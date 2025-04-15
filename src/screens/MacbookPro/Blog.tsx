@@ -1,71 +1,99 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MacbookProLayout } from "../../components/layout/MacbookProLayout";
 import { Card } from "../../components/ui/card";
 import { Separator } from "../../components/ui/separator";
 import { Button } from "../../components/ui/button";
+import axios from "axios";
+
+interface BlogPost {
+  id: number;
+  title: string;
+  excerpt: string;
+  date: string;
+  readTime: string;
+  category: string;
+  image: string;
+}
 
 export const Blog = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [activeCategory, setActiveCategory] = useState("All");
-
-  const blogPosts = [
-    {
-      id: 1,
-      title: "The Art of Improvisation in Public Speaking",
-      excerpt: "How spontaneous techniques from theater can transform your communication skills in professional settings.",
-      date: "May 15, 2023",
-      readTime: "5 min read",
-      category: "Public Speaking",
-      image: "/blog-improv.jpg"
-    },
-    {
-      id: 2,
-      title: "Building Complex Characters: A Writer's Guide",
-      excerpt: "Psychological techniques to create multidimensional characters that resonate with audiences.",
-      date: "April 2, 2023",
-      readTime: "8 min read",
-      category: "Writing",
-      image: "/blog-characters.jpg"
-    },
-    {
-      id: 3,
-      title: "Overcoming Stage Fright: Practical Exercises",
-      excerpt: "Evidence-based methods to conquer performance anxiety and own the stage.",
-      date: "March 18, 2023",
-      readTime: "6 min read",
-      category: "Performance",
-      image: "/blog-stagefright.jpg"
-    },
-    {
-      id: 4,
-      title: "The Chocolate Metaphor: Teaching Through Storytelling",
-      excerpt: "How I use chocolate-making as an analogy for creative processes in my workshops.",
-      date: "February 5, 2023",
-      readTime: "4 min read",
-      category: "Teaching",
-      image: "/blog-chocolate.jpg"
-    },
-    {
-      id: 5,
-      title: "Digital Storytelling in the Modern Classroom",
-      excerpt: "Adapting traditional narrative techniques for virtual learning environments.",
-      date: "January 22, 2023",
-      readTime: "7 min read",
-      category: "Teaching",
-      image: "/blog-digital.jpg"
-    },
-    {
-      id: 6,
-      title: "The Power of Silence in Effective Communication",
-      excerpt: "Why what you don't say can be more important than your words.",
-      date: "December 10, 2022",
-      readTime: "5 min read",
-      category: "Public Speaking",
-      image: "/blog-silence.jpg"
-    }
-  ];
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const categories = ["All", "Public Speaking", "Writing", "Performance", "Teaching"];
+
+  useEffect(() => {
+    const fetchBlogPosts = async () => {
+      try {
+        const response = await axios.get('http://localhost:5001/api/blogs');
+        setBlogPosts(response.data);
+      } catch (err) {
+        console.error("API Error:", err);
+        setError("Failed to load posts. The server might be down.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchBlogPosts();
+  }, []);
+
+  if (loading) {
+    return (
+      <MacbookProLayout 
+        darkMode={darkMode} 
+        toggleDarkMode={() => setDarkMode(!darkMode)}
+        activeNavItem="blog"
+        className="relative"
+      >
+        <div className="flex justify-center items-center h-full">
+          <p className={darkMode ? "text-white" : "text-black"}>Loading posts...</p>
+        </div>
+      </MacbookProLayout>
+    );
+  }
+
+  if (error) {
+    return (
+      <MacbookProLayout 
+        darkMode={darkMode} 
+        toggleDarkMode={() => setDarkMode(!darkMode)}
+        activeNavItem="blog"
+        className="relative"
+      >
+        <div className="flex justify-center items-center h-full flex-col gap-4">
+          <p className={darkMode ? "text-white" : "text-black"}>{error}</p>
+          <Button
+            onClick={() => window.location.reload()}
+            className={`rounded-full ${
+              darkMode 
+                ? 'bg-white text-black hover:bg-white/90' 
+                : 'bg-black text-white hover:bg-black/90'
+            }`}
+          >
+            Retry
+          </Button>
+        </div>
+      </MacbookProLayout>
+    );
+  }
+
+  if (blogPosts.length === 0) {
+    return (
+      <MacbookProLayout 
+        darkMode={darkMode} 
+        toggleDarkMode={() => setDarkMode(!darkMode)}
+        activeNavItem="blog"
+        className="relative"
+      >
+        <div className="flex justify-center items-center h-full">
+          <p className={darkMode ? "text-white" : "text-black"}>No posts available</p>
+        </div>
+      </MacbookProLayout>
+    );
+  }
+
   const featuredPost = blogPosts[0];
   const filteredPosts = activeCategory === "All" 
     ? blogPosts.slice(1) 
@@ -78,7 +106,6 @@ export const Blog = () => {
       activeNavItem="blog"
       className="relative"
     >
-      {/* Scroll Container */}
       <div 
         className="overflow-y-auto"
         style={{ 
@@ -91,7 +118,6 @@ export const Blog = () => {
         }}
       >
         <div className="max-w-6xl mx-auto">
-          {/* Header */}
           <div className="text-center mb-8">
             <h1 className={`text-[3rem] md:text-[5rem] font-fleur leading-[0.8] ${darkMode ? 'text-white' : 'text-black'}`}>
               The Journal
@@ -103,7 +129,6 @@ export const Blog = () => {
 
           <Separator className={`my-6 ${darkMode ? 'bg-white/20' : 'bg-black/20'}`} />
 
-          {/* Featured Post */}
           <div className="mb-12">
             <h2 className={`text-xl font-serif font-medium mb-4 ${darkMode ? 'text-white' : 'text-black'}`}>
               Featured Post
@@ -142,7 +167,6 @@ export const Blog = () => {
             </Card>
           </div>
 
-          {/* Category Filters */}
           <div className="flex flex-wrap justify-center gap-2 mb-8">
             {categories.map(category => (
               <Button
@@ -164,7 +188,6 @@ export const Blog = () => {
             ))}
           </div>
 
-          {/* Blog Posts Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredPosts.map(post => (
               <Card key={post.id} className={`rounded-3xl overflow-hidden ${darkMode ? 'bg-black/25' : 'bg-gray-100/30'} hover:shadow-lg transition-shadow duration-300`}>
@@ -201,7 +224,6 @@ export const Blog = () => {
             ))}
           </div>
 
-          {/* Newsletter Signup */}
           <Card className={`mt-12 p-6 rounded-3xl ${darkMode ? 'bg-black/25' : 'bg-gray-100/30'}`}>
             <div className="text-center max-w-2xl mx-auto">
               <h2 className={`text-2xl font-serif font-medium mb-3 ${darkMode ? 'text-white' : 'text-black'}`}>
