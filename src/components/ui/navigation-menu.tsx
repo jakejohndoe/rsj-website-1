@@ -45,7 +45,7 @@ const NavigationMenuList = React.forwardRef<
         asChild
         key={index}
         variant="ghost"
-        className="px-4 py-2 text-sm bg-transparent active:bg-transparent focus:bg-transparent hover:bg-gray-500" // This is the inside hover color.
+        className="px-4 py-2 text-sm hover:bg-gray-500/30 bg" // This is the inside hover color.
       >
         {child}
       </Button>
