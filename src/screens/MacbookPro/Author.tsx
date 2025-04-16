@@ -5,7 +5,7 @@ import { Card } from "../../components/ui/card";
 import { Separator } from "../../components/ui/separator";
 
 export const Author = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true); // Default to dark mode
   const [selectedBook, setSelectedBook] = useState<number | null>(null);
   
   const books = [
@@ -64,127 +64,98 @@ export const Author = () => {
       darkMode={darkMode} 
       toggleDarkMode={() => setDarkMode(!darkMode)}
       activeNavItem="author"
-      className="relative"
     >
-      {/* Scroll Container */}
-      <div 
-        className="overflow-y-auto"
-        style={{ 
-          height: 'calc(100vh - 10rem)',
-          position: 'fixed',
-          top: '10rem',
-          left: 0,
-          right: 0,
-          padding: '2rem'
-        }}
-      >
+      <div className="overflow-y-auto pt-4 px-24" style={{ 
+        height: 'calc(100vh - 10rem)',
+        top: '10rem',
+        padding: '2rem'
+      }}>
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className={`text-[3rem] md:text-[5rem] font-fleur leading-[0.8] ${darkMode ? 'text-white' : 'text-black'}`}>
+            <h1 className="text-[3rem] md:text-[5rem] font-fleur leading-[0.8] text-blue-100 text-glow-blue">
               Stevie Johnson, Author
             </h1>
-            <p className={`text-lg md:text-xl font-serif ${darkMode ? 'text-white/80' : 'text-black/80'}`}>
+            <p className="text-lg md:text-xl font-serif text-blue-200/80">
               Published works and literary portfolio
             </p>
           </div>
 
-          <Separator className={`my-6 ${darkMode ? 'bg-white/20' : 'bg-black/20'}`} />
+          <Separator className="my-6 bg-blue-800/40" />
 
           {/* Book Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {books.map((book, index) => (
-              <Card key={book.title} className={`p-6 rounded-3xl ${darkMode ? 'bg-black/25' : 'bg-gray-100/30'}`}>
-                <div className="flex flex-col h-full">
-                  {/* Book Cover with Flip Animation */}
-                  <div className="aspect-[2/3] mb-4 relative group perspective-1000">
-                    {/* Front of the book (cover) */}
-                    <div className={`relative w-full h-full rounded-lg overflow-hidden transition-all duration-500 ease-in-out ${selectedBook === index ? 'rotate-y-180' : 'rotate-y-0'} preserve-3d backface-hidden`}>
-                      <img 
-                        src={book.cover} 
-                        alt={book.title}
-                        className={`w-full h-full object-cover transition-transform duration-300 ${
-                          selectedBook !== index && 'group-hover:scale-105'
-                        }`}
-                      />
-                    </div>
-                    
-                    {/* Back of the book (details) */}
-                    <div className={`absolute inset-0 p-4 rounded-lg flex flex-col justify-center items-center transition-all duration-500 ease-in-out ${selectedBook === index ? 'rotate-y-0' : 'rotate-y-180'} preserve-3d backface-hidden ${darkMode ? 'bg-black/90' : 'bg-white/95'}`}>
-                      <button 
-                        onClick={() => toggleDetails(index)}
-                        className={`absolute top-2 right-2 p-1 rounded-full ${
-                          darkMode ? 'bg-white/20 text-white hover:bg-white/30' 
-                                  : 'bg-black/20 text-black hover:bg-black/30'
-                        } transition-colors duration-200`}
-                      >
-                        ✕
-                      </button>
-                      <h3 className={`text-lg font-serif font-medium mb-2 ${
-                        darkMode ? 'text-white' : 'text-black'
-                      }`}>
-                        {book.title}
-                      </h3>
-                      <p className={`text-sm text-center mb-3 ${
-                        darkMode ? 'text-white/80' : 'text-black/80'
-                      }`}>
-                        {book.longDescription}
-                      </p>
-                      <div className={`text-xs mt-2 ${
-                        darkMode ? 'text-white/60' : 'text-black/60'
-                      }`}>
-                        <p>{book.publishDate} • {book.pages} pages</p>
-                        <p className="mt-1">Rating: {book.rating}</p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Book Info */}
-                  <div className="flex-grow">
-                    <h2 className={`text-xl font-serif font-medium mb-2 ${darkMode ? 'text-white' : 'text-black'}`}>
-                      {book.title}
-                    </h2>
-                    <p className={`text-sm mb-4 ${darkMode ? 'text-white/70' : 'text-black/70'}`}>
-                      {book.description}
-                    </p>
-                  </div>
-                  
-                  {/* Price & Buttons */}
-                  <div className="mt-auto">
-                    <p className={`text-lg font-medium mb-4 ${darkMode ? 'text-white' : 'text-black'}`}>
-                      ${book.price.toFixed(2)}
-                    </p>
-                    <div className="flex space-x-2">
-                      <Button 
-                        asChild
-                        className={`w-full py-2 rounded-full transition-all duration-300 hover:-translate-y-0.5 ${
-                          darkMode ? 'bg-white text-black hover:bg-white/90' 
-                                  : 'bg-black text-white hover:bg-black/90'
-                        }`}
-                      >
-                        <a
-                          href={book.amazonUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block w-full"
-                        >
-                          Buy Now
-                        </a>
-                      </Button>
-                      <Button 
-                        variant="outline"
-                        onClick={() => toggleDetails(index)}
-                        className={`w-full py-2 rounded-full transition-all duration-300 hover:-translate-y-0.5 ${
-                          darkMode ? 'border-white text-white hover:bg-white/10' 
-                                  : 'border-black text-black hover:bg-black/10'
-                        }`}
-                      >
-                        {selectedBook === index ? 'Hide Details' : 'Details'}
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </Card>
+            {books.map((book, index) => (<Card key={book.title} className="p-6 rounded-3xl bg-blue-900/30 neon-glow">
+  <div className="flex flex-col h-full">
+    {/* Flip Animation Wrapper */}
+    <div className="aspect-[2/3] mb-4 relative group perspective-1000">
+      <div
+        className="relative w-full h-full transition-transform duration-500 preserve-3d"
+        style={{
+          transform: selectedBook === index ? 'rotateY(180deg)' : 'rotateY(0deg)',
+        }}
+      >
+        {/* Front Face */}
+        <div className="absolute inset-0 backface-hidden rounded-lg overflow-hidden">
+          <img
+            src={book.cover}
+            alt={book.title}
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        </div>
+
+        {/* Back Face */}
+        <div className="absolute inset-0 backface-hidden rounded-lg bg-blue-950/90 rotate-y-180 p-4 flex flex-col justify-center items-center text-center">
+          <button
+            onClick={() => toggleDetails(index)}
+            className="absolute top-2 right-2 p-1 rounded-full bg-blue-700/50 text-blue-100 hover:bg-blue-600/60 transition-colors duration-200 z-10"
+          >
+            ✕
+          </button>
+          <h3 className="text-lg font-serif font-medium mb-2 text-blue-100">{book.title}</h3>
+          <p className="text-sm mb-3 text-blue-200/80">{book.longDescription}</p>
+          <div className="text-xs text-blue-200/60">
+            <p>{book.publishDate} • {book.pages} pages</p>
+            <p className="mt-1">Rating: {book.rating}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Book Info */}
+    <div className="flex-grow">
+      <h2 className="text-xl font-serif font-medium mb-2 text-blue-100">{book.title}</h2>
+      <p className="text-sm mb-4 text-blue-200/70">{book.description}</p>
+    </div>
+
+    {/* Price & Buttons */}
+    <div className="mt-auto">
+      <p className="text-lg font-medium mb-4 text-blue-100">${book.price.toFixed(2)}</p>
+      <div className="flex space-x-2">
+        <Button
+          asChild
+          className="w-full py-2 rounded-full transition-all duration-300 hover:-translate-y-0.5 bg-blue-600 hover:bg-blue-500 text-white z-10"
+        >
+          <a
+            href={book.amazonUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Buy Now
+          </a>
+        </Button>
+        <Button
+          variant="outline"
+          onClick={() => toggleDetails(index)}
+          className="w-full py-2 rounded-full transition-all duration-300 hover:-translate-y-0.5 border-blue-400 text-blue-100 hover:bg-blue-800/30"
+        >
+          {selectedBook === index ? 'Hide Details' : 'Details'}
+        </Button>
+      </div>
+    </div>
+  </div>
+</Card>
+
             ))}
           </div>
         </div>
