@@ -5,7 +5,7 @@ import { Card } from "../../components/ui/card";
 import { Separator } from "../../components/ui/separator";
 
 export const Author = () => {
-  const [darkMode, setDarkMode] = useState(true); // Default to dark mode
+  const [darkMode, setDarkMode] = useState(true);
   const [selectedBook, setSelectedBook] = useState<number | null>(null);
   
   const books = [
@@ -85,100 +85,102 @@ export const Author = () => {
 
           {/* Book Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {books.map((book, index) => (<Card key={book.title} className="p-6 rounded-3xl bg-blue-900/30 neon-glow">
-  <div className="flex flex-col h-full">
-    {/* Flip Animation Wrapper */}
-    <div className="aspect-[2/3] mb-4 relative group perspective-1000">
-      <div
-        className="relative w-full h-full transition-transform duration-500 preserve-3d"
-        style={{
-          transform: selectedBook === index ? 'rotateY(180deg)' : 'rotateY(0deg)',
-        }}
-      >
-        {/* Front Face */}
-        <div className="absolute inset-0 backface-hidden rounded-lg overflow-hidden">
-          <img
-            src={book.cover}
-            alt={book.title}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-          />
-        </div>
+            {books.map((book, index) => (
+              <Card key={book.title} className="p-6 rounded-3xl bg-blue-900/30 neon-glow h-full">
+                <div className="flex flex-col h-full">
+                  {/* Flip Container */}
+                  <div className="aspect-[2/3] mb-4 relative" style={{ perspective: "1000px" }}>
+                    <div 
+                      className="relative w-full h-full transition-transform duration-500"
+                      style={{
+                        transformStyle: "preserve-3d",
+                        transform: selectedBook === index ? "rotateY(180deg)" : "rotateY(0deg)"
+                      }}
+                    >
+                      {/* Front Side */}
+                      <div 
+                        className="absolute inset-0 backface-hidden rounded-lg overflow-hidden"
+                        style={{ backfaceVisibility: "hidden" }}
+                      >
+                        <img 
+                          src={book.cover} 
+                          alt={book.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      
+                      {/* Back Side */}
+                      <div 
+                        className="absolute inset-0 backface-hidden rounded-lg bg-blue-950/90 p-4 flex flex-col justify-center items-center text-center"
+                        style={{ 
+                          backfaceVisibility: "hidden",
+                          transform: "rotateY(180deg)"
+                        }}
+                      >
+                        <button 
+                          onClick={() => toggleDetails(index)}
+                          className="absolute top-2 right-2 p-1 rounded-full bg-blue-700/50 text-blue-100 hover:bg-blue-600/60 transition-colors duration-200"
+                        >
+                          ✕
+                        </button>
+                        <h3 className="text-lg font-serif font-medium mb-2 text-blue-100">
+                          {book.title}
+                        </h3>
+                        <p className="text-sm mb-3 text-blue-200/80">
+                          {book.longDescription}
+                        </p>
+                        <div className="text-xs text-blue-200/60">
+                          <p>{book.publishDate} • {book.pages} pages</p>
+                          <p className="mt-1">Rating: {book.rating}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-        {/* Back Face */}
-        <div className="absolute inset-0 backface-hidden rounded-lg bg-blue-950/90 rotate-y-180 p-4 flex flex-col justify-center items-center text-center">
-          <button
-            onClick={() => toggleDetails(index)}
-            className="absolute top-2 right-2 p-1 rounded-full bg-blue-700/50 text-blue-100 hover:bg-blue-600/60 transition-colors duration-200 z-10"
-          >
-            ✕
-          </button>
-          <h3 className="text-lg font-serif font-medium mb-2 text-blue-100">{book.title}</h3>
-          <p className="text-sm mb-3 text-blue-200/80">{book.longDescription}</p>
-          <div className="text-xs text-blue-200/60">
-            <p>{book.publishDate} • {book.pages} pages</p>
-            <p className="mt-1">Rating: {book.rating}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {/* Book Info */}
-    <div className="flex-grow">
-      <h2 className="text-xl font-serif font-medium mb-2 text-blue-100">{book.title}</h2>
-      <p className="text-sm mb-4 text-blue-200/70">{book.description}</p>
-    </div>
-
-    {/* Price & Buttons */}
-    <div className="mt-auto">
-      <p className="text-lg font-medium mb-4 text-blue-100">${book.price.toFixed(2)}</p>
-      <div className="flex space-x-2">
-        <Button
-          asChild
-          className="w-full py-2 rounded-full transition-all duration-300 hover:-translate-y-0.5 bg-blue-600 hover:bg-blue-500 text-white z-10"
-        >
-          <a
-            href={book.amazonUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Buy Now
-          </a>
-        </Button>
-        <Button
-          variant="outline"
-          onClick={() => toggleDetails(index)}
-          className="w-full py-2 rounded-full transition-all duration-300 hover:-translate-y-0.5 border-blue-400 text-blue-100 hover:bg-blue-800/30"
-        >
-          {selectedBook === index ? 'Hide Details' : 'Details'}
-        </Button>
-      </div>
-    </div>
-  </div>
-</Card>
-
+                  {/* Book Info */}
+                  <div className="flex-grow">
+                    <h2 className="text-xl font-serif font-medium mb-2 text-blue-100">
+                      {book.title}
+                    </h2>
+                    <p className="text-sm mb-4 text-blue-200/70">
+                      {book.description}
+                    </p>
+                  </div>
+                  
+                  {/* Price & Buttons */}
+                  <div className="mt-auto">
+                    <p className="text-lg font-medium mb-4 text-blue-100">
+                      ${book.price.toFixed(2)}
+                    </p>
+                    <div className="flex space-x-2">
+                      <Button 
+                        asChild
+                        className="w-full py-2 rounded-full transition-all duration-300 hover:-translate-y-0.5 bg-blue-600 hover:bg-blue-500 text-white"
+                      >
+                        <a
+                          href={book.amazonUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block w-full"
+                        >
+                          Buy Now
+                        </a>
+                      </Button>
+                      <Button 
+                        variant="outline"
+                        onClick={() => toggleDetails(index)}
+                        className="w-full py-2 rounded-full transition-all duration-300 hover:-translate-y-0.5 border-blue-400 text-blue-100 hover:bg-blue-800/30"
+                      >
+                        {selectedBook === index ? 'Hide Details' : 'Details'}
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </Card>
             ))}
           </div>
         </div>
       </div>
-
-      {/* Add this style tag for the flip animation */}
-      <style jsx global>{`
-        .perspective-1000 {
-          perspective: 1000px;
-        }
-        .preserve-3d {
-          transform-style: preserve-3d;
-        }
-        .backface-hidden {
-          backface-visibility: hidden;
-        }
-        .rotate-y-0 {
-          transform: rotateY(0deg);
-        }
-        .rotate-y-180 {
-          transform: rotateY(180deg);
-        }
-      `}</style>
     </MacbookProLayout>
   );
 };
