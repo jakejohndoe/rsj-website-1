@@ -26,9 +26,9 @@ export const ModernHome = () => {
   ];
 
   const socialLinks = [
-    { icon: Instagram, label: "Instagram", href: "#", color: "from-pink-500 to-purple-500" },
-    { icon: Youtube, label: "YouTube", href: "#", color: "from-red-500 to-red-600" },
-    { icon: ExternalLink, label: "IMDb", href: "#", color: "from-yellow-500 to-orange-500" },
+    { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/steviejohnson", color: "from-pink-500 to-purple-500" },
+    { icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@steviejohnson", color: "from-red-500 to-red-600" },
+    { icon: ExternalLink, label: "IMDb", href: "https://www.imdb.com/name/steviejohnson", color: "from-yellow-500 to-orange-500" },
   ];
 
   const roles = ["Actor", "Author", "Professor", "Director"];
@@ -56,102 +56,123 @@ export const ModernHome = () => {
       toggleDarkMode={() => setDarkMode(!darkMode)}
       activeNavItem="home"
     >
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center text-center py-20">
-        <div className="absolute inset-0 bg-gradient-radial from-primary-500/10 via-transparent to-accent-500/10 animate-pulse" />
-        
-        <div className="relative z-10 max-w-6xl mx-auto">
-          {/* Main Title with Modern Typography */}
-          <div className="mb-8 animate-fade-in">
-            <h1 className="font-display text-8xl md:text-9xl lg:text-[12rem] font-black text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-accent-400 to-primary-400 bg-size-200 animate-shimmer leading-none tracking-tight">
-              STEVIE
-            </h1>
-            <h1 className="font-display text-8xl md:text-9xl lg:text-[12rem] font-black text-transparent bg-clip-text bg-gradient-to-r from-accent-400 via-primary-400 to-accent-400 bg-size-200 animate-shimmer leading-none tracking-tight">
-              JOHNSON
-            </h1>
-          </div>
+      {/* Hero Section with Actor Showcase */}
+      <section className="relative py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-screen">
+          {/* Left Side - Actor Introduction */}
+          <div className="space-y-8 animate-fade-in">
+            {/* Main Title */}
+            <div>
+              <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400 leading-none tracking-tight mb-4">
+                STEVIE JOHNSON
+              </h1>
+              
+              {/* Animated Role Display */}
+              <div className="h-12 flex items-center mb-6">
+                <div className="font-heading text-2xl md:text-3xl font-bold text-white/90 tracking-wide">
+                  {roles.map((role, index) => (
+                    <span
+                      key={role}
+                      className={`absolute transition-all duration-500 ${
+                        index === currentRole
+                          ? 'opacity-100 transform translate-y-0 text-glow-accent'
+                          : 'opacity-0 transform translate-y-4'
+                      }`}
+                    >
+                      {role}
+                    </span>
+                  ))}
+                </div>
+              </div>
 
-          {/* Animated Role Display */}
-          <div className="mb-12 h-16 flex items-center justify-center animate-slide-up" style={{ animationDelay: '0.5s' }}>
-            <div className="font-heading text-3xl md:text-4xl font-bold text-white/90 tracking-wide">
-              {roles.map((role, index) => (
-                <span
-                  key={role}
-                  className={`absolute transition-all duration-500 ${
-                    index === currentRole
-                      ? 'opacity-100 transform translate-y-0 text-glow-accent'
-                      : 'opacity-0 transform translate-y-4'
-                  }`}
+              <p className="text-lg text-white/80 font-body leading-relaxed max-w-lg">
+                <strong>Stevie Johnson is an actor, director, producer, and professor dedicated to storytelling.</strong>
+                <br />A father, artist, and visionary bringing passion and authenticity to every project.
+              </p>
+            </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-4">
+              <div className="text-center glass rounded-2xl p-4">
+                <div className="font-heading text-2xl font-bold text-accent-400">20+</div>
+                <div className="text-white/60 text-sm">Years Experience</div>
+              </div>
+              <div className="text-center glass rounded-2xl p-4">
+                <div className="font-heading text-2xl font-bold text-primary-400">100+</div>
+                <div className="text-white/60 text-sm">Productions</div>
+              </div>
+              <div className="text-center glass rounded-2xl p-4">
+                <div className="font-heading text-2xl font-bold text-accent-400">4</div>
+                <div className="text-white/60 text-sm">Books Published</div>
+              </div>
+            </div>
+
+            {/* Call to Action */}
+            <div className="flex flex-col sm:flex-row items-start gap-4">
+              <Button 
+                className="px-8 py-4 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 text-white font-heading font-semibold text-lg hover:scale-105 transition-all duration-300 neon-glow group"
+                onClick={() => {
+                  const reelElement = document.querySelector('iframe');
+                  if (reelElement) {
+                    reelElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }
+                }}
+              >
+                <Play className="w-5 h-5 mr-2 group-hover:animate-pulse" />
+                Watch Theatrical Reel
+              </Button>
+              <Button className="px-8 py-4 rounded-full glass text-white font-heading font-medium text-lg hover-lift" asChild>
+                <a href="/actor">View Full Portfolio</a>
+              </Button>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex items-center gap-4 pt-4">
+              {socialLinks.map((social, index) => (
+                <Button
+                  key={social.label}
+                  className={`w-12 h-12 rounded-full bg-gradient-to-r ${social.color} p-0 hover:scale-110 transition-all duration-300 hover-glow`}
+                  aria-label={social.label}
+                  asChild
                 >
-                  {role}
-                </span>
+                  <a href={social.href} target="_blank" rel="noopener noreferrer">
+                    <social.icon className="w-5 h-5 text-white" />
+                  </a>
+                </Button>
               ))}
             </div>
           </div>
 
-          {/* Call to Action */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 animate-scale-in" style={{ animationDelay: '1s' }}>
-            <Button className="px-8 py-4 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 text-white font-heading font-semibold text-lg hover:scale-110 transition-all duration-300 neon-glow group">
-              <Play className="w-5 h-5 mr-2 group-hover:animate-pulse" />
-              Watch Reel
-            </Button>
-            <Button className="px-8 py-4 rounded-full glass text-white font-heading font-medium text-lg hover-lift">
-              View Portfolio
-            </Button>
-          </div>
-
-          {/* Social Links */}
-          <div className="flex items-center justify-center gap-4 mt-12 animate-fade-in" style={{ animationDelay: '1.5s' }}>
-            {socialLinks.map((social, index) => (
-              <Button
-                key={social.label}
-                className={`w-12 h-12 rounded-full bg-gradient-to-r ${social.color} p-0 hover:scale-110 transition-all duration-300 hover-glow`}
-                aria-label={social.label}
-              >
-                <social.icon className="w-5 h-5 text-white" />
-              </Button>
-            ))}
-          </div>
-        </div>
-
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-20 w-4 h-4 bg-accent-400 rounded-full animate-float opacity-60" />
-        <div className="absolute top-40 right-32 w-6 h-6 bg-primary-400 rounded-full animate-float opacity-40" style={{ animationDelay: '1s' }} />
-        <div className="absolute bottom-40 left-32 w-3 h-3 bg-accent-500 rounded-full animate-float opacity-80" style={{ animationDelay: '2s' }} />
-      </section>
-
-      {/* Featured Content Section */}
-      <section className="py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Video Showcase */}
-          <div className="lg:col-span-2">
-            <div className="glass rounded-3xl p-8 hover-lift">
-              <div className="flex items-center justify-between mb-6">
+          {/* Right Side - Reel & Headshot */}
+          <div className="space-y-6 animate-scale-in" style={{ animationDelay: '0.3s' }}>
+            {/* Featured Video Reel */}
+            <Card className="glass rounded-3xl p-6 hover-lift">
+              <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h3 className="font-heading text-2xl font-bold text-white mb-2">
+                  <h3 className="font-heading text-xl font-bold text-white mb-1">
                     {videoReels[activeVideoIndex].title}
                   </h3>
-                  <p className="text-white/60 font-body">
+                  <p className="text-white/60 text-sm">
                     {videoReels[activeVideoIndex].description}
                   </p>
                 </div>
                 <div className="flex gap-2">
                   <Button
-                    className="w-10 h-10 rounded-full glass hover-glow"
+                    className="w-8 h-8 rounded-full glass hover-glow text-xs"
                     onClick={() => setActiveVideoIndex((prev) => prev === 0 ? videoReels.length - 1 : prev - 1)}
                   >
-                    <ChevronLeft className="w-5 h-5 text-white" />
+                    <ChevronLeft className="w-4 h-4 text-white" />
                   </Button>
                   <Button
-                    className="w-10 h-10 rounded-full glass hover-glow"
+                    className="w-8 h-8 rounded-full glass hover-glow text-xs"
                     onClick={() => setActiveVideoIndex((prev) => (prev + 1) % videoReels.length)}
                   >
-                    <ChevronRight className="w-5 h-5 text-white" />
+                    <ChevronRight className="w-4 h-4 text-white" />
                   </Button>
                 </div>
               </div>
 
-              <div className="aspect-video rounded-2xl overflow-hidden neon-glow">
+              <div className="aspect-video rounded-2xl overflow-hidden neon-glow mb-4">
                 <iframe
                   className="w-full h-full"
                   src={`https://www.youtube.com/embed/${videoReels[activeVideoIndex].id}`}
@@ -162,26 +183,24 @@ export const ModernHome = () => {
               </div>
 
               {/* Video Navigation Dots */}
-              <div className="flex justify-center gap-2 mt-6">
+              <div className="flex justify-center gap-2">
                 {videoReels.map((_, index) => (
                   <button
                     key={index}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
                       index === activeVideoIndex
-                        ? 'bg-accent-400 w-8'
+                        ? 'bg-accent-400 w-6'
                         : 'bg-white/30 hover:bg-white/50'
                     }`}
                     onClick={() => setActiveVideoIndex(index)}
                   />
                 ))}
               </div>
-            </div>
-          </div>
+            </Card>
 
-          {/* Gallery Showcase */}
-          <div className="space-y-6">
+            {/* Professional Headshot Gallery */}
             <Card className="glass rounded-3xl p-6 hover-lift">
-              <h3 className="font-heading text-xl font-bold text-white mb-4">Gallery</h3>
+              <h3 className="font-heading text-lg font-bold text-white mb-4">Professional Headshots</h3>
               <div className="aspect-[3/4] rounded-2xl overflow-hidden mb-4 neon-glow">
                 <img
                   src={galleryImages[activeGalleryIndex].src}
@@ -195,7 +214,7 @@ export const ModernHome = () => {
                     key={index}
                     className={`w-2 h-2 rounded-full transition-all duration-300 ${
                       index === activeGalleryIndex
-                        ? 'bg-accent-400 w-6'
+                        ? 'bg-primary-400 w-6'
                         : 'bg-white/30 hover:bg-white/50'
                     }`}
                     onClick={() => setActiveGalleryIndex(index)}
@@ -203,27 +222,15 @@ export const ModernHome = () => {
                 ))}
               </div>
             </Card>
-
-            {/* Quick Stats */}
-            <Card className="glass rounded-3xl p-6 hover-lift">
-              <div className="space-y-4">
-                <div className="text-center">
-                  <div className="font-heading text-3xl font-bold text-accent-400">20+</div>
-                  <div className="text-white/60 text-sm">Years Experience</div>
-                </div>
-                <div className="text-center">
-                  <div className="font-heading text-3xl font-bold text-primary-400">100+</div>
-                  <div className="text-white/60 text-sm">Productions</div>
-                </div>
-                <div className="text-center">
-                  <div className="font-heading text-3xl font-bold text-accent-400">4</div>
-                  <div className="text-white/60 text-sm">Published Books</div>
-                </div>
-              </div>
-            </Card>
           </div>
         </div>
+
+        {/* Floating Elements */}
+        <div className="absolute top-20 left-20 w-4 h-4 bg-accent-400 rounded-full animate-float opacity-60" />
+        <div className="absolute top-40 right-32 w-6 h-6 bg-primary-400 rounded-full animate-float opacity-40" style={{ animationDelay: '1s' }} />
+        <div className="absolute bottom-40 left-32 w-3 h-3 bg-accent-500 rounded-full animate-float opacity-80" style={{ animationDelay: '2s' }} />
       </section>
+
 
       {/* About Section */}
       <section className="py-20">

@@ -108,9 +108,9 @@
     right: 0;
     bottom: 0;
     background: 
-      radial-gradient(circle at 20% 80%, rgba(0, 102, 255, 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(0, 255, 198, 0.15) 0%, transparent 50%),
-      linear-gradient(135deg, #000a1a 0%, #001433 25%, #002966 50%, #001433 75%, #000a1a 100%);
+      radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.12) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(249, 115, 22, 0.12) 0%, transparent 50%),
+      linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%, #0f0f0f 100%);
     z-index: -10;
   }
 
@@ -123,11 +123,11 @@
     right: 0;
     bottom: 0;
     background-image: 
-      radial-gradient(2px 2px at 20px 30px, rgba(0, 102, 255, 0.3), transparent),
-      radial-gradient(2px 2px at 40px 70px, rgba(0, 255, 198, 0.3), transparent),
-      radial-gradient(1px 1px at 90px 40px, rgba(0, 102, 255, 0.2), transparent),
-      radial-gradient(1px 1px at 130px 80px, rgba(0, 255, 198, 0.2), transparent),
-      radial-gradient(2px 2px at 160px 30px, rgba(0, 102, 255, 0.3), transparent);
+      radial-gradient(2px 2px at 20px 30px, rgba(236, 72, 153, 0.2), transparent),
+      radial-gradient(2px 2px at 40px 70px, rgba(249, 115, 22, 0.2), transparent),
+      radial-gradient(1px 1px at 90px 40px, rgba(236, 72, 153, 0.15), transparent),
+      radial-gradient(1px 1px at 130px 80px, rgba(249, 115, 22, 0.15), transparent),
+      radial-gradient(2px 2px at 160px 30px, rgba(236, 72, 153, 0.2), transparent);
     background-repeat: repeat;
     background-size: 200px 100px;
     animation: float 20s ease-in-out infinite;
@@ -144,13 +144,13 @@
     text-shadow: 0 2px 4px rgba(0,0,0,0.4);
   }
   .text-glow-primary {
-    text-shadow: 0 0 10px rgba(0, 102, 255, 0.6), 0 0 30px rgba(0, 102, 255, 0.4);
+    text-shadow: 0 0 10px rgba(236, 72, 153, 0.6), 0 0 30px rgba(236, 72, 153, 0.4);
   }
   .text-glow-accent {
-    text-shadow: 0 0 10px rgba(0, 255, 198, 0.6), 0 0 30px rgba(0, 255, 198, 0.4);
+    text-shadow: 0 0 10px rgba(249, 115, 22, 0.6), 0 0 30px rgba(249, 115, 22, 0.4);
   }
   .text-gradient-primary {
-    background: linear-gradient(135deg, #0066ff 0%, #00ffc6 100%);
+    background: linear-gradient(135deg, #ec4899 0%, #f97316 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -175,13 +175,13 @@
 
   /* Modern Glow Effects */
   .neon-glow {
-    box-shadow: 0 0 20px rgba(0, 102, 255, 0.6), 0 0 40px rgba(0, 102, 255, 0.4);
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.5), 0 0 40px rgba(236, 72, 153, 0.3);
   }
   .neon-glow-accent {
-    box-shadow: 0 0 20px rgba(0, 255, 198, 0.6), 0 0 40px rgba(0, 255, 198, 0.4);
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.5), 0 0 40px rgba(249, 115, 22, 0.3);
   }
   .soft-glow {
-    box-shadow: 0 0 50px rgba(0, 102, 255, 0.3);
+    box-shadow: 0 0 50px rgba(236, 72, 153, 0.25);
   }
 
   /* Shimmer Effect */
@@ -210,7 +210,7 @@
     transition: box-shadow 0.3s ease;
   }
   .hover-glow:hover {
-    box-shadow: 0 0 30px rgba(0, 102, 255, 0.6);
+    box-shadow: 0 0 30px rgba(236, 72, 153, 0.6);
   }
 
   /* 3D Transform Utilities */

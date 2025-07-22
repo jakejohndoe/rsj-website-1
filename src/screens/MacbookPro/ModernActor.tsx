@@ -9,40 +9,40 @@ export const ModernActor = () => {
 
   const recentCredits = [
     {
-      title: "The Tempest",
-      role: "Prospero",
-      type: "Theater",
-      year: "2024",
-      venue: "USC Theatre",
-      description: "Lead role in Shakespeare's masterpiece",
+      title: "Buffalo Daze",
+      role: "Joseph Blackburn Bass",
+      type: "Feature Film",
+      year: "2023",
+      venue: "Supporting Role",
+      description: "Drama exploring rural American life",
+      color: "from-amber-500 to-orange-500"
+    },
+    {
+      title: "Triple O.G.",
+      role: "Robert",
+      type: "Feature Film", 
+      year: "2022",
+      venue: "Lead Role",
+      description: "Independent drama film",
       color: "from-purple-500 to-indigo-500"
     },
     {
+      title: "Animal Kingdom",
+      role: "Detective",
+      type: "Television",
+      year: "2021",
+      venue: "Guest Star",
+      description: "Crime drama series on TNT",
+      color: "from-blue-500 to-cyan-500"
+    },
+    {
       title: "Blueberry",
-      role: "Director/Producer", 
+      role: "Director/Producer",
       type: "Short Film",
       year: "2023",
       venue: "Independent",
       description: "Award-winning short film",
-      color: "from-blue-500 to-cyan-500"
-    },
-    {
-      title: "Real Spit!",
-      role: "Lead Actor",
-      type: "Feature Film",
-      year: "2023",
-      venue: "Independent",
-      description: "Drama exploring urban life",
-      color: "from-red-500 to-pink-500"
-    },
-    {
-      title: "History of Breakfast",
-      role: "Lead",
-      type: "Commercial",
-      year: "2024",
-      venue: "National Campaign",
-      description: "Humorous breakfast commercial",
-      color: "from-orange-500 to-yellow-500"
+      color: "from-green-500 to-teal-500"
     }
   ];
 
@@ -54,9 +54,9 @@ export const ModernActor = () => {
   ];
 
   const representation = {
-    agent: "Creative Artists Agency",
-    manager: "Brillstein Entertainment",
-    publicist: "Rogers & Cowan",
+    agent: "True Artists Agency",
+    manager: "BiCoastal Talent Agency", 
+    publicist: "Jenni Sacks Agency",
     location: "Los Angeles, CA"
   };
 
@@ -79,9 +79,9 @@ export const ModernActor = () => {
                 Bringing Stories to Life
               </h2>
               <p className="text-xl text-white/70 font-body leading-relaxed">
-                With over two decades of experience in theater, film, and television, 
-                Stevie Johnson delivers authentic performances that resonate with audiences 
-                and bring depth to every character.
+                20+ years of stage and screen experience. Stevie Johnson delivers authentic 
+                performances that resonate with audiences and bring depth to every character. 
+                Member of SAG-AFTRA and Actors' Equity.
               </p>
             </div>
 
@@ -103,8 +103,8 @@ export const ModernActor = () => {
                 <div className="text-white/60 text-sm">Years Experience</div>
               </div>
               <div className="text-center glass rounded-2xl p-4">
-                <div className="font-heading text-3xl font-bold text-primary-400">50+</div>
-                <div className="text-white/60 text-sm">Productions</div>
+                <div className="font-heading text-3xl font-bold text-primary-400">100+</div>
+                <div className="text-white/60 text-sm">Film/Theatre/TV Credits</div>
               </div>
               <div className="text-center glass rounded-2xl p-4">
                 <div className="font-heading text-3xl font-bold text-accent-400">15</div>
