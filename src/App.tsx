@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { CinematicHome } from "./screens/MacbookPro/CinematicHome";
 import { ModernHome } from "./screens/MacbookPro/ModernHome";
 import { ModernActor } from "./screens/MacbookPro/ModernActor";
 import { ModernAuthor } from "./screens/MacbookPro/ModernAuthor";
@@ -15,7 +16,7 @@ export default function App() {
   return (
     <ErrorBoundary>
       <Routes>
-        <Route path="/" element={<ModernHome />} />
+        <Route path="/" element={<CinematicHome />} />
         <Route path="/actor" element={<ModernActor />} />
         <Route path="/author" element={<ModernAuthor />} />
         <Route path="/contact" element={<Contact />} />
@@ -23,7 +24,8 @@ export default function App() {
         <Route path="/courses" element={<Courses />} />
         <Route path="/admin" element={<AdminDashboard />} />
         
-        {/* Old versions for comparison */}
+        {/* Previous versions for comparison */}
+        <Route path="/modern-home" element={<ModernHome />} />
         <Route path="/old-home" element={<MacbookPro />} />
         <Route path="/old-actor" element={<Actor />} />
         <Route path="/old-author" element={<Author />} />

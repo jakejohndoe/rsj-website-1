@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ModernLayout } from "../../components/layout/ModernLayout";
 import { Card } from "../../components/ui/card";
 import { Separator } from "../../components/ui/separator";
 import { Button } from "../../components/ui/button";
+import { GraduationCap, BookOpen, Clock, Mail, Phone, MapPin, Star, Award, Users, Calendar } from "lucide-react";
 
 export const Professor = () => {
   const [darkMode, setDarkMode] = useState(true);
   const [activeTab, setActiveTab] = useState("about");
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
 
   const professorData = {
     name: "Professor Stevie Johnson",
@@ -78,133 +84,184 @@ export const Professor = () => {
       toggleDarkMode={() => setDarkMode(!darkMode)}
       activeNavItem="professor"
     >
-      <div className="overflow-y-auto pt-4 px-24" style={{ 
-        height: 'calc(100vh - 10rem)',
-        top: '10rem',
-        padding: '2rem'
-      }}>
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-8">
-            <h1 className="text-[3rem] md:text-[5rem] font-display leading-[0.8] text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400">
-              {professorData.name}
-            </h1>
-            <p className={`text-lg md:text-xl font-heading text-blue-200/80`}>
-              {professorData.title} at {professorData.institution}
-            </p>
+      {/* 🎬 CINEMATIC BACKGROUND EFFECTS */}
+      <div className="particle-field">
+        {[...Array(25)].map((_, i) => (
+          <div
+            key={i}
+            className="particle"
+            style={{
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * -20}s`,
+              animationDuration: `${15 + Math.random() * 10}s`
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="matrix-overlay" />
+
+      {/* ATMOSPHERIC PARTICLES */}
+      {[...Array(12)].map((_, i) => (
+        <div
+          key={i}
+          className="atmospheric-particle"
+          style={{
+            width: `${2 + Math.random() * 4}px`,
+            height: `${2 + Math.random() * 4}px`,
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            animationDelay: `${Math.random() * -30}s`,
+            animationDuration: `${20 + Math.random() * 10}s`
+          }}
+        />
+      ))}
+
+      <div className="relative min-h-screen py-32 px-6">
+        <div className="lighting-overlay opacity-40" />
+        
+        <div className="relative z-10 max-w-7xl mx-auto">
+          {/* 🎪 CINEMATIC HEADER */}
+          <div 
+            className={`text-center mb-16 ${isLoaded ? 'animate-cinematic-reveal' : 'opacity-0'}`}
+            style={{ animationDelay: '0.5s' }}
+          >
+            <div className="space-y-6">
+              <h1 className="font-display text-5xl md:text-7xl font-black leading-none tracking-tight">
+                <span className="kinetic-text block">PROFESSOR</span>
+                <span className="kinetic-text block text-holographic" style={{ animationDelay: '0.5s' }}>STEVIE JOHNSON</span>
+              </h1>
+              <p className="text-xl md:text-2xl font-heading text-white/80 max-w-3xl mx-auto">
+                <span className="text-holographic font-bold">Professor of Communication & Performance Studies</span>
+                <br />University of Southern California
+              </p>
+            </div>
+
+            {/* ACADEMIC STATS */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-12">
+              {[
+                { value: "15+", label: "Years Teaching", icon: GraduationCap },
+                { value: "4", label: "Courses", icon: BookOpen },
+                { value: "200+", label: "Students", icon: Users },
+                { value: "Ph.D", label: "Columbia University", icon: Award }
+              ].map((stat, index) => (
+                <div 
+                  key={stat.label}
+                  className={`cinematic-theater holographic-border rounded-2xl p-6 text-center animate-depth-float`}
+                  style={{ animationDelay: `${1 + index * 0.2}s` }}
+                >
+                  <stat.icon className="w-8 h-8 mx-auto mb-3 text-accent-400 animate-float" />
+                  <div className="font-heading text-2xl font-bold text-holographic">{stat.value}</div>
+                  <div className="text-white/60 text-sm font-body">{stat.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <Separator className="my-6 bg-blue-800/40" />
+          <Separator className="my-12 bg-gradient-to-r from-transparent via-primary-500/50 to-transparent h-px" />
 
-          {/* Navigation Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
-            <Button
-              variant={activeTab === "about" ? "default" : "outline"}
-              onClick={() => setActiveTab("about")}
-              className={`rounded-full px-6 ${
-                activeTab === "about" 
-                  ? 'bg-blue-500 text-white hover:bg-blue-600' 
-                  : 'border-blue-400 text-blue-200 hover:bg-blue-900/30'
-              }`}
-            >
-              About
-            </Button>
-            <Button
-              variant={activeTab === "courses" ? "default" : "outline"}
-              onClick={() => setActiveTab("courses")}
-              className={`rounded-full px-6 ${
-                activeTab === "courses" 
-                  ? 'bg-blue-500 text-white hover:bg-blue-600' 
-                  : 'border-blue-400 text-blue-200 hover:bg-blue-900/30'
-              }`}
-            >
-              Courses
-            </Button>
-            <Button
-              variant={activeTab === "office" ? "default" : "outline"}
-              onClick={() => setActiveTab("office")}
-              className={`rounded-full px-6 ${
-                activeTab === "office" 
-                  ? 'bg-blue-500 text-white hover:bg-blue-600' 
-                  : 'border-blue-400 text-blue-200 hover:bg-blue-900/30'
-              }`}
-            >
-              Office Hours
-            </Button>
-            <Button
-              variant={activeTab === "contact" ? "default" : "outline"}
-              onClick={() => setActiveTab("contact")}
-              className={`rounded-full px-6 ${
-                activeTab === "contact" 
-                  ? 'bg-blue-500 text-white hover:bg-blue-600' 
-                  : 'border-blue-400 text-blue-200 hover:bg-blue-900/30'
-              }`}
-            >
-              Contact
-            </Button>
+          {/* 🎬 CINEMATIC NAVIGATION TABS */}
+          <div 
+            className={`flex flex-wrap justify-center gap-4 mb-12 ${isLoaded ? 'animate-cinematic-reveal' : 'opacity-0'}`}
+            style={{ animationDelay: '1.5s' }}
+          >
+            {[
+              { id: "about", label: "About", icon: Star },
+              { id: "courses", label: "Courses", icon: BookOpen },
+              { id: "office", label: "Office Hours", icon: Clock },
+              { id: "contact", label: "Contact", icon: Mail }
+            ].map((tab) => (
+              <Button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`group flex items-center gap-3 px-8 py-4 rounded-full font-heading font-semibold text-lg transition-all duration-500 ${
+                  activeTab === tab.id
+                    ? 'bg-gradient-to-r from-primary-500 to-accent-500 text-white screen-glow hover:scale-105'
+                    : 'glass-strong text-white hover-lift cinematic-theater border border-primary-500/30 hover:border-accent-500/50'
+                }`}
+              >
+                <tab.icon className="w-5 h-5" />
+                {tab.label}
+              </Button>
+            ))}
           </div>
 
-          {/* Tab Content */}
+          {/* 🎬 TAB CONTENT */}
           <div className="space-y-8">
             {activeTab === "about" && (
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div 
+                className={`grid grid-cols-1 lg:grid-cols-3 gap-8 ${isLoaded ? 'animate-cinematic-reveal' : 'opacity-0'}`}
+                style={{ animationDelay: '2s' }}
+              >
                 {/* Teaching Philosophy Card */}
-                <Card className={`p-6 rounded-3xl bg-blue-900/30 neon-glow lg:col-span-1`}>
-                  <h2 className={`text-2xl font-heading font-medium text-blue-100`}>
-                    Teaching Philosophy
-                  </h2>
-                  <p className={`font-body text-blue-200/80 mb-4`}>
+                <Card className="cinematic-theater holographic-border rounded-3xl p-8 hover-glow screen-glow lg:col-span-1">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="p-3 rounded-full bg-gradient-to-r from-primary-500 to-primary-600 screen-glow">
+                      <Star className="w-6 h-6 text-white" />
+                    </div>
+                    <h2 className="text-2xl font-heading font-bold text-holographic">
+                      Teaching Philosophy
+                    </h2>
+                  </div>
+                  <p className="font-body text-white/80 mb-6 leading-relaxed">
                     I believe education should be transformative, engaging, and accessible. My approach combines:
                   </p>
-                  <ul className={`space-y-3 text-blue-200/80`}>
-                    <li className="flex items-start">
-                      <span className="inline-block mr-2">•</span>
-                      <span>Practical, hands-on learning experiences</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="inline-block mr-2">•</span>
-                      <span>Personalized feedback and mentorship</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="inline-block mr-2">•</span>
-                      <span>Integration of performance techniques across disciplines</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="inline-block mr-2">•</span>
-                      <span>Creating inclusive spaces for creative expression</span>
-                    </li>
+                  <ul className="space-y-4 text-white/80">
+                    {[
+                      "Practical, hands-on learning experiences",
+                      "Personalized feedback and mentorship",
+                      "Integration of performance techniques",
+                      "Creating inclusive spaces for expression"
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-accent-400 rounded-full mt-2 flex-shrink-0 animate-pulse" />
+                        <span className="font-body">{item}</span>
+                      </li>
+                    ))}
                   </ul>
                 </Card>
 
-                {/* Teaching Specialties Card - NEW CARD */}
-                <Card className={`p-6 rounded-3xl bg-blue-900/30 neon-glow lg:col-span-1`}>
-                  <h2 className={`text-2xl font-heading font-medium text-blue-100 mb-4`}>
-                    Teaching Specialties
-                  </h2>
-                  <div className="grid grid-cols-2 gap-3">
+                {/* Teaching Specialties Card */}
+                <Card className="cinematic-theater holographic-border rounded-3xl p-8 hover-glow screen-glow lg:col-span-1">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="p-3 rounded-full bg-gradient-to-r from-accent-500 to-accent-600 screen-glow">
+                      <Award className="w-6 h-6 text-white" />
+                    </div>
+                    <h2 className="text-2xl font-heading font-bold text-holographic">
+                      Teaching Specialties
+                    </h2>
+                  </div>
+                  <div className="grid grid-cols-1 gap-3">
                     {professorData.specialties.map((specialty, index) => (
                       <div 
                         key={index} 
-                        className={`p-3 rounded-lg bg-blue-800/20 border border-blue-700/30 flex items-center`}
+                        className="group p-4 rounded-2xl glass-strong border border-primary-500/20 hover:border-accent-500/50 transition-all duration-500 hover-lift"
                       >
-                        <span className={`text-blue-300 mr-2`}>✓</span>
-                        <span className={`font-body text-blue-200/80 text-sm`}>{specialty}</span>
+                        <div className="flex items-center gap-3">
+                          <Star className="w-5 h-5 text-accent-400 group-hover:animate-pulse" />
+                          <span className="font-body text-white/90 group-hover:text-holographic transition-colors duration-500">{specialty}</span>
+                        </div>
                       </div>
                     ))}
                   </div>
                 </Card>
 
                 {/* Education Card */}
-                <Card className={`p-6 rounded-3xl bg-blue-900/30 neon-glow lg:col-span-1`}>
-                  <h2 className={`text-2xl font-heading font-medium text-blue-100`}>
-                    Education
-                  </h2>
-                  <div className="space-y-4">
+                <Card className="cinematic-theater holographic-border rounded-3xl p-8 hover-glow screen-glow lg:col-span-1">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="p-3 rounded-full bg-gradient-to-r from-primary-500 to-primary-600 screen-glow">
+                      <GraduationCap className="w-6 h-6 text-white" />
+                    </div>
+                    <h2 className="text-2xl font-heading font-bold text-holographic">
+                      Education
+                    </h2>
+                  </div>
+                  <div className="space-y-6">
                     {professorData.education.map((item, index) => (
-                      <div key={index} className="border-b border-blue-800/40 pb-3 last:border-b-0 last:pb-0">
-                        <h3 className={`font-medium text-blue-100`}>{item.degree}</h3>
-                        <p className={`text-sm text-blue-200/70`}>{item.institution}</p>
-                        <p className={`text-xs text-blue-200/50`}>{item.year}</p>
+                      <div key={index} className="group p-4 rounded-2xl glass-strong hover-lift transition-all duration-500">
+                        <h3 className="font-heading font-bold text-holographic mb-2">{item.degree}</h3>
+                        <p className="text-white/80 font-body mb-1">{item.institution}</p>
+                        <p className="text-accent-400 text-sm font-mono">{item.year}</p>
                       </div>
                     ))}
                   </div>
@@ -212,20 +269,24 @@ export const Professor = () => {
               </div>
             )}
 
-            {/* Rest of the tab content remains the same */}
             {activeTab === "courses" && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div 
+                className={`grid grid-cols-1 md:grid-cols-2 gap-8 ${isLoaded ? 'animate-cinematic-reveal' : 'opacity-0'}`}
+                style={{ animationDelay: '2s' }}
+              >
                 {professorData.courses.map((course, index) => (
-                  <Card key={index} className={`p-6 rounded-3xl bg-blue-900/30 neon-glow hover:shadow-lg transition-shadow duration-300`}>
-                    <div className="flex items-start mb-3">
-                      <span className={`font-mono font-bold mr-3 text-blue-300`}>{course.code}</span>
-                      <h3 className={`text-lg font-heading font-medium text-blue-100`}>{course.title}</h3>
+                  <Card key={index} className="cinematic-theater holographic-border rounded-3xl p-8 hover:scale-105 hover-glow duration-700 screen-glow">
+                    <div className="flex items-start gap-4 mb-6">
+                      <div className="p-3 rounded-full bg-gradient-to-r from-accent-500 to-accent-600 screen-glow">
+                        <BookOpen className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <span className="text-lg font-mono font-bold text-holographic">{course.code}</span>
+                        <h3 className="text-xl font-heading font-bold text-white mt-1">{course.title}</h3>
+                      </div>
                     </div>
-                    <p className={`text-sm text-blue-200/80`}>{course.description}</p>
-                    <Button
-                      variant="outline"
-                      className={`mt-4 rounded-full border-blue-400 text-blue-200 hover:bg-blue-900/30`}
-                    >
+                    <p className="text-white/80 font-body leading-relaxed mb-6">{course.description}</p>
+                    <Button className="w-full rounded-full bg-gradient-to-r from-primary-500 to-primary-600 text-white font-heading font-semibold hover:scale-105 transition-all duration-500 screen-glow">
                       View Syllabus
                     </Button>
                   </Card>
@@ -234,38 +295,49 @@ export const Professor = () => {
             )}
 
             {activeTab === "office" && (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <Card className={`p-6 rounded-3xl bg-blue-900/30 neon-glow`}>
-                  <h2 className={`text-2xl font-heading font-medium text-blue-100 mb-6`}>
-                    Office Hours
-                  </h2>
+              <div 
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-8 ${isLoaded ? 'animate-cinematic-reveal' : 'opacity-0'}`}
+                style={{ animationDelay: '2s' }}
+              >
+                <Card className="cinematic-theater holographic-border rounded-3xl p-8 hover-glow screen-glow">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="p-3 rounded-full bg-gradient-to-r from-primary-500 to-primary-600 screen-glow">
+                      <Clock className="w-6 h-6 text-white" />
+                    </div>
+                    <h2 className="text-2xl font-heading font-bold text-holographic">
+                      Office Hours
+                    </h2>
+                  </div>
                   <div className="space-y-4">
                     {professorData.officeHours.map((item, index) => (
-                      <div key={index} className="flex justify-between items-center border-b border-blue-800/40 pb-3 last:border-b-0 last:pb-0">
-                        <span className={`font-medium text-blue-100`}>{item.day}</span>
-                        <span className={`font-body text-blue-200/80`}>{item.time}</span>
+                      <div key={index} className="flex justify-between items-center p-4 rounded-2xl glass-strong border border-primary-500/20">
+                        <div className="flex items-center gap-3">
+                          <Calendar className="w-5 h-5 text-accent-400" />
+                          <span className="font-heading font-bold text-white">{item.day}</span>
+                        </div>
+                        <span className="font-body text-white/80">{item.time}</span>
                       </div>
                     ))}
                   </div>
                 </Card>
 
-                <Card className={`p-6 rounded-3xl bg-blue-900/30 neon-glow`}>
-                  <h2 className={`text-2xl font-heading font-medium text-blue-100 mb-6`}>
-                    Appointment Scheduling
-                  </h2>
-                  <p className={`font-body text-blue-200/80 mb-6`}>
+                <Card className="cinematic-theater holographic-border rounded-3xl p-8 hover-glow screen-glow">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="p-3 rounded-full bg-gradient-to-r from-accent-500 to-accent-600 screen-glow">
+                      <Calendar className="w-6 h-6 text-white" />
+                    </div>
+                    <h2 className="text-2xl font-heading font-bold text-holographic">
+                      Appointment Scheduling
+                    </h2>
+                  </div>
+                  <p className="font-body text-white/80 mb-8 leading-relaxed">
                     For appointments outside of regular office hours, please use the university scheduling system or contact me directly.
                   </p>
-                  <div className="flex flex-wrap gap-3">
-                    <Button
-                      className={`rounded-full bg-blue-500 text-white hover:bg-blue-600`}
-                    >
+                  <div className="space-y-4">
+                    <Button className="w-full rounded-full bg-gradient-to-r from-primary-500 to-primary-600 text-white font-heading font-semibold hover:scale-105 transition-all duration-500 screen-glow">
                       Schedule Appointment
                     </Button>
-                    <Button
-                      variant="outline"
-                      className={`rounded-full border-blue-400 text-blue-200 hover:bg-blue-900/30`}
-                    >
+                    <Button className="w-full rounded-full glass-strong text-white font-heading font-medium hover-lift cinematic-theater border border-accent-500/50">
                       Virtual Meeting Options
                     </Button>
                   </div>
@@ -274,63 +346,86 @@ export const Professor = () => {
             )}
 
             {activeTab === "contact" && (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <Card className={`p-6 rounded-3xl bg-blue-900/30 neon-glow`}>
-                  <h2 className={`text-2xl font-heading font-medium text-blue-100 mb-6`}>
-                    Contact Information
-                  </h2>
-                  <div className="space-y-4">
-                    <div>
-                      <h3 className={`text-sm font-medium mb-1 text-blue-200/70`}>Email</h3>
-                      <p className={`text-blue-100`}>{professorData.contact.email}</p>
+              <div 
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-8 ${isLoaded ? 'animate-cinematic-reveal' : 'opacity-0'}`}
+                style={{ animationDelay: '2s' }}
+              >
+                <Card className="cinematic-theater holographic-border rounded-3xl p-8 hover-glow screen-glow">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="p-3 rounded-full bg-gradient-to-r from-primary-500 to-primary-600 screen-glow">
+                      <Mail className="w-6 h-6 text-white" />
                     </div>
-                    <div>
-                      <h3 className={`text-sm font-medium mb-1 text-blue-200/70`}>Phone</h3>
-                      <p className={`text-blue-100`}>{professorData.contact.phone}</p>
+                    <h2 className="text-2xl font-heading font-bold text-holographic">
+                      Contact Information
+                    </h2>
+                  </div>
+                  <div className="space-y-6">
+                    <div className="p-4 rounded-2xl glass-strong border border-primary-500/20">
+                      <div className="flex items-center gap-3 mb-2">
+                        <Mail className="w-5 h-5 text-accent-400" />
+                        <h3 className="font-heading font-semibold text-white">Email</h3>
+                      </div>
+                      <p className="text-holographic font-body">{professorData.contact.email}</p>
                     </div>
-                    <div>
-                      <h3 className={`text-sm font-medium mb-1 text-blue-200/70`}>Office</h3>
-                      <p className={`text-blue-100`}>{professorData.contact.office}</p>
+                    <div className="p-4 rounded-2xl glass-strong border border-primary-500/20">
+                      <div className="flex items-center gap-3 mb-2">
+                        <Phone className="w-5 h-5 text-accent-400" />
+                        <h3 className="font-heading font-semibold text-white">Phone</h3>
+                      </div>
+                      <p className="text-holographic font-body">{professorData.contact.phone}</p>
+                    </div>
+                    <div className="p-4 rounded-2xl glass-strong border border-primary-500/20">
+                      <div className="flex items-center gap-3 mb-2">
+                        <MapPin className="w-5 h-5 text-accent-400" />
+                        <h3 className="font-heading font-semibold text-white">Office</h3>
+                      </div>
+                      <p className="text-holographic font-body">{professorData.contact.office}</p>
                     </div>
                   </div>
                 </Card>
 
-                <Card className={`p-6 rounded-3xl bg-blue-900/30 neon-glow`}>
-                  <h2 className={`text-2xl font-heading font-medium text-blue-100 mb-6`}>
-                    Get In Touch
-                  </h2>
-                  <form className="space-y-4">
+                <Card className="cinematic-theater holographic-border rounded-3xl p-8 hover-glow screen-glow">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="p-3 rounded-full bg-gradient-to-r from-accent-500 to-accent-600 screen-glow">
+                      <Mail className="w-6 h-6 text-white" />
+                    </div>
+                    <h2 className="text-2xl font-heading font-bold text-holographic">
+                      Get In Touch
+                    </h2>
+                  </div>
+                  <form className="space-y-6">
                     <div>
-                      <label htmlFor="name" className={`block text-sm font-medium mb-1 text-blue-200/70`}>Your Name</label>
+                      <label htmlFor="name" className="block font-heading font-semibold mb-3 text-white">Your Name</label>
                       <input
                         type="text"
                         id="name"
-                        className={`w-full px-4 py-2 rounded-lg border border-blue-800/40 bg-blue-900/20 text-blue-100 placeholder-blue-200/50 focus:outline-none focus:ring-2 focus:ring-blue-500/50`}
+                        className="w-full px-6 py-4 rounded-2xl glass-strong border border-primary-500/30 text-white placeholder-white/50 focus:outline-none focus:border-accent-500/50 focus:ring-2 focus:ring-accent-500/20 transition-all duration-500"
                         placeholder="John Smith"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className={`block text-sm font-medium mb-1 text-blue-200/70`}>Your Email</label>
+                      <label htmlFor="email" className="block font-heading font-semibold mb-3 text-white">Your Email</label>
                       <input
                         type="email"
                         id="email"
-                        className={`w-full px-4 py-2 rounded-lg border border-blue-800/40 bg-blue-900/20 text-blue-100 placeholder-blue-200/50 focus:outline-none focus:ring-2 focus:ring-blue-500/50`}
+                        className="w-full px-6 py-4 rounded-2xl glass-strong border border-primary-500/30 text-white placeholder-white/50 focus:outline-none focus:border-accent-500/50 focus:ring-2 focus:ring-accent-500/20 transition-all duration-500"
                         placeholder="john@example.com"
                       />
                     </div>
                     <div>
-                      <label htmlFor="message" className={`block text-sm font-medium mb-1 text-blue-200/70`}>Message</label>
+                      <label htmlFor="message" className="block font-heading font-semibold mb-3 text-white">Message</label>
                       <textarea
                         id="message"
-                        rows={4}
-                        className={`w-full px-4 py-2 rounded-lg border border-blue-800/40 bg-blue-900/20 text-blue-100 placeholder-blue-200/50 focus:outline-none focus:ring-2 focus:ring-blue-500/50`}
+                        rows={5}
+                        className="w-full px-6 py-4 rounded-2xl glass-strong border border-primary-500/30 text-white placeholder-white/50 focus:outline-none focus:border-accent-500/50 focus:ring-2 focus:ring-accent-500/20 transition-all duration-500 resize-none"
                         placeholder="Your message here..."
                       ></textarea>
                     </div>
                     <Button
                       type="submit"
-                      className={`rounded-full bg-blue-500 text-white hover:bg-blue-600`}
+                      className="w-full rounded-full bg-gradient-to-r from-accent-500 to-accent-600 text-white font-heading font-bold text-lg py-6 hover:scale-105 transition-all duration-500 screen-glow"
                     >
+                      <Mail className="w-6 h-6 mr-3" />
                       Send Message
                     </Button>
                   </form>

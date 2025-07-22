@@ -1,0 +1,376 @@
+import React, { useState, useEffect, useRef } from "react";
+import { ModernLayout } from "../../components/layout/ModernLayout";
+import { Button } from "../../components/ui/button";
+import { Card } from "../../components/ui/card";
+import { ChevronLeft, ChevronRight, Play, ExternalLink, Instagram, Youtube, Star, Award, Film } from "lucide-react";
+
+export const CinematicHome = () => {
+  const [darkMode, setDarkMode] = useState(true);
+  const [activeVideoIndex, setActiveVideoIndex] = useState(0);
+  const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [scrollY, setScrollY] = useState(0);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Data collections
+  const videoReels = [
+    { id: "_p5b5KJrIT4", title: "Theatrical Reel (2025)", description: "Latest performance showcase", year: "2025", genre: "Drama/Performance" },
+    { id: "i1S82a1Ag1Q", title: "History of Breakfast", description: "Commercial work", year: "2024", genre: "Commercial" },
+    { id: "G8KOUnPRwJE", title: "Real Spit! Trailer", description: "Independent film", year: "2023", genre: "Independent Drama" },
+    { id: "enrZJWfOL6s", title: "Blueberry - Short Film", description: "Full feature", year: "2023", genre: "Short Film" },
+  ];
+
+  const galleryImages = [
+    { id: 1, src: "/stevie_headshot_008.jpg", alt: "Professional Headshot 1", title: "Studio Portrait" },
+    { id: 2, src: "/stevie_headshot_207.jpg", alt: "Professional Headshot 2", title: "Character Study" },
+    { id: 3, src: "/stevie_headshot_287.jpg", alt: "Professional Headshot 3", title: "Dramatic Portrait" },
+    { id: 4, src: "/stevie_lovepotion.jpg", alt: "Character Portrait", title: "On Set" },
+  ];
+
+  const socialLinks = [
+    { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/steviejohnson", color: "from-pink-500 to-purple-500" },
+    { icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@steviejohnson", color: "from-red-500 to-red-600" },
+    { icon: ExternalLink, label: "IMDb", href: "https://www.imdb.com/name/steviejohnson", color: "from-yellow-500 to-orange-500" },
+  ];
+
+  const roles = ["Actor", "Author", "Professor", "Director"];
+  const [currentRole, setCurrentRole] = useState(0);
+
+  // Advanced Effects
+  useEffect(() => {
+    setIsLoaded(true);
+    
+    // Role cycling
+    const roleInterval = setInterval(() => {
+      setCurrentRole((prev) => (prev + 1) % roles.length);
+    }, 3000);
+
+    // Gallery auto-rotation
+    const galleryInterval = setInterval(() => {
+      setActiveGalleryIndex((prev) => (prev + 1) % galleryImages.length);
+    }, 6000);
+
+    // Mouse tracking for advanced effects
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+
+    // Scroll tracking for parallax
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      clearInterval(roleInterval);
+      clearInterval(galleryInterval);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  // Advanced visual calculations
+  const parallaxOffset = scrollY * 0.5;
+  const mouseParallaxX = (mousePos.x - window.innerWidth / 2) * 0.01;
+  const mouseParallaxY = (mousePos.y - window.innerHeight / 2) * 0.01;
+
+  return (
+    <ModernLayout 
+      darkMode={darkMode} 
+      toggleDarkMode={() => setDarkMode(!darkMode)}
+      activeNavItem="home"
+    >
+      {/* 🎬 PARTICLE FIELD & ATMOSPHERIC EFFECTS */}
+      <div className="particle-field">
+        {[...Array(50)].map((_, i) => (
+          <div
+            key={i}
+            className="particle"
+            style={{
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * -20}s`,
+              animationDuration: `${15 + Math.random() * 10}s`
+            }}
+          />
+        ))}
+      </div>
+
+      {/* 🌟 MATRIX OVERLAY */}
+      <div className="matrix-overlay" />
+
+      {/* 🎭 CINEMATIC HERO SECTION */}
+      <section 
+        ref={heroRef}
+        className="relative min-h-screen cinematic-depth overflow-hidden"
+        style={{
+          transform: `translateY(${parallaxOffset}px)`,
+        }}
+      >
+        {/* LIGHTING & ATMOSPHERE */}
+        <div className="lighting-overlay animate-spotlight" />
+        
+        {/* ATMOSPHERIC PARTICLES */}
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="atmospheric-particle"
+            style={{
+              width: `${2 + Math.random() * 6}px`,
+              height: `${2 + Math.random() * 6}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * -30}s`,
+              animationDuration: `${20 + Math.random() * 10}s`
+            }}
+          />
+        ))}
+
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 min-h-screen items-center px-6 max-w-7xl mx-auto">
+          
+          {/* 🎪 LEFT SIDE - ACTOR INTRODUCTION */}
+          <div 
+            className={`space-y-8 depth-layer-3 ${isLoaded ? 'animate-cinematic-reveal' : 'opacity-0'}`}
+            style={{
+              transform: `translate(${mouseParallaxX}px, ${mouseParallaxY}px)`,
+              animationDelay: '0.5s'
+            }}
+          >
+            {/* KINETIC TITLE */}
+            <div className="space-y-4">
+              <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-black leading-none tracking-tight">
+                <span className="kinetic-text block">STEVIE</span>
+                <span className="kinetic-text block" style={{ animationDelay: '0.5s' }}>JOHNSON</span>
+              </h1>
+              
+              {/* ANIMATED ROLE DISPLAY */}
+              <div className="h-16 flex items-center relative">
+                <div className="font-heading text-3xl md:text-4xl font-bold tracking-wide relative">
+                  {roles.map((role, index) => (
+                    <span
+                      key={role}
+                      className={`absolute transition-all duration-700 text-holographic ${
+                        index === currentRole
+                          ? 'opacity-100 transform translate-y-0 scale-100'
+                          : 'opacity-0 transform translate-y-8 scale-90'
+                      }`}
+                    >
+                      {role}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* BIO WITH CINEMATIC REVEAL */}
+              <div className="space-y-4 animate-text-reveal" style={{ animationDelay: '1.5s' }}>
+                <p className="text-xl text-white/90 font-body leading-relaxed max-w-lg">
+                  <strong className="text-holographic">20+ years of stage and screen experience.</strong>
+                  <br />Member of SAG-AFTRA and Actors' Equity.
+                </p>
+                <p className="text-lg text-white/70 font-body max-w-lg">
+                  A father, artist, and visionary bringing passion and authenticity to every project.
+                </p>
+              </div>
+            </div>
+
+            {/* CINEMATIC STATS */}
+            <div className="grid grid-cols-3 gap-6">
+              {[
+                { value: "20+", label: "Years Experience", icon: Award },
+                { value: "100+", label: "Film/Theatre/TV Credits", icon: Film },
+                { value: "4", label: "Books Published", icon: Star }
+              ].map((stat, index) => (
+                <div 
+                  key={stat.label}
+                  className={`holographic-border rounded-3xl p-6 text-center cinematic-theater animate-depth-float`}
+                  style={{ animationDelay: `${2 + index * 0.2}s` }}
+                >
+                  <stat.icon className="w-8 h-8 mx-auto mb-3 text-accent-400 animate-float" />
+                  <div className="font-heading text-3xl font-bold text-holographic">{stat.value}</div>
+                  <div className="text-white/60 text-sm font-body">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* PREMIUM CALL TO ACTION */}
+            <div className="flex flex-col sm:flex-row items-start gap-6">
+              <Button 
+                className="group px-10 py-5 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 text-white font-heading font-semibold text-lg hover:scale-105 transition-all duration-500 holographic-border screen-glow"
+                onClick={() => {
+                  const theaterElement = document.querySelector('.cinematic-theater-main');
+                  if (theaterElement) {
+                    theaterElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }
+                }}
+              >
+                <Play className="w-6 h-6 mr-3 group-hover:animate-pulse" />
+                Enter the Theater
+              </Button>
+              <Button className="px-10 py-5 rounded-full glass-strong text-white font-heading font-medium text-lg hover-lift cinematic-theater" asChild>
+                <a href="/actor">Full Portfolio Experience</a>
+              </Button>
+            </div>
+
+            {/* SOCIAL LINKS WITH GLOW EFFECTS */}
+            <div className="flex items-center gap-6 pt-4">
+              {socialLinks.map((social, index) => (
+                <Button
+                  key={social.label}
+                  className={`w-14 h-14 rounded-full bg-gradient-to-r ${social.color} p-0 hover:scale-125 transition-all duration-500 hover-glow screen-glow`}
+                  aria-label={social.label}
+                  asChild
+                >
+                  <a href={social.href} target="_blank" rel="noopener noreferrer">
+                    <social.icon className="w-6 h-6 text-white" />
+                  </a>
+                </Button>
+              ))}
+            </div>
+          </div>
+
+          {/* 🎬 RIGHT SIDE - CINEMATIC THEATER EXPERIENCE */}
+          <div 
+            className={`space-y-8 depth-layer-2 ${isLoaded ? 'animate-cinematic-reveal' : 'opacity-0'}`}
+            style={{
+              transform: `translate(${-mouseParallaxX}px, ${-mouseParallaxY}px)`,
+              animationDelay: '1s'
+            }}
+          >
+            {/* PREMIUM SCREENING ROOM */}
+            <div className="cinematic-theater cinematic-theater-main rounded-3xl p-8 holographic-border">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h3 className="font-heading text-2xl font-bold text-holographic mb-2">
+                    {videoReels[activeVideoIndex].title}
+                  </h3>
+                  <div className="flex items-center gap-4 text-sm text-white/60">
+                    <span className="bg-primary-500/20 px-3 py-1 rounded-full">{videoReels[activeVideoIndex].year}</span>
+                    <span className="bg-accent-500/20 px-3 py-1 rounded-full">{videoReels[activeVideoIndex].genre}</span>
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  <Button
+                    className="w-10 h-10 rounded-full cinematic-theater hover-glow"
+                    onClick={() => setActiveVideoIndex((prev) => prev === 0 ? videoReels.length - 1 : prev - 1)}
+                  >
+                    <ChevronLeft className="w-5 h-5 text-white" />
+                  </Button>
+                  <Button
+                    className="w-10 h-10 rounded-full cinematic-theater hover-glow"
+                    onClick={() => setActiveVideoIndex((prev) => (prev + 1) % videoReels.length)}
+                  >
+                    <ChevronRight className="w-5 h-5 text-white" />
+                  </Button>
+                </div>
+              </div>
+
+              <div className="aspect-video rounded-2xl overflow-hidden screen-glow mb-6 group">
+                <iframe
+                  className="w-full h-full transition-transform duration-500 group-hover:scale-105"
+                  src={`https://www.youtube.com/embed/${videoReels[activeVideoIndex].id}`}
+                  title="Video Player"
+                  frameBorder="0"
+                  allowFullScreen
+                />
+              </div>
+
+              {/* CINEMATIC NAVIGATION */}
+              <div className="flex justify-center gap-3">
+                {videoReels.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`h-3 rounded-full transition-all duration-500 hover:scale-125 ${
+                      index === activeVideoIndex
+                        ? 'w-12 bg-gradient-to-r from-accent-400 to-primary-400 screen-glow'
+                        : 'w-3 bg-white/30 hover:bg-white/50'
+                    }`}
+                    onClick={() => setActiveVideoIndex(index)}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* 3D HEADSHOT GALLERY */}
+            <div className="cinematic-theater rounded-3xl p-6 holographic-border">
+              <h3 className="font-heading text-xl font-bold text-holographic mb-4">Professional Gallery</h3>
+              <div className="aspect-[4/5] rounded-2xl overflow-hidden screen-glow mb-4 group cinematic-depth">
+                <img
+                  src={galleryImages[activeGalleryIndex].src}
+                  alt={galleryImages[activeGalleryIndex].alt}
+                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 depth-layer-4"
+                  style={{
+                    transform: `rotateY(${mouseParallaxX * 2}deg) rotateX(${-mouseParallaxY}deg)`
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="text-white font-heading font-bold">{galleryImages[activeGalleryIndex].title}</div>
+                </div>
+              </div>
+              <div className="flex justify-center gap-2">
+                {galleryImages.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`h-2 rounded-full transition-all duration-500 ${
+                      index === activeGalleryIndex
+                        ? 'w-8 bg-gradient-to-r from-primary-400 to-accent-400'
+                        : 'w-2 bg-white/30 hover:bg-white/50'
+                    }`}
+                    onClick={() => setActiveGalleryIndex(index)}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* FLOATING 3D ELEMENTS */}
+        <div 
+          className="absolute top-1/4 left-1/4 w-8 h-8 bg-accent-400 rounded-full animate-depth-float opacity-40 depth-layer-5"
+          style={{ animationDelay: '0s', transform: `translate(${mouseParallaxX * 3}px, ${mouseParallaxY * 3}px)` }}
+        />
+        <div 
+          className="absolute top-1/3 right-1/3 w-6 h-6 bg-primary-400 rounded-full animate-depth-float opacity-50 depth-layer-4"
+          style={{ animationDelay: '2s', transform: `translate(${-mouseParallaxX * 2}px, ${-mouseParallaxY * 2}px)` }}
+        />
+        <div 
+          className="absolute bottom-1/4 left-1/3 w-4 h-4 bg-accent-500 rounded-full animate-depth-float opacity-60 depth-layer-3"
+          style={{ animationDelay: '4s', transform: `translate(${mouseParallaxX * 4}px, ${mouseParallaxY * 4}px)` }}
+        />
+      </section>
+
+      {/* 🌟 CINEMATIC ABOUT SECTION */}
+      <section className="py-32 relative overflow-hidden">
+        <div className="lighting-overlay opacity-50" />
+        <div className="relative z-10">
+          <Card className="max-w-6xl mx-auto cinematic-theater holographic-border rounded-3xl p-16 text-center">
+            <h2 className="font-display text-7xl font-bold kinetic-text mb-12">
+              THE ARTIST
+            </h2>
+            <div className="max-w-4xl mx-auto space-y-8 text-lg text-white/90 font-body leading-relaxed">
+              <p className="text-2xl font-medium text-holographic">
+                <strong>Stevie Johnson is an actor, director, producer, and professor dedicated to storytelling.</strong>
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                {[
+                  { title: "Artist", desc: "A father, artist, and visionary", color: "accent" },
+                  { title: "Passion", desc: "Brings passion and authenticity to every project", color: "primary" },
+                  { title: "Excellence", desc: "Committed to artistic excellence", color: "accent" }
+                ].map((item, index) => (
+                  <div key={item.title} className="cinematic-theater holographic-border rounded-2xl p-8">
+                    <div className={`text-${item.color}-400 font-heading font-bold text-xl kinetic-text`}>
+                      {item.title}
+                    </div>
+                    <div className="text-white/70 text-sm mt-3">{item.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Card>
+        </div>
+      </section>
+    </ModernLayout>
+  );
+};
