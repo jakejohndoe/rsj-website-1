@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { MacbookProLayout } from "../../components/layout/MacbookProLayout";
+import { ModernLayout } from "../../components/layout/ModernLayout";
 import { Card } from "../../components/ui/card";
 import { Separator } from "../../components/ui/separator";
 import { Button } from "../../components/ui/button";
-import axios from "axios";
+import { fetchBlogs } from "../../services/api";
 
 interface BlogPost {
   id: number;
@@ -25,23 +25,22 @@ export const Blog = () => {
   const categories = ["All", "Public Speaking", "Writing", "Performance", "Teaching"];
 
   useEffect(() => {
-    const fetchBlogPosts = async () => {
+    const loadBlogPosts = async () => {
       try {
-        const response = await axios.get('http://localhost:5001/api/blogs');
-        setBlogPosts(response.data);
+        const data = await fetchBlogs();
+        setBlogPosts(data);
       } catch (err) {
-        console.error("API Error:", err);
         setError("Failed to load posts. The server might be down.");
       } finally {
         setLoading(false);
       }
     };
-    fetchBlogPosts();
+    loadBlogPosts();
   }, []);
 
   if (loading) {
     return (
-      <MacbookProLayout 
+      <ModernLayout 
         darkMode={darkMode} 
         toggleDarkMode={() => setDarkMode(!darkMode)}
         activeNavItem="blog"
@@ -49,13 +48,13 @@ export const Blog = () => {
         <div className="flex justify-center items-center h-full">
           <p className="text-blue-200">Loading posts...</p>
         </div>
-      </MacbookProLayout>
+      </ModernLayout>
     );
   }
 
   if (error) {
     return (
-      <MacbookProLayout 
+      <ModernLayout 
         darkMode={darkMode} 
         toggleDarkMode={() => setDarkMode(!darkMode)}
         activeNavItem="blog"
@@ -69,13 +68,13 @@ export const Blog = () => {
             Retry
           </Button>
         </div>
-      </MacbookProLayout>
+      </ModernLayout>
     );
   }
 
   if (blogPosts.length === 0) {
     return (
-      <MacbookProLayout 
+      <ModernLayout 
         darkMode={darkMode} 
         toggleDarkMode={() => setDarkMode(!darkMode)}
         activeNavItem="blog"
@@ -83,7 +82,7 @@ export const Blog = () => {
         <div className="flex justify-center items-center h-full">
           <p className="text-blue-200">No posts available</p>
         </div>
-      </MacbookProLayout>
+      </ModernLayout>
     );
   }
 
@@ -93,7 +92,7 @@ export const Blog = () => {
     : blogPosts.slice(1).filter(post => post.category === activeCategory);
 
   return (
-    <MacbookProLayout 
+    <ModernLayout 
       darkMode={darkMode} 
       toggleDarkMode={() => setDarkMode(!darkMode)}
       activeNavItem="blog"
@@ -229,6 +228,6 @@ export const Blog = () => {
           </Card>
         </div>
       </div>
-    </MacbookProLayout>
+    </ModernLayout>
   );
 };

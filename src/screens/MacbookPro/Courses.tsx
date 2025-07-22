@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MacbookProLayout } from "../../components/layout/MacbookProLayout";
+import { ModernLayout } from "../../components/layout/ModernLayout";
 import { Card } from "../../components/ui/card";
 import { Button } from "../../components/ui/button";
 import { Separator } from "../../components/ui/separator";
@@ -43,7 +43,7 @@ export const Courses = () => {
   ];
 
   return (
-    <MacbookProLayout
+    <ModernLayout
       darkMode={darkMode}
       toggleDarkMode={() => setDarkMode(!darkMode)}
       activeNavItem="courses"
@@ -126,6 +126,6 @@ export const Courses = () => {
           </div>
         </div>
       </div>
-    </MacbookProLayout>
+    </ModernLayout>
   );
 };

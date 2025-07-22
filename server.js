@@ -1,13 +1,17 @@
 // server.js
 import express from 'express';
 import cors from 'cors';
+import { config } from 'dotenv';
+
+// Load environment variables
+config({ path: '.env.server' });
 
 const app = express();
-const PORT = 5001;
+const PORT = process.env.PORT || 5001;
 
 // Enhanced CORS configuration
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
   methods: ['GET'],
   allowedHeaders: ['Content-Type'],
   credentials: false

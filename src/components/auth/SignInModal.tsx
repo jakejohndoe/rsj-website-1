@@ -17,7 +17,7 @@ export const SignInModal = ({ darkMode, onClose }: SignInModalProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    console.log({ email, password });
+    // TODO: Implement actual authentication when backend is ready
     setTimeout(() => {
       setIsLoading(false);
       onClose();
