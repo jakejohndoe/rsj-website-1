@@ -86,10 +86,10 @@ export const Professor = () => {
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className={`text-[3rem] md:text-[5rem] font-fleur leading-[0.8] text-blue-100 text-glow-blue`}>
+            <h1 className="text-[3rem] md:text-[5rem] font-display leading-[0.8] text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400">
               {professorData.name}
             </h1>
-            <p className={`text-lg md:text-xl font-serif text-blue-200/80`}>
+            <p className={`text-lg md:text-xl font-heading text-blue-200/80`}>
               {professorData.title} at {professorData.institution}
             </p>
           </div>
@@ -150,10 +150,10 @@ export const Professor = () => {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Teaching Philosophy Card */}
                 <Card className={`p-6 rounded-3xl bg-blue-900/30 neon-glow lg:col-span-1`}>
-                  <h2 className={`text-2xl font-serif font-medium text-blue-100`}>
+                  <h2 className={`text-2xl font-heading font-medium text-blue-100`}>
                     Teaching Philosophy
                   </h2>
-                  <p className={`text-blue-200/80 mb-4`}>
+                  <p className={`font-body text-blue-200/80 mb-4`}>
                     I believe education should be transformative, engaging, and accessible. My approach combines:
                   </p>
                   <ul className={`space-y-3 text-blue-200/80`}>
@@ -178,7 +178,7 @@ export const Professor = () => {
 
                 {/* Teaching Specialties Card - NEW CARD */}
                 <Card className={`p-6 rounded-3xl bg-blue-900/30 neon-glow lg:col-span-1`}>
-                  <h2 className={`text-2xl font-serif font-medium text-blue-100 mb-4`}>
+                  <h2 className={`text-2xl font-heading font-medium text-blue-100 mb-4`}>
                     Teaching Specialties
                   </h2>
                   <div className="grid grid-cols-2 gap-3">
@@ -188,7 +188,7 @@ export const Professor = () => {
                         className={`p-3 rounded-lg bg-blue-800/20 border border-blue-700/30 flex items-center`}
                       >
                         <span className={`text-blue-300 mr-2`}>✓</span>
-                        <span className={`text-blue-200/80 text-sm`}>{specialty}</span>
+                        <span className={`font-body text-blue-200/80 text-sm`}>{specialty}</span>
                       </div>
                     ))}
                   </div>
@@ -196,7 +196,7 @@ export const Professor = () => {
 
                 {/* Education Card */}
                 <Card className={`p-6 rounded-3xl bg-blue-900/30 neon-glow lg:col-span-1`}>
-                  <h2 className={`text-2xl font-serif font-medium text-blue-100`}>
+                  <h2 className={`text-2xl font-heading font-medium text-blue-100`}>
                     Education
                   </h2>
                   <div className="space-y-4">
@@ -219,7 +219,7 @@ export const Professor = () => {
                   <Card key={index} className={`p-6 rounded-3xl bg-blue-900/30 neon-glow hover:shadow-lg transition-shadow duration-300`}>
                     <div className="flex items-start mb-3">
                       <span className={`font-mono font-bold mr-3 text-blue-300`}>{course.code}</span>
-                      <h3 className={`text-lg font-serif font-medium text-blue-100`}>{course.title}</h3>
+                      <h3 className={`text-lg font-heading font-medium text-blue-100`}>{course.title}</h3>
                     </div>
                     <p className={`text-sm text-blue-200/80`}>{course.description}</p>
                     <Button
@@ -236,24 +236,24 @@ export const Professor = () => {
             {activeTab === "office" && (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <Card className={`p-6 rounded-3xl bg-blue-900/30 neon-glow`}>
-                  <h2 className={`text-2xl font-serif font-medium text-blue-100 mb-6`}>
+                  <h2 className={`text-2xl font-heading font-medium text-blue-100 mb-6`}>
                     Office Hours
                   </h2>
                   <div className="space-y-4">
                     {professorData.officeHours.map((item, index) => (
                       <div key={index} className="flex justify-between items-center border-b border-blue-800/40 pb-3 last:border-b-0 last:pb-0">
                         <span className={`font-medium text-blue-100`}>{item.day}</span>
-                        <span className={`text-blue-200/80`}>{item.time}</span>
+                        <span className={`font-body text-blue-200/80`}>{item.time}</span>
                       </div>
                     ))}
                   </div>
                 </Card>
 
                 <Card className={`p-6 rounded-3xl bg-blue-900/30 neon-glow`}>
-                  <h2 className={`text-2xl font-serif font-medium text-blue-100 mb-6`}>
+                  <h2 className={`text-2xl font-heading font-medium text-blue-100 mb-6`}>
                     Appointment Scheduling
                   </h2>
-                  <p className={`text-blue-200/80 mb-6`}>
+                  <p className={`font-body text-blue-200/80 mb-6`}>
                     For appointments outside of regular office hours, please use the university scheduling system or contact me directly.
                   </p>
                   <div className="flex flex-wrap gap-3">
@@ -276,7 +276,7 @@ export const Professor = () => {
             {activeTab === "contact" && (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <Card className={`p-6 rounded-3xl bg-blue-900/30 neon-glow`}>
-                  <h2 className={`text-2xl font-serif font-medium text-blue-100 mb-6`}>
+                  <h2 className={`text-2xl font-heading font-medium text-blue-100 mb-6`}>
                     Contact Information
                   </h2>
                   <div className="space-y-4">
@@ -296,7 +296,7 @@ export const Professor = () => {
                 </Card>
 
                 <Card className={`p-6 rounded-3xl bg-blue-900/30 neon-glow`}>
-                  <h2 className={`text-2xl font-serif font-medium text-blue-100 mb-6`}>
+                  <h2 className={`text-2xl font-heading font-medium text-blue-100 mb-6`}>
                     Get In Touch
                   </h2>
                   <form className="space-y-4">

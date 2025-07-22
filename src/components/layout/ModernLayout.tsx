@@ -26,7 +26,7 @@ export const ModernLayout = ({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const navItems = ["home", "actor", "author", "professor", "courses", "blog", "contact"];
+  const navItems = ["home", "actor", "author", "professor", "courses", "contact"];
 
   // Handle scroll effect for header
   useEffect(() => {

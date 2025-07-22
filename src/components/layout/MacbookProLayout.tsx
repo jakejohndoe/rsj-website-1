@@ -24,7 +24,7 @@ export const MacbookProLayout = ({
   activeNavItem = "home"
 }: MacbookProLayoutProps) => {
   const [showSignInModal, setShowSignInModal] = React.useState(false);
-  const navItems = ["home", "actor", "author", "professor", "courses", "blog", "contact"];
+  const navItems = ["home", "actor", "author", "professor", "courses", "contact"];
 
   const themeClasses = {
     text: darkMode ? 'text-blue-100' : 'text-purple-900',

@@ -59,16 +59,12 @@ export const Courses = () => {
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1
-              className={`text-[3rem] md:text-[5rem] font-fleur leading-[0.8] ${
-                darkMode ? "text-blue-100 text-glow-blue" : "text-blue-900"
-              }`}
-            >
+            <h1 className="text-[3rem] md:text-[5rem] font-display leading-[0.8] text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400">
               Course Catalog
             </h1>
             <p
-              className={`text-lg md:text-xl font-serif ${
-                darkMode ? "text-blue-200/80" : "text-blue-800/80"
+              className={`text-lg md:text-xl font-heading ${
+                darkMode ? "font-body text-blue-200/80" : "text-blue-800/80"
               }`}
             >
               Current and upcoming course offerings
@@ -88,15 +84,15 @@ export const Courses = () => {
                   <span className="text-sm font-mono font-bold text-blue-100">
                     {course.code}
                   </span>
-                  <span className="text-xs px-2 py-1 rounded-full bg-blue-800/30 text-blue-200/80">
+                  <span className="text-xs px-2 py-1 rounded-full bg-blue-800/30 font-body text-blue-200/80">
                     {course.level}
                   </span>
                 </div>
 
-                <h2 className="text-xl font-serif font-medium text-blue-100 mb-2">
+                <h2 className="text-xl font-heading font-medium text-blue-100 mb-2">
                   {course.title}
                 </h2>
-                <p className="text-sm text-blue-200/80 mb-4">
+                <p className="text-sm font-body text-blue-200/80 mb-4">
                   {course.description}
                 </p>
 

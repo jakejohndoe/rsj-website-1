@@ -7,17 +7,5 @@ const api = axios.create({
   timeout: config.api.timeout,
 });
 
-// Blog-specific API instance (if using different endpoint)
-const blogApi = axios.create({
-  baseURL: `${config.api.blogUrl}/api`,
-  timeout: config.api.timeout,
-});
-
-// Define API calls
-export const fetchBlogs = async () => {
-  const response = await blogApi.get('/blogs');
-  return response.data;
-};
-
-// Add more API calls here later...
+// API calls can be added here when needed
 export default api;

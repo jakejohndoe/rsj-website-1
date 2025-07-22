@@ -28,10 +28,10 @@ export const Contact = () => {
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-[3rem] md:text-[5rem] font-fleur leading-[0.8] text-blue-100 text-glow-blue">
+            <h1 className="text-[3rem] md:text-[5rem] font-display leading-[0.8] text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400">
               Contact
             </h1>
-            <p className="text-lg md:text-xl font-serif text-blue-200/80">
+            <p className="text-lg md:text-xl font-heading text-blue-200/80">
               For booking inquiries, speaking engagements, or general questions
             </p>
           </div>
@@ -43,20 +43,20 @@ export const Contact = () => {
             <div className="grid md:grid-cols-2 gap-8">
               {/* Left Column - Contact Info */}
               <div className="space-y-6">
-                <h2 className="text-2xl font-serif font-medium text-blue-100">
+                <h2 className="text-2xl font-heading font-medium text-blue-100">
                   Get in Touch
                 </h2>
                 <ul className="space-y-4 text-lg text-blue-200/80">
                   <li>
-                    <h3 className="font-serif font-medium text-blue-100">Email:</h3>
+                    <h3 className="font-heading font-medium text-blue-100">Email:</h3>
                     <p>steviejohnson101@gmail.com</p>
                   </li>
                   <li>
-                    <h3 className="font-serif font-medium text-blue-100">Phone:</h3>
+                    <h3 className="font-heading font-medium text-blue-100">Phone:</h3>
                     <p>(213) 944-6059</p>
                   </li>
                   <li>
-                    <h3 className="font-serif font-medium text-blue-100">Agents:</h3>
+                    <h3 className="font-heading font-medium text-blue-100">Agents:</h3>
                     <p>True Artists Agency</p>
                     <p>BiCoastal Talent Agency</p>
                     <p>Jenni Sacks Agency</p>
@@ -64,7 +64,7 @@ export const Contact = () => {
                 </ul>
 
                 <div>
-                  <h3 className="font-serif font-medium mb-3 text-blue-100">
+                  <h3 className="font-heading font-medium mb-3 text-blue-100">
                     Connect with me:
                   </h3>
                   <div className="flex space-x-4">
@@ -129,10 +129,10 @@ export const Contact = () => {
           {/* Additional Contact Card */}
           <Card className="p-6 rounded-3xl bg-blue-900/30 neon-glow">
             <div className="text-center">
-              <h2 className="text-xl font-serif font-medium text-blue-100 mb-2">
+              <h2 className="text-xl font-heading font-medium text-blue-100 mb-2">
                 Looking for immediate assistance?
               </h2>
-              <p className="text-blue-200/80 mb-4">
+              <p className="font-body text-blue-200/80 mb-4">
                 Contact my agent directly for urgent booking inquiries
               </p>
               <Button
