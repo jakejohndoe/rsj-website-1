@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { ModernLayout } from "../../components/layout/ModernLayout";
 import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
@@ -37,45 +37,65 @@ export const CinematicHome = () => {
   const roles = ["Actor", "Author", "Professor", "Director"];
   const [currentRole, setCurrentRole] = useState(0);
 
-  // Advanced Effects
+  // Optimized Effects
   useEffect(() => {
     setIsLoaded(true);
     
     // Role cycling
     const roleInterval = setInterval(() => {
       setCurrentRole((prev) => (prev + 1) % roles.length);
-    }, 3000);
+    }, 3500);
 
     // Gallery auto-rotation
     const galleryInterval = setInterval(() => {
       setActiveGalleryIndex((prev) => (prev + 1) % galleryImages.length);
-    }, 6000);
+    }, 7000);
 
-    // Mouse tracking for advanced effects
+    // Optimized mouse tracking with throttling
+    let mouseTimeout: NodeJS.Timeout;
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
+      clearTimeout(mouseTimeout);
+      mouseTimeout = setTimeout(() => {
+        const x = e.clientX;
+        const y = e.clientY;
+        // Only update if movement is significant (> 10px)
+        setMousePos(prev => {
+          const deltaX = Math.abs(prev.x - x);
+          const deltaY = Math.abs(prev.y - y);
+          if (deltaX > 10 || deltaY > 10) {
+            return { x, y };
+          }
+          return prev;
+        });
+      }, 16); // ~60fps throttling
     };
 
-    // Scroll tracking for parallax
+    // Optimized scroll tracking with throttling
+    let scrollTimeout: NodeJS.Timeout;
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        setScrollY(window.scrollY);
+      }, 16);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       clearInterval(roleInterval);
       clearInterval(galleryInterval);
+      clearTimeout(mouseTimeout);
+      clearTimeout(scrollTimeout);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
-  // Advanced visual calculations
-  const parallaxOffset = scrollY * 0.5;
-  const mouseParallaxX = (mousePos.x - window.innerWidth / 2) * 0.01;
-  const mouseParallaxY = (mousePos.y - window.innerHeight / 2) * 0.01;
+  // Optimized visual calculations with reduced complexity
+  const parallaxOffset = scrollY * 0.3;
+  const mouseParallaxX = (mousePos.x - (typeof window !== 'undefined' ? window.innerWidth / 2 : 0)) * 0.005;
+  const mouseParallaxY = (mousePos.y - (typeof window !== 'undefined' ? window.innerHeight / 2 : 0)) * 0.005;
 
   return (
     <ModernLayout 
@@ -83,47 +103,47 @@ export const CinematicHome = () => {
       toggleDarkMode={() => setDarkMode(!darkMode)}
       activeNavItem="home"
     >
-      {/* 🎬 PARTICLE FIELD & ATMOSPHERIC EFFECTS */}
+      {/* 🎬 OPTIMIZED PARTICLE FIELD */}
       <div className="particle-field">
-        {[...Array(50)].map((_, i) => (
+        {[...Array(25)].map((_, i) => (
           <div
             key={i}
             className="particle"
             style={{
               left: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * -20}s`,
-              animationDuration: `${15 + Math.random() * 10}s`
+              animationDuration: `${20 + Math.random() * 5}s`
             }}
           />
         ))}
       </div>
 
-      {/* 🌟 MATRIX OVERLAY */}
+      {/* 🌟 SUBTLE MATRIX OVERLAY */}
       <div className="matrix-overlay" />
 
       {/* 🎭 CINEMATIC HERO SECTION */}
       <section 
         ref={heroRef}
-        className="relative min-h-screen cinematic-depth overflow-hidden"
+        className="relative min-h-screen overflow-hidden"
         style={{
-          transform: `translateY(${parallaxOffset}px)`,
+          transform: scrollY > 0 ? `translateY(${parallaxOffset}px)` : 'translateY(0)',
         }}
       >
         {/* LIGHTING & ATMOSPHERE */}
-        <div className="lighting-overlay animate-spotlight" />
+        <div className="lighting-overlay" />
         
-        {/* ATMOSPHERIC PARTICLES */}
-        {[...Array(20)].map((_, i) => (
+        {/* REDUCED ATMOSPHERIC PARTICLES */}
+        {[...Array(8)].map((_, i) => (
           <div
             key={i}
             className="atmospheric-particle"
             style={{
-              width: `${2 + Math.random() * 6}px`,
-              height: `${2 + Math.random() * 6}px`,
+              width: `${3 + Math.random() * 3}px`,
+              height: `${3 + Math.random() * 3}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * -30}s`,
-              animationDuration: `${20 + Math.random() * 10}s`
+              animationDuration: `${25 + Math.random() * 10}s`
             }}
           />
         ))}
@@ -326,51 +346,30 @@ export const CinematicHome = () => {
           </div>
         </div>
 
-        {/* FLOATING 3D ELEMENTS */}
+        {/* OPTIMIZED FLOATING ELEMENTS */}
         <div 
-          className="absolute top-1/4 left-1/4 w-8 h-8 bg-accent-400 rounded-full animate-depth-float opacity-40 depth-layer-5"
-          style={{ animationDelay: '0s', transform: `translate(${mouseParallaxX * 3}px, ${mouseParallaxY * 3}px)` }}
+          className="absolute top-1/4 left-1/4 w-6 h-6 bg-accent-400 rounded-full animate-depth-float opacity-30"
+          style={{ 
+            animationDelay: '0s',
+            transform: mousePos.x > 0 ? `translate(${mouseParallaxX * 2}px, ${mouseParallaxY * 2}px)` : 'translate(0, 0)'
+          }}
         />
         <div 
-          className="absolute top-1/3 right-1/3 w-6 h-6 bg-primary-400 rounded-full animate-depth-float opacity-50 depth-layer-4"
-          style={{ animationDelay: '2s', transform: `translate(${-mouseParallaxX * 2}px, ${-mouseParallaxY * 2}px)` }}
+          className="absolute top-1/3 right-1/3 w-5 h-5 bg-primary-400 rounded-full animate-depth-float opacity-40"
+          style={{ 
+            animationDelay: '3s',
+            transform: mousePos.x > 0 ? `translate(${-mouseParallaxX}px, ${-mouseParallaxY}px)` : 'translate(0, 0)'
+          }}
         />
         <div 
-          className="absolute bottom-1/4 left-1/3 w-4 h-4 bg-accent-500 rounded-full animate-depth-float opacity-60 depth-layer-3"
-          style={{ animationDelay: '4s', transform: `translate(${mouseParallaxX * 4}px, ${mouseParallaxY * 4}px)` }}
+          className="absolute bottom-1/4 left-1/3 w-4 h-4 bg-accent-500 rounded-full animate-depth-float opacity-50"
+          style={{ 
+            animationDelay: '6s',
+            transform: mousePos.x > 0 ? `translate(${mouseParallaxX}px, ${mouseParallaxY}px)` : 'translate(0, 0)'
+          }}
         />
       </section>
 
-      {/* 🌟 CINEMATIC ABOUT SECTION */}
-      <section className="py-32 relative overflow-hidden">
-        <div className="lighting-overlay opacity-50" />
-        <div className="relative z-10">
-          <Card className="max-w-6xl mx-auto cinematic-theater holographic-border rounded-3xl p-16 text-center">
-            <h2 className="font-display text-7xl font-bold kinetic-text mb-12">
-              THE ARTIST
-            </h2>
-            <div className="max-w-4xl mx-auto space-y-8 text-lg text-white/90 font-body leading-relaxed">
-              <p className="text-2xl font-medium text-holographic">
-                <strong>Stevie Johnson is an actor, director, producer, and professor dedicated to storytelling.</strong>
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                {[
-                  { title: "Artist", desc: "A father, artist, and visionary", color: "accent" },
-                  { title: "Passion", desc: "Brings passion and authenticity to every project", color: "primary" },
-                  { title: "Excellence", desc: "Committed to artistic excellence", color: "accent" }
-                ].map((item, index) => (
-                  <div key={item.title} className="cinematic-theater holographic-border rounded-2xl p-8">
-                    <div className={`text-${item.color}-400 font-heading font-bold text-xl kinetic-text`}>
-                      {item.title}
-                    </div>
-                    <div className="text-white/70 text-sm mt-3">{item.desc}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </Card>
-        </div>
-      </section>
     </ModernLayout>
   );
 };

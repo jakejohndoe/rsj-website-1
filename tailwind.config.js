@@ -111,13 +111,13 @@ module.exports = {
         "cinematic-reveal": {
           '0%': { 
             opacity: 0, 
-            transform: 'translateY(100px) rotateX(15deg) scale(0.9)',
-            filter: 'blur(20px) brightness(0.3)'
+            transform: 'translateY(50px) scale(0.95)',
+            filter: 'blur(10px)'
           },
           '100%': { 
             opacity: 1, 
-            transform: 'translateY(0) rotateX(0deg) scale(1)',
-            filter: 'blur(0px) brightness(1)'
+            transform: 'translateY(0) scale(1)',
+            filter: 'blur(0px)'
           },
         },
         "spotlight": {
@@ -140,24 +140,21 @@ module.exports = {
         },
         "depth-float": {
           '0%, 100%': { 
-            transform: 'translateY(0px) translateZ(0px) rotateY(0deg)',
+            transform: 'translateY(0px)',
           },
-          '33%': { 
-            transform: 'translateY(-15px) translateZ(20px) rotateY(5deg)',
-          },
-          '66%': { 
-            transform: 'translateY(5px) translateZ(-10px) rotateY(-3deg)',
+          '50%': { 
+            transform: 'translateY(-8px)',
           },
         },
         "particle-drift": {
           '0%': { 
-            transform: 'translateX(-100vw) translateY(100vh) rotate(0deg)',
+            transform: 'translateX(-50vw) translateY(50vh)',
             opacity: 0
           },
-          '10%': { opacity: 1 },
-          '90%': { opacity: 1 },
+          '10%': { opacity: 0.8 },
+          '90%': { opacity: 0.8 },
           '100%': { 
-            transform: 'translateX(100vw) translateY(-100vh) rotate(360deg)',
+            transform: 'translateX(50vw) translateY(-50vh)',
             opacity: 0
           },
         },
@@ -260,19 +257,19 @@ module.exports = {
         "shimmer": "shimmer 2s linear infinite",
         "typing": "typing 3.5s steps(40, end)",
         "blink": "blink 1s infinite",
-        // ⭐ CINEMATIC ANIMATIONS
-        "cinematic-reveal": "cinematic-reveal 2s cubic-bezier(0.23, 1, 0.320, 1) forwards",
-        "curtain-rise": "curtain-rise 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
-        "spotlight": "spotlight 6s ease-in-out infinite",
-        "depth-float": "depth-float 8s ease-in-out infinite",
-        "particle-drift": "particle-drift 15s linear infinite",
-        "holographic": "holographic 10s ease-in-out infinite",
-        "text-reveal": "text-reveal 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
-        "kinetic-scale": "kinetic-scale 4s ease-in-out infinite",
-        "depth-layer": "depth-layer 12s ease-in-out infinite",
-        "atmospheric": "atmospheric 20s ease-in-out infinite",
-        "screen-glow": "screen-glow 8s ease-in-out infinite",
-        "matrix-rain": "matrix-rain 8s linear infinite",
+        // ⭐ OPTIMIZED CINEMATIC ANIMATIONS
+        "cinematic-reveal": "cinematic-reveal 1.5s cubic-bezier(0.23, 1, 0.320, 1) forwards",
+        "curtain-rise": "curtain-rise 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
+        "spotlight": "spotlight 8s ease-in-out infinite",
+        "depth-float": "depth-float 6s ease-in-out infinite",
+        "particle-drift": "particle-drift 25s linear infinite",
+        "holographic": "holographic 12s ease-in-out infinite",
+        "text-reveal": "text-reveal 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
+        "kinetic-scale": "kinetic-scale 6s ease-in-out infinite",
+        "depth-layer": "depth-layer 15s ease-in-out infinite",
+        "atmospheric": "atmospheric 30s ease-in-out infinite",
+        "screen-glow": "screen-glow 10s ease-in-out infinite",
+        "matrix-rain": "matrix-rain 12s linear infinite",
       },
       boxShadow: {
         'glow': '0 0 50px rgba(0, 255, 198, 0.5)',

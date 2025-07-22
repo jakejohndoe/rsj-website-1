@@ -84,16 +84,16 @@ export const Professor = () => {
       toggleDarkMode={() => setDarkMode(!darkMode)}
       activeNavItem="professor"
     >
-      {/* 🎬 CINEMATIC BACKGROUND EFFECTS */}
+      {/* 🎬 OPTIMIZED BACKGROUND EFFECTS */}
       <div className="particle-field">
-        {[...Array(25)].map((_, i) => (
+        {[...Array(12)].map((_, i) => (
           <div
             key={i}
             className="particle"
             style={{
               left: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * -20}s`,
-              animationDuration: `${15 + Math.random() * 10}s`
+              animationDuration: `${20 + Math.random() * 5}s`
             }}
           />
         ))}
@@ -101,18 +101,18 @@ export const Professor = () => {
 
       <div className="matrix-overlay" />
 
-      {/* ATMOSPHERIC PARTICLES */}
-      {[...Array(12)].map((_, i) => (
+      {/* REDUCED ATMOSPHERIC PARTICLES */}
+      {[...Array(5)].map((_, i) => (
         <div
           key={i}
           className="atmospheric-particle"
           style={{
-            width: `${2 + Math.random() * 4}px`,
-            height: `${2 + Math.random() * 4}px`,
+            width: `${3 + Math.random() * 2}px`,
+            height: `${3 + Math.random() * 2}px`,
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
             animationDelay: `${Math.random() * -30}s`,
-            animationDuration: `${20 + Math.random() * 10}s`
+            animationDuration: `${25 + Math.random() * 10}s`
           }}
         />
       ))}

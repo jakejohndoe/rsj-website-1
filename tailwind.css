@@ -264,23 +264,24 @@
     width: 2px;
     height: 2px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(236, 72, 153, 0.8) 0%, rgba(249, 115, 22, 0.4) 70%, transparent 100%);
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.6) 0%, rgba(249, 115, 22, 0.3) 70%, transparent 100%);
     animation: particle-drift linear infinite;
+    will-change: transform;
   }
 
   .particle:nth-child(odd) {
-    animation-duration: 12s;
-    animation-delay: -2s;
+    animation-duration: 20s;
+    animation-delay: -5s;
   }
 
   .particle:nth-child(even) {
-    animation-duration: 18s;
-    animation-delay: -6s;
+    animation-duration: 25s;
+    animation-delay: -10s;
   }
 
   .particle:nth-child(3n) {
-    animation-duration: 25s;
-    animation-delay: -10s;
+    animation-duration: 30s;
+    animation-delay: -15s;
     width: 3px;
     height: 3px;
   }
@@ -309,6 +310,7 @@
       inset 0 0 100px rgba(249, 115, 22, 0.1),
       0 20px 40px rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(20px);
+    will-change: transform, box-shadow;
   }
 
   .holographic-border {
@@ -344,9 +346,10 @@
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: holographic 6s ease-in-out infinite, kinetic-scale 4s ease-in-out infinite;
-    text-shadow: 0 0 30px rgba(236, 72, 153, 0.5);
-    filter: drop-shadow(0 0 10px rgba(249, 115, 22, 0.3));
+    animation: holographic 12s ease-in-out infinite, kinetic-scale 6s ease-in-out infinite;
+    text-shadow: 0 0 20px rgba(236, 72, 153, 0.4);
+    filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.2));
+    will-change: transform, filter;
   }
 
   .screen-theater {
@@ -369,9 +372,10 @@
   .atmospheric-particle {
     position: absolute;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(236, 72, 153, 0.6), rgba(249, 115, 22, 0.3));
-    filter: blur(1px);
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.4), rgba(249, 115, 22, 0.2));
+    filter: blur(0.5px);
     animation: atmospheric linear infinite;
+    will-change: transform;
   }
 
   .matrix-overlay {
@@ -386,16 +390,16 @@
       repeating-linear-gradient(
         0deg,
         transparent,
-        transparent 2px,
-        rgba(236, 72, 153, 0.03) 2px,
-        rgba(236, 72, 153, 0.03) 4px
+        transparent 4px,
+        rgba(236, 72, 153, 0.015) 4px,
+        rgba(236, 72, 153, 0.015) 6px
       ),
       repeating-linear-gradient(
         90deg,
         transparent,
-        transparent 2px,
-        rgba(249, 115, 22, 0.03) 2px,
-        rgba(249, 115, 22, 0.03) 4px
+        transparent 4px,
+        rgba(249, 115, 22, 0.015) 4px,
+        rgba(249, 115, 22, 0.015) 6px
       );
   }
 
@@ -405,7 +409,47 @@
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: holographic 8s ease-in-out infinite;
-    filter: drop-shadow(0 0 15px rgba(236, 72, 153, 0.4));
+    animation: holographic 12s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px rgba(236, 72, 153, 0.3));
+    will-change: transform, filter;
+  }
+
+  /* Mobile performance optimizations */
+  @media (max-width: 768px) {
+    .particle-field {
+      display: none; /* Disable particles on mobile */
+    }
+    
+    .atmospheric-particle {
+      display: none; /* Disable atmospheric particles on mobile */
+    }
+    
+    .matrix-overlay {
+      opacity: 0.5; /* Reduce matrix overlay intensity on mobile */
+    }
+    
+    .kinetic-text {
+      animation: none; /* Disable complex text animations on mobile */
+      filter: none;
+    }
+    
+    .cinematic-theater {
+      backdrop-filter: blur(10px); /* Reduce blur intensity on mobile */
+    }
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    .particle,
+    .atmospheric-particle,
+    .kinetic-text {
+      animation: none !important;
+    }
+    
+    * {
+      animation-duration: 0.1s !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.1s !important;
+    }
   }
 }
