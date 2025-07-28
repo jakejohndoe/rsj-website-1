@@ -47,9 +47,9 @@ export const Actor = () => {
                   Actor Bio
                 </h2>
                 <div className={`space-y-4 text-lg text-blue-200/80`}>
-                  <p>20+ years of stage and screen experience</p>
+                  <p>30+ years of stage and screen experience</p>
                   <p>100+ Film/Theatre/Television Credits</p>
-                  <p>Member of SAG-AFTRA and Actors' Equity</p>
+                  <p>Member of SAG-AFTRA and Equity eligible/pending</p>
                 </div>
 
                 <div>

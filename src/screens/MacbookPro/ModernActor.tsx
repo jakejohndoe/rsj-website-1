@@ -7,6 +7,18 @@ import { Play, Award, Calendar, MapPin, ExternalLink, Download, Instagram, Youtu
 export const ModernActor = () => {
   const [darkMode, setDarkMode] = useState(true);
 
+  const upcomingCredits = [
+    {
+      title: "Untitled Project",
+      role: "TBA",
+      type: "Feature Film",
+      year: "2025",
+      venue: "Production",
+      description: "Details coming soon",
+      color: "from-accent-400 to-accent-500"
+    }
+  ];
+
   const recentCredits = [
     {
       title: "Buffalo Daze",
@@ -20,10 +32,10 @@ export const ModernActor = () => {
     {
       title: "Triple O.G.",
       role: "Robert",
-      type: "Feature Film", 
+      type: "Short Film", 
       year: "2022",
       venue: "Lead Role",
-      description: "Independent drama film",
+      description: "Award-winning short film - Black Silk Award",
       color: "from-purple-500 to-indigo-500"
     },
     {
@@ -50,7 +62,7 @@ export const ModernActor = () => {
     { category: "Acting", items: ["Method Acting", "Improvisation", "Character Development", "Voice Work"] },
     { category: "Direction", items: ["Theatre Direction", "Film Direction", "Actor Coaching", "Script Analysis"] },
     { category: "Production", items: ["Project Management", "Casting", "Creative Development", "Post-Production"] },
-    { category: "Teaching", items: ["Public Speaking", "Acting Classes", "Workshops", "Mentoring"] }
+    { category: "Private Coaching", items: ["Public Speaking", "Acting Classes", "Workshops", "Mentoring"] }
   ];
 
   const representation = {
@@ -79,9 +91,9 @@ export const ModernActor = () => {
                 Bringing Stories to Life
               </h2>
               <p className="text-xl text-white/70 font-body leading-relaxed">
-                20+ years of stage and screen experience. Stevie Johnson delivers authentic 
+                30+ years of stage and screen experience. Stevie Johnson delivers authentic 
                 performances that resonate with audiences and bring depth to every character. 
-                Member of SAG-AFTRA and Actors' Equity.
+                Member of SAG-AFTRA and Equity eligible/pending.
               </p>
             </div>
 
@@ -135,6 +147,65 @@ export const ModernActor = () => {
               </div>
             </Card>
           </div>
+        </div>
+      </section>
+
+      {/* Upcoming Credits */}
+      <section className="py-20">
+        <div className="text-center mb-16">
+          <h2 className="font-display text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-400 to-accent-500 mb-4">
+            UPCOMING CREDITS
+          </h2>
+          <p className="text-xl text-white/60 font-body">
+            Exciting projects in development
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {upcomingCredits.map((credit, index) => (
+            <Card 
+              key={credit.title} 
+              className="glass rounded-3xl p-8 hover-lift group overflow-hidden relative"
+            >
+              <div className="relative z-10">
+                <div className="flex items-start justify-between mb-6">
+                  <div>
+                    <h3 className="font-heading text-2xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-accent-400 group-hover:to-accent-500 transition-all duration-300">
+                      {credit.title}
+                    </h3>
+                    <p className="text-accent-400 font-heading font-semibold">
+                      {credit.role}
+                    </p>
+                  </div>
+                  <Calendar className="w-6 h-6 text-accent-400/50" />
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 text-white/60">
+                    <Film className="w-4 h-4" />
+                    <span className="text-sm font-body">{credit.type}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-white/60">
+                    <Award className="w-4 h-4" />
+                    <span className="text-sm font-body">{credit.venue}</span>
+                  </div>
+                  <p className="text-white/50 text-sm font-body italic">
+                    {credit.description}
+                  </p>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-white/10">
+                  <span className="text-accent-400 font-heading font-bold text-lg">
+                    {credit.year}
+                  </span>
+                </div>
+              </div>
+
+              <div 
+                className={`absolute inset-0 bg-gradient-to-br ${credit.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+              />
+            </Card>
+          ))}
         </div>
       </section>
 
@@ -256,21 +327,47 @@ export const ModernActor = () => {
               </div>
               <div className="glass rounded-2xl p-6">
                 <h3 className="font-heading font-bold text-primary-400 mb-2">Location</h3>
-                <p className="text-white/80 text-sm">{representation.location}</p>
+                <p className="text-white/80 text-sm flex items-center justify-center gap-2">
+                  <MapPin className="w-4 h-4" />
+                  {representation.location}
+                </p>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <Button className="px-8 py-4 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 text-white font-heading font-semibold hover:scale-105 transition-all duration-300">
-                Contact for Bookings
+              <Button 
+                className="px-8 py-4 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 text-white font-heading font-semibold hover:scale-105 transition-all duration-300"
+                asChild
+              >
+                <a href="mailto:steviejohnson101@gmail.com?subject=Booking%20Inquiry">
+                  Contact for Bookings
+                </a>
               </Button>
               
               <div className="flex gap-3">
-                <Button className="w-12 h-12 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 p-0 hover:scale-110 transition-transform duration-300">
-                  <Instagram className="w-5 h-5 text-white" />
+                <Button 
+                  className="w-12 h-12 rounded-full bg-gradient-to-r from-primary-600 to-primary-700 p-0 hover:scale-110 transition-transform duration-300"
+                  asChild
+                >
+                  <a href="https://www.instagram.com/steviejohnson" target="_blank" rel="noopener noreferrer">
+                    <Instagram className="w-5 h-5 text-white" />
+                  </a>
                 </Button>
-                <Button className="w-12 h-12 rounded-full bg-gradient-to-r from-red-500 to-red-600 p-0 hover:scale-110 transition-transform duration-300">
-                  <Youtube className="w-5 h-5 text-white" />
+                <Button 
+                  className="w-12 h-12 rounded-full bg-gradient-to-r from-accent-500 to-accent-600 p-0 hover:scale-110 transition-transform duration-300"
+                  asChild
+                >
+                  <a href="https://www.youtube.com/@steviejohnson" target="_blank" rel="noopener noreferrer">
+                    <Youtube className="w-5 h-5 text-white" />
+                  </a>
+                </Button>
+                <Button 
+                  className="w-12 h-12 rounded-full bg-gradient-to-r from-primary-400 to-accent-500 p-0 hover:scale-110 transition-transform duration-300"
+                  asChild
+                >
+                  <a href="https://www.imdb.com/name/steviejohnson" target="_blank" rel="noopener noreferrer">
+                    <ExternalLink className="w-5 h-5 text-white" />
+                  </a>
                 </Button>
               </div>
             </div>

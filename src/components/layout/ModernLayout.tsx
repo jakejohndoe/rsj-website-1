@@ -166,7 +166,7 @@ export const ModernLayout = ({
       </main>
 
       {/* Modern Footer */}
-      <footer className="relative mt-20 py-8 glass-dark">
+      <footer className="relative mt-32 py-8 glass-dark">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <p className="text-white/40 font-body text-sm">
             © 2025 Stevie Johnson • Designed for Excellence

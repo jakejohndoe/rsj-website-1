@@ -161,8 +161,7 @@ export const CinematicHome = () => {
             {/* KINETIC TITLE */}
             <div className="space-y-4">
               <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-black leading-none tracking-tight">
-                <span className="kinetic-text block">STEVIE</span>
-                <span className="kinetic-text block" style={{ animationDelay: '0.5s' }}>JOHNSON</span>
+                <span className="kinetic-text block">STEVIE JOHNSON</span>
               </h1>
               
               {/* ANIMATED ROLE DISPLAY */}

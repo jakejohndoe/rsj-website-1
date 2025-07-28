@@ -3,7 +3,7 @@ import { ModernLayout } from "../../components/layout/ModernLayout";
 import { Card } from "../../components/ui/card";
 import { Separator } from "../../components/ui/separator";
 import { Button } from "../../components/ui/button";
-import { GraduationCap, BookOpen, Clock, Mail, Phone, MapPin, Star, Award, Users, Calendar } from "lucide-react";
+import { GraduationCap, BookOpen, Clock, Mail, Phone, MapPin, Star, Award, Users, Calendar, Download } from "lucide-react";
 
 export const Professor = () => {
   const [darkMode, setDarkMode] = useState(true);
@@ -18,12 +18,17 @@ export const Professor = () => {
     name: "Professor Stevie Johnson",
     title: "Professor of Communication / Performance Studies",
     institution: "University of Southern California",
-    bio: "Dedicated educator with 15+ years of experience in performance arts, public speaking, and creative writing. Committed to fostering student growth through innovative teaching methods and practical application.",
+    bio: "Dedicated educator with 35+ years of experience in performance arts, public speaking, and creative writing. Committed to fostering student growth through innovative teaching methods and practical application.",
     education: [
       {
         degree: "Ph.D in Performance Studies",
         institution: "Columbia University",
         year: "2008"
+      },
+      {
+        degree: "MFA - USC",
+        institution: "University of Southern California",
+        year: "2005"
       },
       {
         degree: "MFA in Creative Writing",
@@ -140,9 +145,9 @@ export const Professor = () => {
             {/* ACADEMIC STATS */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-12">
               {[
-                { value: "15+", label: "Years Teaching", icon: GraduationCap },
-                { value: "4", label: "Courses", icon: BookOpen },
-                { value: "200+", label: "Students", icon: Users },
+                { value: "35+", label: "Years Teaching", icon: GraduationCap },
+                { value: "5+", label: "Courses", icon: BookOpen },
+                { value: "8K+", label: "Alumni", icon: Users },
                 { value: "Ph.D", label: "Columbia University", icon: Award }
               ].map((stat, index) => (
                 <div 
@@ -427,6 +432,18 @@ export const Professor = () => {
                     >
                       <Mail className="w-6 h-6 mr-3" />
                       Send Message
+                    </Button>
+                    
+                    <Separator className="my-6 bg-gradient-to-r from-transparent via-primary-500/50 to-transparent h-px" />
+                    
+                    <Button 
+                      className="w-full rounded-full glass-strong text-white font-heading font-medium hover-lift cinematic-theater border border-primary-500/50"
+                      asChild
+                    >
+                      <a href="/stevie-johnson-cv.pdf" download="Stevie-Johnson-CV.pdf">
+                        <Download className="w-5 h-5 mr-3" />
+                        Download Curriculum Vitae
+                      </a>
                     </Button>
                   </form>
                 </Card>

@@ -10,6 +10,19 @@ export const ModernAuthor = () => {
   
   const books = [
     {
+      title: "How To Survive Speech 101",
+      cover: "/Speech_101_Bookcover.png",
+      price: 49.99,
+      description: "Essential public speaking techniques",
+      longDescription: "Comprehensive guide to conquering public speaking anxiety. Packed with exercises, real-world examples, and Stevie's proven techniques from 30+ years of teaching.",
+      amazonUrl: "https://www.amazon.com/How-Survive-Speech-101-Workbook/dp/1500874523",
+      publishDate: "August 2014",
+      pages: 192,
+      rating: "4.7/5",
+      genre: "Education",
+      color: "from-primary-500 to-primary-600"
+    },
+    {
       title: "Convertible Chocolate",
       cover: "/Convertible_Chocolate_Cover.png",
       price: 15.99,
@@ -20,46 +33,36 @@ export const ModernAuthor = () => {
       pages: 218,
       rating: "4.5/5",
       genre: "Memoir",
-      color: "from-amber-500 to-orange-500"
-    },
+      color: "from-accent-500 to-accent-600"
+    }
+  ];
+
+  const upcomingBooks = [
     {
-      title: "How To Survive Speech 101",
-      cover: "/Speech_101_Bookcover.png",
-      price: 49.99,
-      description: "Essential public speaking techniques",
-      longDescription: "Comprehensive guide to conquering public speaking anxiety. Packed with exercises, real-world examples, and Stevie's proven techniques from 20+ years of teaching.",
-      amazonUrl: "https://www.amazon.com/How-Survive-Speech-101-Workbook/dp/1500874523",
-      publishDate: "August 2014",
-      pages: 192,
-      rating: "4.7/5",
-      genre: "Education",
-      color: "from-blue-500 to-purple-500"
-    },
-    {
-      title: "Character Deep Dive",
-      cover: "/book-character-deepdive.jpg",
-      price: 29.99,
-      description: "Advanced character development techniques",
-      longDescription: "Masterclass in creating unforgettable characters. Reveals Stevie's professional acting techniques adapted for writers and performers.",
-      amazonUrl: "https://www.amazon.com/dp/PLACEHOLDER_ISBN_3",
-      publishDate: "March 2018",
-      pages: 256,
-      rating: "4.8/5",
-      genre: "Writing Craft",
-      color: "from-green-500 to-teal-500"
-    },
-    {
-      title: "Improvisation Unleashed",
-      cover: "/book-improvisation.jpg",
-      price: 22.99,
-      description: "Spontaneous performance mastery",
-      longDescription: "Transform your creative process with improv techniques. Covers everything from quick thinking to collaborative storytelling.",
-      amazonUrl: "https://www.amazon.com/dp/PLACEHOLDER_ISBN_4",
-      publishDate: "November 2019",
-      pages: 180,
-      rating: "4.6/5",
+      title: "The Holistic Actor",
+      cover: "/book-holistic-actor.jpg",
+      price: "Coming Soon",
+      description: "Mind, body, and spirit in performance",
+      longDescription: "A comprehensive approach to acting that integrates physical, emotional, and spiritual practices for authentic performance.",
+      amazonUrl: "#",
+      publishDate: "2025",
+      pages: "TBD",
+      rating: "New",
       genre: "Performance",
-      color: "from-pink-500 to-rose-500"
+      color: "from-primary-400 to-accent-400"
+    },
+    {
+      title: "Quick Access To Enriching Performances",
+      cover: "/book-quick-access.jpg",
+      price: "Coming Soon",
+      description: "Instant techniques for powerful acting",
+      longDescription: "Fast, effective methods for accessing deep emotional truth in performance. Perfect for professionals and students alike.",
+      amazonUrl: "#",
+      publishDate: "2025",
+      pages: "TBD",
+      rating: "New",
+      genre: "Performance",
+      color: "from-accent-400 to-primary-400"
     }
   ];
 
@@ -85,9 +88,69 @@ export const ModernAuthor = () => {
         </div>
       </section>
 
-      {/* Books Grid */}
+      {/* Upcoming Books */}
       <section className="py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+        <div className="text-center mb-16">
+          <h2 className="font-display text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-400 to-accent-500 mb-4">
+            UPCOMING BOOKS
+          </h2>
+          <p className="text-xl text-white/60 font-body">
+            New releases in progress
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {upcomingBooks.map((book, index) => (
+            <Card 
+              key={book.title} 
+              className="glass rounded-3xl p-6 hover-lift group overflow-hidden relative"
+            >
+              <div className="relative z-10">
+                <div className="aspect-[2/3] bg-neutral-800 rounded-2xl mb-6 overflow-hidden group-hover:scale-105 transition-transform duration-500">
+                  <div className="w-full h-full bg-gradient-to-br from-neutral-700 to-neutral-900 flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="text-4xl font-display font-bold text-accent-400 mb-2">
+                        {book.title.split(' ').slice(0, 2).join(' ')}
+                      </div>
+                      <div className="text-sm text-white/40">Coming Soon</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="font-heading text-xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-accent-400 group-hover:to-accent-500 transition-all duration-300">
+                      {book.title}
+                    </h3>
+                    <p className="text-white/60 text-sm font-body italic mt-2">
+                      {book.description}
+                    </p>
+                  </div>
+                  
+                  <div className="text-accent-400 font-heading font-bold text-lg">
+                    {book.price}
+                  </div>
+                </div>
+              </div>
+
+              <div className={`absolute inset-0 bg-gradient-to-br ${book.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Published Books */}
+      <section className="py-20">
+        <div className="text-center mb-16">
+          <h2 className="font-display text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400 mb-4">
+            PUBLISHED BOOKS
+          </h2>
+          <p className="text-xl text-white/60 font-body">
+            2 Books Published
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {books.map((book, index) => (
             <Card 
               key={book.title} 
