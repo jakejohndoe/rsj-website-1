@@ -70,13 +70,12 @@ export const Courses = () => {
         <div className="relative z-10 max-w-7xl mx-auto">
           {/* 🎪 CINEMATIC HEADER */}
           <div 
-            className={`text-center mb-16 ${isLoaded ? '' : 'opacity-0'}`}
-            style={{ animationDelay: '0.5s' }}
+            className="text-center mb-16"
           >
             <div className="space-y-6">
-              <h1 className="font-display text-6xl md:text-8xl font-black leading-none tracking-tight">
-                <span className="text-holographic block">MASTER</span>
-                <span className="text-holographic block" style={{ animationDelay: '0.5s' }}>CLASSES</span>
+              <h1 className="font-display text-5xl md:text-7xl font-black leading-none tracking-tight">
+                <span className="text-holographic block">COURSES</span>
+                <span className="text-holographic block">STEVIE JOHNSON</span>
               </h1>
               <p className="text-xl md:text-2xl font-heading text-white/80 max-w-2xl mx-auto">
                 <span className="text-holographic font-bold">Professional development courses</span> designed to elevate your craft and career

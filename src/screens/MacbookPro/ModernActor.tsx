@@ -78,75 +78,82 @@ export const ModernActor = () => {
       toggleDarkMode={() => setDarkMode(!darkMode)}
       activeNavItem="actor"
     >
-      {/* Hero Section */}
+      {/* UNIFIED HEADER SECTION */}
       <section className="py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Text Content */}
-          <div className="space-y-8 animate-fade-in">
-            <div>
-              <h1 className="font-display text-7xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400 mb-4">
-                ACTOR
-              </h1>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-white/90 mb-6">
-                Bringing Stories to Life
-              </h2>
-              <p className="text-xl text-white/70 font-body leading-relaxed">
-                30+ years of stage and screen experience. Stevie Johnson delivers authentic 
-                performances that resonate with audiences and bring depth to every character. 
-                Member of SAG-AFTRA and Equity eligible/pending.
+        <div className="text-center mb-16">
+          <div className="space-y-6">
+            <h1 className="font-display text-5xl md:text-7xl font-black leading-none tracking-tight">
+              <span className="block text-holographic">ACTOR</span>
+              <span className="block text-holographic">STEVIE JOHNSON</span>
+            </h1>
+            <p className="text-xl md:text-2xl font-heading text-white/80 max-w-3xl mx-auto">
+              <span className="text-holographic font-bold">Bringing Stories to Life Through Performance</span>
+              <br />30+ years of stage and screen experience
+            </p>
+            <p className="text-lg text-white/70 font-body max-w-2xl mx-auto leading-relaxed">
+              Stevie Johnson delivers authentic performances that resonate with audiences and bring depth to every character. 
+              Member of SAG-AFTRA and Equity eligible/pending.
+            </p>
+          </div>
+
+          {/* UNIFIED STATS SECTION */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-12">
+            {[
+              { value: "30+", label: "Years Experience", icon: Award },
+              { value: "100+", label: "Film/Theatre/TV Credits", icon: Play },
+              { value: "15", label: "Awards Won", icon: Award },
+              { value: "SAG", label: "Union Member", icon: Award }
+            ].map((stat, index) => (
+              <div 
+                key={stat.label}
+                className="cinematic-theater holographic-border rounded-2xl p-6 text-center"
+              >
+                <stat.icon className="w-8 h-8 mx-auto mb-3 text-accent-400" />
+                <div className="font-heading text-2xl font-bold text-holographic">{stat.value}</div>
+                <div className="text-white/60 text-sm font-body">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* UNIFIED CALL TO ACTION */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-12">
+            <Button className="px-10 py-5 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 text-white font-heading font-semibold text-lg hover:scale-105 transition-all duration-500 holographic-border screen-glow group">
+              <Play className="w-6 h-6 mr-3" />
+              Watch Performance Reel
+            </Button>
+            <Button className="px-10 py-5 rounded-full glass-strong text-white font-heading font-medium text-lg hover-lift cinematic-theater" asChild>
+              <a href="mailto:steviejohnson101@gmail.com?subject=Acting%20Inquiry">
+                <Download className="w-5 h-5 mr-3" />
+                Contact for Bookings
+              </a>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* FEATURED VIDEO SECTION */}
+      <section className="py-16">
+        <div className="max-w-4xl mx-auto">
+          <Card className="cinematic-theater holographic-border rounded-3xl p-8 hover-lift">
+            <div className="text-center mb-6">
+              <h3 className="font-heading text-2xl font-bold text-holographic mb-2">
+                Theatrical Reel (2025)
+              </h3>
+              <p className="text-white/60">
+                Latest performance showcase featuring recent work
               </p>
             </div>
-
-            <div className="flex flex-wrap gap-4">
-              <Button className="px-8 py-4 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 text-white font-heading font-semibold hover:scale-105 transition-all duration-300 neon-glow group">
-                <Play className="w-5 h-5 mr-2 group-hover:animate-pulse" />
-                Watch Reel
-              </Button>
-              <Button className="px-8 py-4 rounded-full glass text-white font-heading font-medium hover-lift group">
-                <Download className="w-5 h-5 mr-2 group-hover:animate-bounce" />
-                Download Resume
-              </Button>
+            <div className="aspect-video rounded-2xl overflow-hidden screen-glow">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/_p5b5KJrIT4"
+                title="Theatrical Reel 2025"
+                frameBorder="0"
+                allowFullScreen
+                loading="lazy"
+              />
             </div>
-
-            {/* Quick Stats */}
-            <div className="grid grid-cols-3 gap-4 pt-8">
-              <div className="text-center glass rounded-2xl p-4">
-                <div className="font-heading text-3xl font-bold text-accent-400">20+</div>
-                <div className="text-white/60 text-sm">Years Experience</div>
-              </div>
-              <div className="text-center glass rounded-2xl p-4">
-                <div className="font-heading text-3xl font-bold text-primary-400">100+</div>
-                <div className="text-white/60 text-sm">Film/Theatre/TV Credits</div>
-              </div>
-              <div className="text-center glass rounded-2xl p-4">
-                <div className="font-heading text-3xl font-bold text-accent-400">15</div>
-                <div className="text-white/60 text-sm">Awards</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Featured Video */}
-          <div className="animate-scale-in" style={{ animationDelay: '0.5s' }}>
-            <Card className="glass rounded-3xl p-6 hover-lift">
-              <div className="aspect-video rounded-2xl overflow-hidden neon-glow mb-4">
-                <iframe
-                  className="w-full h-full"
-                  src="https://www.youtube.com/embed/_p5b5KJrIT4"
-                  title="Theatrical Reel 2025"
-                  frameBorder="0"
-                  allowFullScreen
-                />
-              </div>
-              <div className="text-center">
-                <h3 className="font-heading text-xl font-bold text-white mb-2">
-                  Theatrical Reel (2025)
-                </h3>
-                <p className="text-white/60 text-sm">
-                  Latest performance showcase featuring recent work
-                </p>
-              </div>
-            </Card>
-          </div>
+          </Card>
         </div>
       </section>
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ModernLayout } from "../../components/layout/ModernLayout";
 import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
-import { ExternalLink, Star, Calendar, BookOpen, ShoppingCart } from "lucide-react";
+import { ExternalLink, Star, Calendar, BookOpen, ShoppingCart, Award, Download } from "lucide-react";
 
 export const ModernAuthor = () => {
   const [darkMode, setDarkMode] = useState(true);
@@ -72,19 +72,58 @@ export const ModernAuthor = () => {
       toggleDarkMode={() => setDarkMode(!darkMode)}
       activeNavItem="author"
     >
-      {/* Hero Section */}
-      <section className="py-20 text-center">
-        <div className="max-w-4xl mx-auto animate-fade-in">
-          <h1 className="font-display text-7xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400 mb-6">
-            PUBLISHED
-          </h1>
-          <h2 className="font-display text-5xl md:text-6xl font-bold text-white/90 mb-8">
-            WORKS
-          </h2>
-          <p className="text-xl text-white/70 font-body max-w-2xl mx-auto leading-relaxed">
-            Explore a collection of published works spanning memoir, education, and creative arts. 
-            Each book represents years of experience and passion for storytelling.
-          </p>
+      {/* UNIFIED HEADER SECTION */}
+      <section className="py-20">
+        <div className="text-center mb-16">
+          <div className="space-y-6">
+            <h1 className="font-display text-5xl md:text-7xl font-black leading-none tracking-tight">
+              <span className="block text-holographic">AUTHOR</span>
+              <span className="block text-holographic">STEVIE JOHNSON</span>
+            </h1>
+            <p className="text-xl md:text-2xl font-heading text-white/80 max-w-3xl mx-auto">
+              <span className="text-holographic font-bold">Published Works & Creative Writing</span>
+              <br />Exploring memoir, education, and creative arts
+            </p>
+            <p className="text-lg text-white/70 font-body max-w-2xl mx-auto leading-relaxed">
+              A collection of published works spanning multiple genres. Each book represents years of experience 
+              and passion for storytelling, education, and sharing knowledge.
+            </p>
+          </div>
+
+          {/* UNIFIED STATS SECTION */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-12">
+            {[
+              { value: "4", label: "Books Published", icon: Award },
+              { value: "2+", label: "Genres", icon: Award },
+              { value: "10K+", label: "Readers Reached", icon: Award },
+              { value: "5★", label: "Average Rating", icon: Award }
+            ].map((stat, index) => (
+              <div 
+                key={stat.label}
+                className="cinematic-theater holographic-border rounded-2xl p-6 text-center"
+              >
+                <stat.icon className="w-8 h-8 mx-auto mb-3 text-accent-400" />
+                <div className="font-heading text-2xl font-bold text-holographic">{stat.value}</div>
+                <div className="text-white/60 text-sm font-body">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* UNIFIED CALL TO ACTION */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-12">
+            <Button className="px-10 py-5 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 text-white font-heading font-semibold text-lg hover:scale-105 transition-all duration-500 holographic-border screen-glow" asChild>
+              <a href="#published-books">
+                <Award className="w-6 h-6 mr-3" />
+                View Published Works
+              </a>
+            </Button>
+            <Button className="px-10 py-5 rounded-full glass-strong text-white font-heading font-medium text-lg hover-lift cinematic-theater" asChild>
+              <a href="mailto:steviejohnson101@gmail.com?subject=Book%20Inquiry">
+                <Download className="w-5 h-5 mr-3" />
+                Contact for Collaboration
+              </a>
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -140,7 +179,7 @@ export const ModernAuthor = () => {
       </section>
 
       {/* Published Books */}
-      <section className="py-20">
+      <section id="published-books" className="py-20">
         <div className="text-center mb-16">
           <h2 className="font-display text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400 mb-4">
             PUBLISHED BOOKS

@@ -75,9 +75,9 @@ export const Contact = () => {
             className="text-center mb-16"
           >
             <div className="space-y-6">
-              <h1 className="font-display text-6xl md:text-8xl font-black leading-none tracking-tight">
-                <span className="block text-holographic">LET'S</span>
-                <span className="block text-holographic">CONNECT</span>
+              <h1 className="font-display text-5xl md:text-7xl font-black leading-none tracking-tight">
+                <span className="block text-holographic">CONTACT</span>
+                <span className="block text-holographic">STEVIE JOHNSON</span>
               </h1>
               <p className="text-xl md:text-2xl font-heading text-white/80 max-w-3xl mx-auto">
                 <span className="text-holographic font-bold">Ready to collaborate?</span> 

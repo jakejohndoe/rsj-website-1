@@ -128,6 +128,20 @@ export const Professor = () => {
                 </div>
               ))}
             </div>
+
+            {/* UNIFIED CALL TO ACTION */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-12">
+              <Button className="px-10 py-5 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 text-white font-heading font-semibold text-lg hover:scale-105 transition-all duration-500 holographic-border screen-glow">
+                <BookOpen className="w-6 h-6 mr-3" />
+                View Course Catalog
+              </Button>
+              <Button className="px-10 py-5 rounded-full glass-strong text-white font-heading font-medium text-lg hover-lift cinematic-theater" asChild>
+                <a href="mailto:john498@usc.edu?subject=Academic%20Inquiry">
+                  <Mail className="w-5 h-5 mr-3" />
+                  Contact Professor
+                </a>
+              </Button>
+            </div>
           </div>
 
           <Separator className="my-12 bg-gradient-to-r from-transparent via-primary-500/50 to-transparent h-px" />

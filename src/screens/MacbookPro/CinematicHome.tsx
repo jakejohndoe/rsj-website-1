@@ -35,7 +35,7 @@ export const CinematicHome = () => {
     { icon: ExternalLink, label: "IMDb", href: "https://www.imdb.com/name/steviejohnson", color: "from-primary-400 to-accent-500" },
   ];
 
-  const roles = ["Actor", "Author", "Professor", "Director"];
+  const roles = ["Director", "Actor", "Professor", "Author"];
   const [currentRole, setCurrentRole] = useState(0);
 
   // Optimized Effects
