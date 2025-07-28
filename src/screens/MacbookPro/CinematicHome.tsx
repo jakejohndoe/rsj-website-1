@@ -115,7 +115,7 @@ export const CinematicHome = () => {
     >
       {/* PARTICLE FIELD DISABLED TO PREVENT JUMPINESS */}
 
-      {/* MATRIX OVERLAY DISABLED TO PREVENT JUMPINESS */
+      {/* MATRIX OVERLAY DISABLED TO PREVENT JUMPINESS */}
 
       {/* 🎭 CINEMATIC HERO SECTION */}
       <section 
