@@ -89,52 +89,20 @@ export const Professor = () => {
       toggleDarkMode={() => setDarkMode(!darkMode)}
       activeNavItem="professor"
     >
-      {/* 🎬 OPTIMIZED BACKGROUND EFFECTS */}
-      <div className="particle-field">
-        {[...Array(12)].map((_, i) => (
-          <div
-            key={i}
-            className="particle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * -20}s`,
-              animationDuration: `${20 + Math.random() * 5}s`
-            }}
-          />
-        ))}
-      </div>
-
-      <div className="matrix-overlay" />
-
-      {/* REDUCED ATMOSPHERIC PARTICLES */}
-      {[...Array(5)].map((_, i) => (
-        <div
-          key={i}
-          className="atmospheric-particle"
-          style={{
-            width: `${3 + Math.random() * 2}px`,
-            height: `${3 + Math.random() * 2}px`,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * -30}s`,
-            animationDuration: `${25 + Math.random() * 10}s`
-          }}
-        />
-      ))}
+      {/* BACKGROUND EFFECTS REMOVED FOR CONSISTENCY - Using global pixely background */}
 
       <div className="relative min-h-screen py-32 px-6">
-        <div className="lighting-overlay opacity-40" />
+        {/* LIGHTING OVERLAY REMOVED - Using consistent pixely background */}
         
         <div className="relative z-10 max-w-7xl mx-auto">
           {/* 🎪 CINEMATIC HEADER */}
           <div 
-            className={`text-center mb-16 ${isLoaded ? 'animate-cinematic-reveal' : 'opacity-0'}`}
-            style={{ animationDelay: '0.5s' }}
+            className="text-center mb-16"
           >
             <div className="space-y-6">
               <h1 className="font-display text-5xl md:text-7xl font-black leading-none tracking-tight">
-                <span className="kinetic-text block">PROFESSOR</span>
-                <span className="kinetic-text block text-holographic" style={{ animationDelay: '0.5s' }}>STEVIE JOHNSON</span>
+                <span className="block text-holographic">PROFESSOR</span>
+                <span className="block text-holographic">STEVIE JOHNSON</span>
               </h1>
               <p className="text-xl md:text-2xl font-heading text-white/80 max-w-3xl mx-auto">
                 <span className="text-holographic font-bold">Professor of Communication & Performance Studies</span>
@@ -152,8 +120,7 @@ export const Professor = () => {
               ].map((stat, index) => (
                 <div 
                   key={stat.label}
-                  className={`cinematic-theater holographic-border rounded-2xl p-6 text-center animate-depth-float`}
-                  style={{ animationDelay: `${1 + index * 0.2}s` }}
+                  className="cinematic-theater holographic-border rounded-2xl p-6 text-center"
                 >
                   <stat.icon className="w-8 h-8 mx-auto mb-3 text-accent-400 animate-float" />
                   <div className="font-heading text-2xl font-bold text-holographic">{stat.value}</div>
@@ -167,8 +134,7 @@ export const Professor = () => {
 
           {/* 🎬 CINEMATIC NAVIGATION TABS */}
           <div 
-            className={`flex flex-wrap justify-center gap-4 mb-12 ${isLoaded ? 'animate-cinematic-reveal' : 'opacity-0'}`}
-            style={{ animationDelay: '1.5s' }}
+            className="flex flex-wrap justify-center gap-4 mb-12"
           >
             {[
               { id: "about", label: "About", icon: Star },
@@ -195,8 +161,7 @@ export const Professor = () => {
           <div className="space-y-8">
             {activeTab === "about" && (
               <div 
-                className={`grid grid-cols-1 lg:grid-cols-3 gap-8 ${isLoaded ? 'animate-cinematic-reveal' : 'opacity-0'}`}
-                style={{ animationDelay: '2s' }}
+                className="grid grid-cols-1 lg:grid-cols-3 gap-8"
               >
                 {/* Teaching Philosophy Card */}
                 <Card className="cinematic-theater holographic-border rounded-3xl p-8 hover-glow screen-glow lg:col-span-1">
@@ -276,8 +241,7 @@ export const Professor = () => {
 
             {activeTab === "courses" && (
               <div 
-                className={`grid grid-cols-1 md:grid-cols-2 gap-8 ${isLoaded ? 'animate-cinematic-reveal' : 'opacity-0'}`}
-                style={{ animationDelay: '2s' }}
+                className="grid grid-cols-1 md:grid-cols-2 gap-8"
               >
                 {professorData.courses.map((course, index) => (
                   <Card key={index} className="cinematic-theater holographic-border rounded-3xl p-8 hover:scale-105 hover-glow duration-700 screen-glow">
@@ -301,8 +265,7 @@ export const Professor = () => {
 
             {activeTab === "office" && (
               <div 
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-8 ${isLoaded ? 'animate-cinematic-reveal' : 'opacity-0'}`}
-                style={{ animationDelay: '2s' }}
+                className="grid grid-cols-1 lg:grid-cols-2 gap-8"
               >
                 <Card className="cinematic-theater holographic-border rounded-3xl p-8 hover-glow screen-glow">
                   <div className="flex items-center gap-4 mb-6">
@@ -352,8 +315,7 @@ export const Professor = () => {
 
             {activeTab === "contact" && (
               <div 
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-8 ${isLoaded ? 'animate-cinematic-reveal' : 'opacity-0'}`}
-                style={{ animationDelay: '2s' }}
+                className="grid grid-cols-1 lg:grid-cols-2 gap-8"
               >
                 <Card className="cinematic-theater holographic-border rounded-3xl p-8 hover-glow screen-glow">
                   <div className="flex items-center gap-4 mb-6">

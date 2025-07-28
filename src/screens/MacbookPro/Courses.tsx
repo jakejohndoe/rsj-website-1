@@ -62,52 +62,21 @@ export const Courses = () => {
       toggleDarkMode={() => setDarkMode(!darkMode)}
       activeNavItem="courses"
     >
-      {/* 🎬 OPTIMIZED BACKGROUND EFFECTS */}
-      <div className="particle-field">
-        {[...Array(15)].map((_, i) => (
-          <div
-            key={i}
-            className="particle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * -20}s`,
-              animationDuration: `${20 + Math.random() * 5}s`
-            }}
-          />
-        ))}
-      </div>
-
-      <div className="matrix-overlay" />
-
-      {/* REDUCED ATMOSPHERIC PARTICLES */}
-      {[...Array(6)].map((_, i) => (
-        <div
-          key={i}
-          className="atmospheric-particle"
-          style={{
-            width: `${3 + Math.random() * 2}px`,
-            height: `${3 + Math.random() * 2}px`,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * -30}s`,
-            animationDuration: `${25 + Math.random() * 10}s`
-          }}
-        />
-      ))}
+      {/* BACKGROUND EFFECTS REMOVED FOR CONSISTENCY - Using global pixely background */}
 
       <div className="relative min-h-screen py-32 px-6">
-        <div className="lighting-overlay opacity-40" />
+        {/* LIGHTING OVERLAY REMOVED - Using consistent pixely background */}
         
         <div className="relative z-10 max-w-7xl mx-auto">
           {/* 🎪 CINEMATIC HEADER */}
           <div 
-            className={`text-center mb-16 ${isLoaded ? 'animate-cinematic-reveal' : 'opacity-0'}`}
+            className={`text-center mb-16 ${isLoaded ? '' : 'opacity-0'}`}
             style={{ animationDelay: '0.5s' }}
           >
             <div className="space-y-6">
               <h1 className="font-display text-6xl md:text-8xl font-black leading-none tracking-tight">
-                <span className="kinetic-text block">MASTER</span>
-                <span className="kinetic-text block" style={{ animationDelay: '0.5s' }}>CLASSES</span>
+                <span className="text-holographic block">MASTER</span>
+                <span className="text-holographic block" style={{ animationDelay: '0.5s' }}>CLASSES</span>
               </h1>
               <p className="text-xl md:text-2xl font-heading text-white/80 max-w-2xl mx-auto">
                 <span className="text-holographic font-bold">Professional development courses</span> designed to elevate your craft and career
@@ -142,7 +111,7 @@ export const Courses = () => {
             {courses.map((course, index) => (
               <Card
                 key={index}
-                className={`cinematic-theater holographic-border rounded-3xl p-8 transition-all hover:scale-105 hover-glow duration-700 screen-glow ${isLoaded ? 'animate-cinematic-reveal' : 'opacity-0'}`}
+                className={`cinematic-theater holographic-border rounded-3xl p-8 transition-all hover:scale-105 hover-glow duration-700 screen-glow ${isLoaded ? '' : 'opacity-0'}`}
                 style={{ animationDelay: `${1.5 + index * 0.3}s` }}
               >
                 <div className="flex justify-between items-start mb-6">
@@ -161,7 +130,7 @@ export const Courses = () => {
                   </div>
                 </div>
 
-                <h2 className="text-2xl font-heading font-bold text-holographic mb-4 kinetic-text">
+                <h2 className="text-2xl font-heading font-bold text-holographic mb-4 text-holographic">
                   {course.title}
                 </h2>
                 <p className="text-white/80 font-body leading-relaxed mb-6">
@@ -193,11 +162,11 @@ export const Courses = () => {
 
           {/* 🌟 CALL TO ACTION */}
           <div 
-            className={`text-center mt-20 ${isLoaded ? 'animate-cinematic-reveal' : 'opacity-0'}`}
+            className={`text-center mt-20 ${isLoaded ? '' : 'opacity-0'}`}
             style={{ animationDelay: '3s' }}
           >
             <Card className="max-w-4xl mx-auto cinematic-theater holographic-border rounded-3xl p-12">
-              <h3 className="font-display text-5xl font-bold kinetic-text mb-6">
+              <h3 className="font-display text-5xl font-bold text-holographic mb-6">
                 READY TO ELEVATE?
               </h3>
               <p className="text-xl text-white/80 font-body mb-8 max-w-2xl mx-auto">

@@ -64,52 +64,20 @@ export const Contact = () => {
       toggleDarkMode={() => setDarkMode(!darkMode)}
       activeNavItem="contact"
     >
-      {/* 🎬 OPTIMIZED BACKGROUND EFFECTS */}
-      <div className="particle-field">
-        {[...Array(15)].map((_, i) => (
-          <div
-            key={i}
-            className="particle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * -20}s`,
-              animationDuration: `${20 + Math.random() * 5}s`
-            }}
-          />
-        ))}
-      </div>
-
-      <div className="matrix-overlay" />
-
-      {/* REDUCED ATMOSPHERIC PARTICLES */}
-      {[...Array(6)].map((_, i) => (
-        <div
-          key={i}
-          className="atmospheric-particle"
-          style={{
-            width: `${3 + Math.random() * 2}px`,
-            height: `${3 + Math.random() * 2}px`,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * -30}s`,
-            animationDuration: `${25 + Math.random() * 10}s`
-          }}
-        />
-      ))}
+      {/* BACKGROUND EFFECTS REMOVED FOR CONSISTENCY - Using global pixely background */}
 
       <div className="relative min-h-screen py-32 px-6">
-        <div className="lighting-overlay opacity-40" />
+        {/* LIGHTING OVERLAY REMOVED - Using consistent pixely background */}
         
         <div className="relative z-10 max-w-7xl mx-auto">
           {/* 🎪 CINEMATIC HEADER */}
           <div 
-            className={`text-center mb-16 ${isLoaded ? 'animate-cinematic-reveal' : 'opacity-0'}`}
-            style={{ animationDelay: '0.5s' }}
+            className="text-center mb-16"
           >
             <div className="space-y-6">
               <h1 className="font-display text-6xl md:text-8xl font-black leading-none tracking-tight">
-                <span className="kinetic-text block">LET'S</span>
-                <span className="kinetic-text block text-holographic" style={{ animationDelay: '0.5s' }}>CONNECT</span>
+                <span className="block text-holographic">LET'S</span>
+                <span className="block text-holographic">CONNECT</span>
               </h1>
               <p className="text-xl md:text-2xl font-heading text-white/80 max-w-3xl mx-auto">
                 <span className="text-holographic font-bold">Ready to collaborate?</span> 
@@ -142,8 +110,7 @@ export const Contact = () => {
 
           {/* 🎬 CONTACT METHODS */}
           <div 
-            className={`grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 ${isLoaded ? 'animate-cinematic-reveal' : 'opacity-0'}`}
-            style={{ animationDelay: '1.5s' }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
           >
             {contactMethods.map((method, index) => (
               <Card key={method.title} className="group cinematic-theater holographic-border rounded-3xl p-8 hover:scale-105 hover-glow duration-700 screen-glow">
@@ -152,7 +119,7 @@ export const Contact = () => {
                     <method.icon className="w-10 h-10 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-heading font-bold text-holographic mb-3 kinetic-text">
+                    <h3 className="text-2xl font-heading font-bold text-holographic mb-3 text-holographic">
                       {method.title}
                     </h3>
                     <p className="text-xl font-body text-white font-semibold mb-2">
@@ -173,7 +140,7 @@ export const Contact = () => {
 
           {/* 🎬 MAIN CONTACT FORM */}
           <div 
-            className={`grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 ${isLoaded ? 'animate-cinematic-reveal' : 'opacity-0'}`}
+            className={`grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 ${isLoaded ? '' : 'opacity-0'}`}
             style={{ animationDelay: '2s' }}
           >
             {/* LEFT: CONTACT FORM */}
@@ -285,7 +252,7 @@ export const Contact = () => {
                     <Clock className="w-10 h-10 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-heading font-bold text-holographic mb-3 kinetic-text">
+                    <h3 className="text-2xl font-heading font-bold text-holographic mb-3 text-holographic">
                       Urgent Inquiries?
                     </h3>
                     <p className="text-white/80 font-body leading-relaxed mb-6">
@@ -308,11 +275,11 @@ export const Contact = () => {
 
           {/* 🌟 CLOSING CTA */}
           <div 
-            className={`text-center ${isLoaded ? 'animate-cinematic-reveal' : 'opacity-0'}`}
+            className={`text-center ${isLoaded ? '' : 'opacity-0'}`}
             style={{ animationDelay: '2.5s' }}
           >
             <Card className="max-w-4xl mx-auto cinematic-theater holographic-border rounded-3xl p-12">
-              <h3 className="font-display text-5xl font-bold kinetic-text mb-6">
+              <h3 className="font-display text-5xl font-bold text-holographic mb-6">
                 READY TO CREATE?
               </h3>
               <p className="text-xl text-white/80 font-body mb-8 max-w-2xl mx-auto leading-relaxed">

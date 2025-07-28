@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ModernLayout } from "../../components/layout/ModernLayout";
 import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
-import { Play, Award, Calendar, MapPin, ExternalLink, Download, Instagram, Youtube } from "lucide-react";
+import { Play, Award, Calendar, MapPin, ExternalLink, Download, Instagram, Youtube, Film } from "lucide-react";
 
 export const ModernActor = () => {
   const [darkMode, setDarkMode] = useState(true);

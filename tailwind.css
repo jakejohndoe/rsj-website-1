@@ -184,7 +184,7 @@
     z-index: -10;
   }
 
-  /* Add subtle animated particles */
+  /* Add subtle static pixely particles - NO ANIMATION to prevent jumpiness */
   body::after {
     content: '';
     position: fixed;
@@ -200,8 +200,8 @@
       radial-gradient(2px 2px at 160px 30px, rgba(119, 86, 70, 0.2), transparent);
     background-repeat: repeat;
     background-size: 200px 100px;
-    animation: float 20s ease-in-out infinite;
     z-index: -9;
+    /* Animation disabled to prevent layout shifts and jumpiness */
   }
 }
 
