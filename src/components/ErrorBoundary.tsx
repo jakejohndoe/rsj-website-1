@@ -34,8 +34,8 @@ export class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       return (
         <div className="min-h-screen flex items-center justify-center p-4">
-          <Card className="max-w-md w-full p-8 text-center bg-red-50 dark:bg-red-950/20">
-            <h2 className="text-2xl font-bold text-red-600 dark:text-red-400 mb-4">
+          <Card className="max-w-md w-full p-8 text-center bg-destructive/10 dark:bg-destructive/20">
+            <h2 className="text-2xl font-bold text-destructive dark:text-destructive mb-4">
               Oops! Something went wrong
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
@@ -53,7 +53,7 @@ export class ErrorBoundary extends Component<Props, State> {
             )}
             <Button 
               onClick={this.handleReset}
-              className="bg-red-600 hover:bg-red-700 text-white"
+              className="bg-destructive hover:bg-destructive/90 text-destructive-foreground"
             >
               Refresh Page
             </Button>

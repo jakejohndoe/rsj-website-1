@@ -52,10 +52,10 @@ export const Contact = () => {
   ];
 
   const socialLinks = [
-    { icon: Instagram, label: "Instagram", href: "#", color: "from-pink-500 to-purple-500" },
-    { icon: Youtube, label: "YouTube", href: "#", color: "from-red-500 to-red-600" },
-    { icon: Facebook, label: "Facebook", href: "#", color: "from-blue-500 to-blue-600" },
-    { icon: Globe, label: "Website", href: "#", color: "from-emerald-500 to-teal-500" },
+    { icon: Instagram, label: "Instagram", href: "#", color: "from-primary-600 to-primary-700" },
+    { icon: Youtube, label: "YouTube", href: "#", color: "from-accent-500 to-accent-600" },
+    { icon: Facebook, label: "Facebook", href: "#", color: "from-primary-500 to-primary-600" },
+    { icon: Globe, label: "Website", href: "#", color: "from-accent-400 to-accent-500" },
   ];
 
   return (

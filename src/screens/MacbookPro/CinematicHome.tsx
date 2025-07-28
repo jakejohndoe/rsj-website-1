@@ -29,9 +29,9 @@ export const CinematicHome = () => {
   ];
 
   const socialLinks = [
-    { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/steviejohnson", color: "from-pink-500 to-purple-500" },
-    { icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@steviejohnson", color: "from-red-500 to-red-600" },
-    { icon: ExternalLink, label: "IMDb", href: "https://www.imdb.com/name/steviejohnson", color: "from-yellow-500 to-orange-500" },
+    { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/steviejohnson", color: "from-primary-600 to-primary-700" },
+    { icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@steviejohnson", color: "from-accent-500 to-accent-600" },
+    { icon: ExternalLink, label: "IMDb", href: "https://www.imdb.com/name/steviejohnson", color: "from-primary-400 to-accent-500" },
   ];
 
   const roles = ["Actor", "Author", "Professor", "Director"];

@@ -2,32 +2,32 @@
 export const designSystem = {
   // Modern Color Palette
   colors: {
-    // Primary - Deep Space Blue with Neon Accents
+    // Primary - Sophisticated Browns
     primary: {
-      50: '#e6f1ff',
-      100: '#b3d4ff',
-      200: '#80b8ff',
-      300: '#4d9bff',
-      400: '#1a7eff',
-      500: '#0066ff', // Main brand color
-      600: '#0052cc',
-      700: '#003d99',
-      800: '#002966',
-      900: '#001433',
-      950: '#000a1a',
+      50: '#FAF8F5',
+      100: '#F0E8E2',
+      200: '#E0D8D6',
+      300: '#D5C2A5',
+      400: '#A26F25',
+      500: '#775646', // Warm taupe
+      600: '#693F26',
+      700: '#4C2A19', // Rich brown
+      800: '#3B2415',
+      900: '#1E0C04', // Deep chocolate
+      950: '#0F0602',
     },
-    // Accent - Electric Cyan
+    // Accent - Golden Browns
     accent: {
-      50: '#e6fffa',
-      100: '#b3ffef',
-      200: '#80ffe5',
-      300: '#4dffda',
-      400: '#1affd0',
-      500: '#00ffc6', // Neon accent
-      600: '#00cc9e',
-      700: '#009977',
-      800: '#00664f',
-      900: '#003328',
+      50: '#FDF9F0',
+      100: '#F9F0DD',
+      200: '#ECD8B1',
+      300: '#D5C2A5',
+      400: '#C4A574',
+      500: '#A26F25', // Golden brown
+      600: '#8B5F20',
+      700: '#6B491A',
+      800: '#533914',
+      900: '#3A280E',
     },
     // Neutral - Modern Grays
     neutral: {
@@ -45,10 +45,10 @@ export const designSystem = {
     },
     // Gradients
     gradients: {
-      primary: 'linear-gradient(135deg, #0066ff 0%, #00ffc6 100%)',
-      dark: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0f3460 100%)',
-      glass: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
-      glow: 'radial-gradient(circle at center, rgba(0,255,198,0.15) 0%, transparent 70%)',
+      primary: 'linear-gradient(135deg, #4C2A19 0%, #A26F25 100%)',
+      dark: 'linear-gradient(135deg, #0F0602 0%, #1E0C04 50%, #3B2415 100%)',
+      glass: 'linear-gradient(135deg, rgba(224,216,214,0.1) 0%, rgba(224,216,214,0.05) 100%)',
+      glow: 'radial-gradient(circle at center, rgba(162,111,37,0.15) 0%, transparent 70%)',
     },
   },
 
@@ -99,8 +99,8 @@ export const designSystem = {
       lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
       xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
       '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-      glow: '0 0 50px rgba(0, 255, 198, 0.5)',
-      neon: '0 0 20px rgba(0, 102, 255, 0.8), 0 0 40px rgba(0, 102, 255, 0.6)',
+      glow: '0 0 50px rgba(162, 111, 37, 0.5)',
+      neon: '0 0 20px rgba(119, 86, 70, 0.8), 0 0 40px rgba(162, 111, 37, 0.6)',
     },
     // Blur Effects
     blur: {
@@ -141,8 +141,8 @@ export const designSystem = {
       '50%': { transform: 'translateY(-10px)' },
     },
     glow: {
-      '0%, 100%': { boxShadow: '0 0 20px rgba(0, 102, 255, 0.5)' },
-      '50%': { boxShadow: '0 0 30px rgba(0, 102, 255, 0.8), 0 0 50px rgba(0, 255, 198, 0.5)' },
+      '0%, 100%': { boxShadow: '0 0 20px rgba(119, 86, 70, 0.5)' },
+      '50%': { boxShadow: '0 0 30px rgba(119, 86, 70, 0.8), 0 0 50px rgba(162, 111, 37, 0.5)' },
     },
   },
 

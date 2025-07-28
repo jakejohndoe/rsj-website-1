@@ -16,17 +16,17 @@ module.exports = {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
-          50: '#fdf2f8',
-          100: '#fce7f3',
-          200: '#fbcfe8',
-          300: '#f9a8d4',
-          400: '#f472b6',
-          500: '#ec4899',
-          600: '#db2777',
-          700: '#be185d',
-          800: '#9d174d',
-          900: '#831843',
-          950: '#500724',
+          50: '#FAF8F5',
+          100: '#F0E8E2',
+          200: '#E0D8D6',
+          300: '#D5C2A5',
+          400: '#A26F25',
+          500: '#775646',
+          600: '#693F26',
+          700: '#4C2A19',
+          800: '#3B2415',
+          900: '#1E0C04',
+          950: '#0F0602',
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -43,16 +43,16 @@ module.exports = {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
-          50: '#fffbeb',
-          100: '#fef3c7',
-          200: '#fed7aa',
-          300: '#fdba74',
-          400: '#fb923c',
-          500: '#f97316',
-          600: '#ea580c',
-          700: '#c2410c',
-          800: '#9a3412',
-          900: '#7c2d12',
+          50: '#FDF9F0',
+          100: '#F9F0DD',
+          200: '#ECD8B1',
+          300: '#D5C2A5',
+          400: '#C4A574',
+          500: '#A26F25',
+          600: '#8B5F20',
+          700: '#6B491A',
+          800: '#533914',
+          900: '#3A280E',
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -122,10 +122,10 @@ module.exports = {
         },
         "spotlight": {
           '0%, 100%': { 
-            boxShadow: 'inset 0 0 200px rgba(236, 72, 153, 0.1), 0 0 80px rgba(249, 115, 22, 0.2)'
+            boxShadow: 'inset 0 0 200px rgba(119, 86, 70, 0.1), 0 0 80px rgba(162, 111, 37, 0.2)'
           },
           '50%': { 
-            boxShadow: 'inset 0 0 300px rgba(236, 72, 153, 0.2), 0 0 120px rgba(249, 115, 22, 0.4)'
+            boxShadow: 'inset 0 0 300px rgba(119, 86, 70, 0.2), 0 0 120px rgba(162, 111, 37, 0.4)'
           },
         },
         "curtain-rise": {
@@ -160,19 +160,19 @@ module.exports = {
         },
         "holographic": {
           '0%, 100%': { 
-            background: 'linear-gradient(45deg, rgba(236, 72, 153, 0.3), rgba(249, 115, 22, 0.3))',
+            background: 'linear-gradient(45deg, rgba(119, 86, 70, 0.3), rgba(162, 111, 37, 0.3))',
             filter: 'hue-rotate(0deg)'
           },
           '25%': { 
-            background: 'linear-gradient(45deg, rgba(249, 115, 22, 0.3), rgba(236, 72, 153, 0.3))',
+            background: 'linear-gradient(45deg, rgba(162, 111, 37, 0.3), rgba(119, 86, 70, 0.3))',
             filter: 'hue-rotate(90deg)'
           },
           '50%': { 
-            background: 'linear-gradient(45deg, rgba(236, 72, 153, 0.4), rgba(249, 115, 22, 0.2))',
+            background: 'linear-gradient(45deg, rgba(119, 86, 70, 0.4), rgba(162, 111, 37, 0.2))',
             filter: 'hue-rotate(180deg)'
           },
           '75%': { 
-            background: 'linear-gradient(45deg, rgba(249, 115, 22, 0.2), rgba(236, 72, 153, 0.4))',
+            background: 'linear-gradient(45deg, rgba(162, 111, 37, 0.2), rgba(119, 86, 70, 0.4))',
             filter: 'hue-rotate(270deg)'
           },
         },
@@ -225,10 +225,10 @@ module.exports = {
         },
         "screen-glow": {
           '0%, 100%': { 
-            boxShadow: '0 0 50px rgba(236, 72, 153, 0.3), inset 0 0 50px rgba(249, 115, 22, 0.1)'
+            boxShadow: '0 0 50px rgba(119, 86, 70, 0.3), inset 0 0 50px rgba(162, 111, 37, 0.1)'
           },
           '50%': { 
-            boxShadow: '0 0 100px rgba(236, 72, 153, 0.5), inset 0 0 100px rgba(249, 115, 22, 0.2)'
+            boxShadow: '0 0 100px rgba(119, 86, 70, 0.5), inset 0 0 100px rgba(162, 111, 37, 0.2)'
           },
         },
         "matrix-rain": {
@@ -272,9 +272,9 @@ module.exports = {
         "matrix-rain": "matrix-rain 12s linear infinite",
       },
       boxShadow: {
-        'glow': '0 0 50px rgba(0, 255, 198, 0.5)',
-        'neon': '0 0 20px rgba(0, 102, 255, 0.8), 0 0 40px rgba(0, 102, 255, 0.6)',
-        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
+        'glow': '0 0 50px rgba(162, 111, 37, 0.5)',
+        'neon': '0 0 20px rgba(119, 86, 70, 0.8), 0 0 40px rgba(162, 111, 37, 0.6)',
+        'glass': '0 8px 32px 0 rgba(76, 42, 25, 0.37)',
       },
       backdropBlur: {
         xs: '2px',
