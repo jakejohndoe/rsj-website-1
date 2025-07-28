@@ -12,6 +12,7 @@ export const CinematicHome = () => {
   const [scrollY, setScrollY] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [allowAnimations, setAllowAnimations] = useState(false);
 
   // Data collections
   const videoReels = [
@@ -39,7 +40,15 @@ export const CinematicHome = () => {
 
   // Optimized Effects
   useEffect(() => {
+    // Set content as loaded immediately to prevent layout shifts
     setIsLoaded(true);
+    
+    // Delay animations slightly to prevent layout shifts
+    const animationTimer = setTimeout(() => {
+      setAllowAnimations(true);
+      // Enable transitions after initial load
+      document.body.classList.add('transitions-enabled');
+    }, 100);
     
     // Role cycling
     const roleInterval = setInterval(() => {
@@ -87,6 +96,7 @@ export const CinematicHome = () => {
       clearInterval(galleryInterval);
       clearTimeout(mouseTimeout);
       clearTimeout(scrollTimeout);
+      clearTimeout(animationTimer);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('scroll', handleScroll);
     };
@@ -152,7 +162,7 @@ export const CinematicHome = () => {
           
           {/* 🎪 LEFT SIDE - ACTOR INTRODUCTION */}
           <div 
-            className={`space-y-8 depth-layer-3 ${isLoaded ? 'animate-cinematic-reveal' : 'opacity-0'}`}
+            className={`space-y-8 depth-layer-3 ${allowAnimations ? 'animate-cinematic-reveal' : ''}`}
             style={{
               transform: `translate(${mouseParallaxX}px, ${mouseParallaxY}px)`,
               animationDelay: '0.5s'
@@ -165,15 +175,15 @@ export const CinematicHome = () => {
               </h1>
               
               {/* ANIMATED ROLE DISPLAY */}
-              <div className="h-16 flex items-center relative">
+              <div className="h-16 flex items-center relative overflow-hidden">
                 <div className="font-heading text-3xl md:text-4xl font-bold tracking-wide relative">
                   {roles.map((role, index) => (
                     <span
                       key={role}
-                      className={`absolute transition-all duration-700 text-holographic ${
+                      className={`absolute inset-0 flex items-center transition-all duration-700 text-holographic ${
                         index === currentRole
-                          ? 'opacity-100 transform translate-y-0 scale-100'
-                          : 'opacity-0 transform translate-y-8 scale-90'
+                          ? 'opacity-100 transform translate-y-0 scale-100 z-10'
+                          : 'opacity-0 transform translate-y-8 scale-90 z-0'
                       }`}
                     >
                       {role}
@@ -251,7 +261,7 @@ export const CinematicHome = () => {
 
           {/* 🎬 RIGHT SIDE - CINEMATIC THEATER EXPERIENCE */}
           <div 
-            className={`space-y-8 depth-layer-2 ${isLoaded ? 'animate-cinematic-reveal' : 'opacity-0'}`}
+            className={`space-y-8 depth-layer-2 ${allowAnimations ? 'animate-cinematic-reveal' : ''}`}
             style={{
               transform: `translate(${-mouseParallaxX}px, ${-mouseParallaxY}px)`,
               animationDelay: '1s'
@@ -290,8 +300,11 @@ export const CinematicHome = () => {
                   className="w-full h-full transition-transform duration-500 group-hover:scale-105"
                   src={`https://www.youtube.com/embed/${videoReels[activeVideoIndex].id}`}
                   title="Video Player"
+                  width="560"
+                  height="315"
                   frameBorder="0"
                   allowFullScreen
+                  loading="lazy"
                 />
               </div>
 
@@ -319,6 +332,9 @@ export const CinematicHome = () => {
                   src={galleryImages[activeGalleryIndex].src}
                   alt={galleryImages[activeGalleryIndex].alt}
                   className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 depth-layer-4"
+                  width="400"
+                  height="500"
+                  loading="eager"
                   style={{
                     transform: `rotateY(${mouseParallaxX * 2}deg) rotateX(${-mouseParallaxY}deg)`
                   }}

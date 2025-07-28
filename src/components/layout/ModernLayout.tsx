@@ -28,6 +28,15 @@ export const ModernLayout = ({
 
   const navItems = ["home", "actor", "author", "professor", "courses", "contact"];
 
+  // Enable transitions after component mount to prevent layout shifts
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      document.body.classList.add('transitions-enabled');
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   // Handle scroll effect for header
   useEffect(() => {
     const handleScroll = () => {
