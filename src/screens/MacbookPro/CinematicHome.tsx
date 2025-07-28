@@ -113,23 +113,9 @@ export const CinematicHome = () => {
       toggleDarkMode={() => setDarkMode(!darkMode)}
       activeNavItem="home"
     >
-      {/* 🎬 OPTIMIZED PARTICLE FIELD */}
-      <div className="particle-field">
-        {[...Array(25)].map((_, i) => (
-          <div
-            key={i}
-            className="particle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * -20}s`,
-              animationDuration: `${20 + Math.random() * 5}s`
-            }}
-          />
-        ))}
-      </div>
+      {/* PARTICLE FIELD DISABLED TO PREVENT JUMPINESS */}
 
-      {/* 🌟 SUBTLE MATRIX OVERLAY */}
-      <div className="matrix-overlay" />
+      {/* MATRIX OVERLAY DISABLED TO PREVENT JUMPINESS */
 
       {/* 🎭 CINEMATIC HERO SECTION */}
       <section 
@@ -142,36 +128,21 @@ export const CinematicHome = () => {
         {/* LIGHTING & ATMOSPHERE */}
         <div className="lighting-overlay" />
         
-        {/* REDUCED ATMOSPHERIC PARTICLES */}
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={i}
-            className="atmospheric-particle"
-            style={{
-              width: `${3 + Math.random() * 3}px`,
-              height: `${3 + Math.random() * 3}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * -30}s`,
-              animationDuration: `${25 + Math.random() * 10}s`
-            }}
-          />
-        ))}
+        {/* ATMOSPHERIC PARTICLES DISABLED TO PREVENT JUMPINESS */}
 
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 min-h-screen items-center px-6 max-w-7xl mx-auto">
           
           {/* 🎪 LEFT SIDE - ACTOR INTRODUCTION */}
           <div 
-            className={`space-y-8 depth-layer-3 ${allowAnimations ? 'animate-cinematic-reveal' : ''}`}
+            className="space-y-8 depth-layer-3"
             style={{
-              transform: `translate(${mouseParallaxX}px, ${mouseParallaxY}px)`,
-              animationDelay: '0.5s'
+              transform: `translate(${mouseParallaxX}px, ${mouseParallaxY}px)`
             }}
           >
             {/* KINETIC TITLE */}
             <div className="space-y-4">
               <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-black leading-none tracking-tight">
-                <span className="kinetic-text block">STEVIE JOHNSON</span>
+                <span className="block text-holographic">STEVIE JOHNSON</span>
               </h1>
               
               {/* ANIMATED ROLE DISPLAY */}
@@ -193,7 +164,7 @@ export const CinematicHome = () => {
               </div>
 
               {/* BIO WITH CINEMATIC REVEAL */}
-              <div className="space-y-4 animate-text-reveal" style={{ animationDelay: '1.5s' }}>
+              <div className="space-y-4">
                 <p className="text-xl text-white/90 font-body leading-relaxed max-w-lg">
                   <strong className="text-holographic">20+ years of stage and screen experience.</strong>
                   <br />Member of SAG-AFTRA and Actors' Equity.
@@ -213,10 +184,9 @@ export const CinematicHome = () => {
               ].map((stat, index) => (
                 <div 
                   key={stat.label}
-                  className={`holographic-border rounded-3xl p-6 text-center cinematic-theater animate-depth-float`}
-                  style={{ animationDelay: `${2 + index * 0.2}s` }}
+                  className="holographic-border rounded-3xl p-6 text-center cinematic-theater"
                 >
-                  <stat.icon className="w-8 h-8 mx-auto mb-3 text-accent-400 animate-float" />
+                  <stat.icon className="w-8 h-8 mx-auto mb-3 text-accent-400" />
                   <div className="font-heading text-3xl font-bold text-holographic">{stat.value}</div>
                   <div className="text-white/60 text-sm font-body">{stat.label}</div>
                 </div>
@@ -234,7 +204,7 @@ export const CinematicHome = () => {
                   }
                 }}
               >
-                <Play className="w-6 h-6 mr-3 group-hover:animate-pulse" />
+                <Play className="w-6 h-6 mr-3" />
                 Enter the Theater
               </Button>
               <Button className="px-10 py-5 rounded-full glass-strong text-white font-heading font-medium text-lg hover-lift cinematic-theater" asChild>
@@ -261,10 +231,9 @@ export const CinematicHome = () => {
 
           {/* 🎬 RIGHT SIDE - CINEMATIC THEATER EXPERIENCE */}
           <div 
-            className={`space-y-8 depth-layer-2 ${allowAnimations ? 'animate-cinematic-reveal' : ''}`}
+            className="space-y-8 depth-layer-2"
             style={{
-              transform: `translate(${-mouseParallaxX}px, ${-mouseParallaxY}px)`,
-              animationDelay: '1s'
+              transform: `translate(${-mouseParallaxX}px, ${-mouseParallaxY}px)`
             }}
           >
             {/* PREMIUM SCREENING ROOM */}
@@ -361,25 +330,22 @@ export const CinematicHome = () => {
           </div>
         </div>
 
-        {/* OPTIMIZED FLOATING ELEMENTS */}
+        {/* STATIC FLOATING ELEMENTS - NO ANIMATION */}
         <div 
-          className="absolute top-1/4 left-1/4 w-6 h-6 bg-accent-400 rounded-full animate-depth-float opacity-30"
+          className="absolute top-1/4 left-1/4 w-6 h-6 bg-accent-400 rounded-full opacity-30"
           style={{ 
-            animationDelay: '0s',
             transform: mousePos.x > 0 ? `translate(${mouseParallaxX * 2}px, ${mouseParallaxY * 2}px)` : 'translate(0, 0)'
           }}
         />
         <div 
-          className="absolute top-1/3 right-1/3 w-5 h-5 bg-primary-400 rounded-full animate-depth-float opacity-40"
+          className="absolute top-1/3 right-1/3 w-5 h-5 bg-primary-400 rounded-full opacity-40"
           style={{ 
-            animationDelay: '3s',
             transform: mousePos.x > 0 ? `translate(${-mouseParallaxX}px, ${-mouseParallaxY}px)` : 'translate(0, 0)'
           }}
         />
         <div 
-          className="absolute bottom-1/4 left-1/3 w-4 h-4 bg-accent-500 rounded-full animate-depth-float opacity-50"
+          className="absolute bottom-1/4 left-1/3 w-4 h-4 bg-accent-500 rounded-full opacity-50"
           style={{ 
-            animationDelay: '6s',
             transform: mousePos.x > 0 ? `translate(${mouseParallaxX}px, ${mouseParallaxY}px)` : 'translate(0, 0)'
           }}
         />
