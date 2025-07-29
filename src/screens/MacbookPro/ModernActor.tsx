@@ -143,7 +143,7 @@ export const ModernActor = () => {
 
             {/* CONTACT BUTTONS */}
             <div className="flex gap-4">
-              <Button className="flex-1 px-6 py-3 rounded-xl bg-gradient-to-r from-primary-500 to-accent-500 text-white font-heading font-semibold hover:scale-105 transition-all duration-300" asChild>
+              <Button className="flex-1 h-12 px-6 rounded-xl bg-gradient-to-r from-primary-500 to-accent-500 text-white font-heading font-semibold hover:scale-105 transition-all duration-300" asChild>
                 <a href="mailto:steviejohnson101@gmail.com?subject=Acting%20Inquiry">
                   <Download className="w-4 h-4 mr-2" />
                   Contact Booking
@@ -176,32 +176,75 @@ export const ModernActor = () => {
 
             {/* COMPACT CREDIT CARDS */}
             <div className="space-y-3 max-h-[600px] overflow-y-auto custom-scrollbar">
-              {allCredits.map((credit, index) => (
-                <Card 
-                  key={`${credit.title}-${index}`}
-                  className={`glass rounded-xl p-4 hover-lift group cursor-pointer transition-all duration-300 ${
-                    credit.status === 'upcoming' ? 'border-l-4 border-accent-400' : ''
-                  }`}
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-1">
-                        <h3 className="font-heading text-lg font-bold text-white group-hover:text-accent-400 transition-colors">
-                          {credit.title}
-                        </h3>
-                        <span className={`px-2 py-0.5 rounded-full text-xs font-medium bg-gradient-to-r ${credit.color} text-white`}>
-                          {credit.type}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-4 text-sm">
-                        <span className="text-primary-400 font-medium">{credit.role}</span>
-                        <span className="text-white/50">{credit.year}</span>
-                      </div>
-                    </div>
-                    <ChevronRight className="w-5 h-5 text-white/30 group-hover:text-accent-400 group-hover:translate-x-1 transition-all" />
+              {/* UPCOMING SECTION */}
+              {allCredits.filter(c => c.status === 'upcoming').length > 0 && (
+                <div className="mb-4">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="h-px flex-1 bg-accent-400/30"></div>
+                    <span className="text-accent-400 font-heading font-semibold text-sm uppercase tracking-wider">Upcoming Projects</span>
+                    <div className="h-px flex-1 bg-accent-400/30"></div>
                   </div>
-                </Card>
-              ))}
+                  {allCredits.filter(c => c.status === 'upcoming').map((credit, index) => (
+                    <Card 
+                      key={`${credit.title}-${index}`}
+                      className="glass rounded-xl p-4 hover-lift group cursor-pointer transition-all duration-300 border border-accent-400/30 bg-accent-400/5"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-1">
+                            <h3 className="font-heading text-lg font-bold text-white group-hover:text-accent-400 transition-colors">
+                              {credit.title}
+                            </h3>
+                            <span className={`px-2 py-0.5 rounded-full text-xs font-medium bg-gradient-to-r ${credit.color} text-white`}>
+                              {credit.type}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-4 text-sm">
+                            <span className="text-accent-400 font-medium">{credit.role}</span>
+                            <span className="text-white/50">{credit.year}</span>
+                          </div>
+                        </div>
+                        <ChevronRight className="w-5 h-5 text-accent-400/50 group-hover:text-accent-400 group-hover:translate-x-1 transition-all" />
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+              )}
+              
+              {/* RECENT SECTION */}
+              {allCredits.filter(c => c.status === 'recent').length > 0 && (
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="h-px flex-1 bg-primary-400/30"></div>
+                    <span className="text-primary-400 font-heading font-semibold text-sm uppercase tracking-wider">Recent Credits</span>
+                    <div className="h-px flex-1 bg-primary-400/30"></div>
+                  </div>
+                  {allCredits.filter(c => c.status === 'recent').map((credit, index) => (
+                    <Card 
+                      key={`${credit.title}-${index}`}
+                      className="glass rounded-xl p-4 mb-3 hover-lift group cursor-pointer transition-all duration-300"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-1">
+                            <h3 className="font-heading text-lg font-bold text-white group-hover:text-primary-400 transition-colors">
+                              {credit.title}
+                            </h3>
+                            <span className={`px-2 py-0.5 rounded-full text-xs font-medium bg-gradient-to-r ${credit.color} text-white`}>
+                              {credit.type}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-4 text-sm">
+                            <span className="text-primary-400 font-medium">{credit.role}</span>
+                            <span className="text-white/50">{credit.year}</span>
+                          </div>
+                        </div>
+                        <ChevronRight className="w-5 h-5 text-white/30 group-hover:text-primary-400 group-hover:translate-x-1 transition-all" />
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
