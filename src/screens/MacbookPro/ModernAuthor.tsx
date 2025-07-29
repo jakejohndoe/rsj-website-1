@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ModernLayout } from "../../components/layout/ModernLayout";
 import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
-import { ExternalLink, Star, Calendar, BookOpen, ShoppingCart, Award, Download, ChevronRight, Mail, Globe } from "lucide-react";
+import { ExternalLink, Star, Calendar, BookOpen, ShoppingCart, Award, Download, ChevronRight, Mail, Globe, Feather, Bookmark, PenTool } from "lucide-react";
 
 export const ModernAuthor = () => {
   const [selectedBook, setSelectedBook] = useState<number | null>(null);
@@ -66,6 +66,8 @@ export const ModernAuthor = () => {
     }
   ];
 
+  const upcomingIcons = [Feather, PenTool, Bookmark, BookOpen];
+
   return (
     <ModernLayout activeNavItem="author">
       {/* COMPACT HEADER SECTION */}
@@ -101,234 +103,252 @@ export const ModernAuthor = () => {
         </div>
       </section>
 
-      {/* MAIN TWO-COLUMN LAYOUT */}
+      {/* MAIN CONTENT LAYOUT */}
       <section className="pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
-          {/* LEFT COLUMN - PUBLISHED BOOKS */}
-          <div className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h2 className="font-heading text-2xl font-bold text-holographic">Published Works</h2>
-              <span className="px-3 py-1 rounded-full bg-primary-500/20 text-primary-400 text-sm">Available Now</span>
+          {/* LEFT & CENTER COLUMNS - PUBLISHED BOOKS */}
+          <div className="lg:col-span-2">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="font-display text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400">
+                PUBLISHED WORKS
+              </h2>
+              <span className="px-4 py-2 rounded-full bg-primary-500/20 text-primary-400 font-heading text-sm">Available Now</span>
             </div>
 
-            <div className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {books.filter(book => book.status === 'published').map((book, index) => (
                 <Card 
-                  key={book.title}
-                  className="glass rounded-xl p-4 hover-lift group cursor-pointer transition-all duration-300"
-                  onClick={() => setSelectedBook(selectedBook === index ? null : index)}
+                  key={book.title} 
+                  className="glass rounded-3xl p-6 hover-lift group overflow-hidden relative"
                 >
-                  <div className="flex gap-4">
-                    {/* Book Cover Thumbnail */}
-                    <div className="w-16 h-20 flex-shrink-0 rounded-lg overflow-hidden">
-                      <img
-                        src={book.cover}
-                        alt={book.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    
-                    {/* Book Details */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between mb-2">
-                        <div className="flex-1">
-                          <h3 className="font-heading text-lg font-bold text-white group-hover:text-primary-400 transition-colors truncate">
-                            {book.title}
-                          </h3>
-                          <p className="text-white/60 text-sm mt-1">{book.description}</p>
-                        </div>
-                        <div className="flex items-center gap-2 ml-2">
-                          <span className="text-accent-400 font-bold text-lg">${book.price}</span>
-                          <ChevronRight className="w-4 h-4 text-white/30 group-hover:text-primary-400 group-hover:translate-x-1 transition-all" />
+                  {/* Book Cover with 3D Flip Effect */}
+                  <div className="perspective-1000 mb-6">
+                    <div 
+                      className="relative w-full aspect-[2/3] transition-transform duration-700 preserve-3d cursor-pointer"
+                      style={{
+                        transform: selectedBook === index ? "rotateY(180deg)" : "rotateY(0deg)"
+                      }}
+                      onClick={() => setSelectedBook(selectedBook === index ? null : index)}
+                    >
+                      {/* Front Side */}
+                      <div className="absolute inset-0 backface-hidden">
+                        <div className="relative rounded-2xl overflow-hidden h-full group-hover:shadow-2xl transition-all duration-500">
+                          <img
+                            src={book.cover}
+                            alt={book.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className={`absolute inset-0 bg-gradient-to-t ${book.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
                         </div>
                       </div>
                       
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3 text-xs text-white/50">
-                          <span className={`px-2 py-0.5 rounded-full bg-gradient-to-r ${book.color} text-white`}>
-                            {book.genre}
-                          </span>
-                          <span>{book.publishDate}</span>
-                          <div className="flex items-center gap-1">
-                            <Star className="w-3 h-3 fill-current text-accent-400" />
-                            <span>{book.rating}</span>
+                      {/* Back Side */}
+                      <div className="absolute inset-0 backface-hidden rotate-y-180">
+                        <div className={`w-full h-full rounded-2xl bg-gradient-to-br ${book.color} p-4 flex flex-col justify-between text-white`}>
+                          <div>
+                            <h3 className="font-heading font-bold text-lg mb-3">{book.title}</h3>
+                            <p className="text-sm opacity-90 leading-relaxed">{book.longDescription}</p>
+                          </div>
+                          <div className="space-y-2 text-xs opacity-80">
+                            <div className="flex items-center gap-2">
+                              <Calendar className="w-3 h-3" />
+                              {book.publishDate}
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <BookOpen className="w-3 h-3" />
+                              {book.pages} pages
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Star className="w-3 h-3 fill-current" />
+                              {book.rating}
+                            </div>
                           </div>
                         </div>
-                        <Button
-                          className="px-3 py-1 rounded-lg bg-gradient-to-r from-accent-500 to-primary-500 text-white hover:scale-105 transition-all text-xs"
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Book Info */}
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r ${book.color} text-white`}>
+                        {book.genre}
+                      </span>
+                      <div className="flex items-center gap-1 text-accent-400">
+                        <Star className="w-4 h-4 fill-current" />
+                        <span className="text-sm font-medium">{book.rating}</span>
+                      </div>
+                    </div>
+
+                    <h3 className="font-heading text-xl font-bold text-white group-hover:text-accent-400 transition-colors duration-300">
+                      {book.title}
+                    </h3>
+                    
+                    <p className="text-white/70 text-sm leading-relaxed">
+                      {book.description}
+                    </p>
+
+                    <div className="flex items-center justify-between pt-4">
+                      <div className="font-heading text-2xl font-bold text-accent-400">
+                        ${book.price}
+                      </div>
+                      
+                      <div className="flex gap-2">
+                        <Button 
+                          className="px-4 py-2 rounded-xl bg-primary-500/20 text-primary-400 hover:bg-primary-500 hover:text-white transition-all duration-300 text-xs font-medium"
+                          onClick={() => setSelectedBook(selectedBook === index ? null : index)}
+                        >
+                          Details
+                        </Button>
+                        <Button 
+                          className="px-4 py-2 rounded-xl bg-gradient-to-r from-accent-500 to-primary-500 text-white hover:scale-105 transition-all duration-300 text-xs font-medium group"
                           asChild
-                          onClick={(e) => e.stopPropagation()}
                         >
                           <a href={book.amazonUrl} target="_blank" rel="noopener noreferrer">
-                            <ShoppingCart className="w-3 h-3 mr-1" />
+                            <ShoppingCart className="w-3 h-3 mr-1 group-hover:animate-pulse" />
                             Buy
                           </a>
                         </Button>
                       </div>
                     </div>
                   </div>
-                  
-                  {/* Expanded Details */}
-                  {selectedBook === index && (
-                    <div className="mt-4 pt-4 border-t border-white/10 animate-in slide-in-from-top-2 duration-300">
-                      <p className="text-white/70 text-sm leading-relaxed mb-3">
-                        {book.longDescription}
-                      </p>
-                      <div className="flex items-center gap-4 text-xs text-white/50">
-                        <span>{book.pages} pages</span>
-                        <span>Published {book.publishDate}</span>
-                        <span>Amazon Rating: {book.rating}</span>
-                      </div>
-                    </div>
-                  )}
+
+                  {/* Hover Gradient Overlay */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${book.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-3xl pointer-events-none`} />
                 </Card>
               ))}
             </div>
-
-            {/* AUTHOR BIO CARD */}
-            <Card className="glass rounded-xl p-6 mt-6">
-              <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
-                  <img
-                    src="/stevie_headshot_287.jpg"
-                    alt="Stevie Johnson"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="flex-1">
-                  <h3 className="font-heading text-lg font-bold text-holographic mb-2">About the Author</h3>
-                  <p className="text-white/70 text-sm leading-relaxed">
-                    Stevie Johnson brings decades of experience in performance, education, and creative writing. 
-                    Each book reflects his commitment to authentic storytelling and practical wisdom.
-                  </p>
-                </div>
-              </div>
-            </Card>
           </div>
 
-          {/* RIGHT COLUMN - UPCOMING & CONTACT */}
+          {/* RIGHT COLUMN - UPCOMING WORKS */}
           <div className="space-y-6">
-            {/* UPCOMING BOOKS */}
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="font-heading text-2xl font-bold text-holographic">Upcoming Releases</h2>
-                <span className="px-3 py-1 rounded-full bg-accent-500/20 text-accent-400 text-sm">2025</span>
-              </div>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-heading text-xl font-bold text-holographic">Upcoming Releases</h3>
+              <span className="px-3 py-1 rounded-full bg-accent-500/20 text-accent-400 text-sm">2025</span>
+            </div>
 
-              <div className="space-y-4">
-                {books.filter(book => book.status === 'upcoming').map((book, index) => (
+            <div className="space-y-3">
+              {books.filter(book => book.status === 'upcoming').map((book, index) => {
+                const IconComponent = upcomingIcons[index % upcomingIcons.length];
+                return (
                   <Card 
                     key={book.title}
                     className="glass rounded-xl p-4 hover-lift group border border-accent-400/20 bg-accent-400/5"
                   >
-                    <div className="flex gap-4">
-                      {/* Placeholder Cover */}
-                      <div className="w-16 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-gradient-to-br from-neutral-700 to-neutral-900 flex items-center justify-center">
-                        <div className="text-xs text-accent-400 font-bold text-center leading-tight">
-                          {book.title.split(' ').slice(0, 2).join(' ')}
-                        </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-accent-400/20 to-primary-400/20 flex items-center justify-center flex-shrink-0">
+                        <IconComponent className="w-5 h-5 text-accent-400" />
                       </div>
                       
-                      {/* Book Details */}
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between mb-2">
-                          <div className="flex-1">
-                            <h3 className="font-heading text-lg font-bold text-white group-hover:text-accent-400 transition-colors">
-                              {book.title}
-                            </h3>
-                            <p className="text-white/60 text-sm mt-1">{book.description}</p>
-                          </div>
-                          <span className="text-accent-400 font-bold text-sm ml-2">2025</span>
-                        </div>
-                        
-                        <div className="flex items-center justify-between">
+                        <h4 className="font-heading text-sm font-bold text-white group-hover:text-accent-400 transition-colors truncate">
+                          {book.title}
+                        </h4>
+                        <p className="text-white/60 text-xs mt-1">{book.description}</p>
+                        <div className="flex items-center justify-between mt-2">
                           <span className={`px-2 py-0.5 rounded-full text-xs font-medium bg-gradient-to-r ${book.color} text-white`}>
                             {book.genre}
                           </span>
-                          <div className="text-xs text-accent-400 font-medium">Coming Soon</div>
+                          <span className="text-accent-400 text-xs font-medium">2025</span>
                         </div>
                       </div>
                     </div>
                   </Card>
-                ))}
-              </div>
+                );
+              })}
             </div>
-
-            {/* WRITING ACHIEVEMENTS */}
-            <Card className="glass rounded-xl p-6">
-              <h3 className="font-heading text-xl font-bold text-holographic mb-4">Writing Achievements</h3>
-              <div className="space-y-3">
-                {[
-                  { title: "Amazon Bestseller", detail: "Speech 101 - Education Category", icon: Award },
-                  { title: "Reader's Choice", detail: "4.6/5 Average Rating", icon: Star },
-                  { title: "Multi-Genre Author", detail: "Memoir & Educational", icon: BookOpen },
-                  { title: "Industry Recognition", detail: "30+ Years Experience", icon: Globe }
-                ].map((achievement) => (
-                  <div key={achievement.title} className="flex items-center gap-3 p-2 rounded-lg glass">
-                    <achievement.icon className="w-5 h-5 text-accent-400 flex-shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <div className="font-medium text-white text-sm">{achievement.title}</div>
-                      <div className="text-white/50 text-xs">{achievement.detail}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </Card>
-
-            {/* CONTACT SECTION */}
-            <Card className="glass rounded-xl p-6">
-              <h3 className="font-heading text-xl font-bold text-holographic mb-4">Literary Collaborations</h3>
-              <p className="text-white/70 text-sm mb-4 leading-relaxed">
-                Interested in collaborating on writing projects, book reviews, or educational content? 
-                Let's discuss your next literary venture.
-              </p>
-              <div className="space-y-3">
-                <Button className="w-full h-12 px-4 rounded-xl bg-gradient-to-r from-primary-500 to-accent-500 text-white font-heading font-semibold hover:scale-105 transition-all duration-300" asChild>
-                  <a href="mailto:steviejohnson101@gmail.com?subject=Literary%20Collaboration">
-                    <Mail className="w-4 h-4 mr-2" />
-                    Contact for Collaboration
-                  </a>
-                </Button>
-                <div className="flex gap-2">
-                  <Button className="flex-1 h-10 px-4 rounded-xl glass text-white hover:bg-white/20 transition-all text-sm" asChild>
-                    <a href="https://www.amazon.com/author/steviejohnson" target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="w-3 h-3 mr-2" />
-                      Amazon
-                    </a>
-                  </Button>
-                  <Button className="flex-1 h-10 px-4 rounded-xl glass text-white hover:bg-white/20 transition-all text-sm" asChild>
-                    <a href="#view-all-books">
-                      <BookOpen className="w-3 h-3 mr-2" />
-                      All Books
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            </Card>
           </div>
         </div>
       </section>
 
+      {/* ABOUT THE AUTHOR SECTION - PROMINENT BOTTOM */}
+      <section className="py-20">
+        <Card className="glass rounded-3xl p-12 hover-lift">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="font-display text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400 mb-4">
+                About the Author
+              </h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-primary-400 to-accent-400 mx-auto rounded-full"></div>
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+              <div className="lg:col-span-2 space-y-6">
+                <p className="text-xl text-white/90 font-body leading-relaxed">
+                  Stevie Johnson brings decades of experience in performance, education, and creative writing 
+                  to his published works. As both a practicing artist and dedicated educator, his books offer 
+                  unique insights that bridge theoretical knowledge with real-world application.
+                </p>
+                
+                <p className="text-lg text-white/80 font-body leading-relaxed">
+                  From intimate memoirs to comprehensive educational guides, each publication reflects 
+                  Stevie's commitment to authentic storytelling and practical wisdom gained through 
+                  30+ years in the entertainment and education industries.
+                </p>
+
+                <p className="text-lg text-white/80 font-body leading-relaxed">
+                  His writing philosophy centers on accessibility and genuine connection with readers, 
+                  whether sharing personal journey insights in memoir form or providing practical tools 
+                  for overcoming public speaking challenges.
+                </p>
+
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
+                  <div className="text-center glass rounded-2xl p-4">
+                    <div className="font-heading text-3xl font-bold text-accent-400">4</div>
+                    <div className="text-white/60 text-sm">Books Published</div>
+                  </div>
+                  <div className="text-center glass rounded-2xl p-4">
+                    <div className="font-heading text-3xl font-bold text-primary-400">4.6</div>
+                    <div className="text-white/60 text-sm">Average Rating</div>
+                  </div>
+                  <div className="text-center glass rounded-2xl p-4">
+                    <div className="font-heading text-3xl font-bold text-accent-400">30+</div>
+                    <div className="text-white/60 text-sm">Years Experience</div>
+                  </div>
+                  <div className="text-center glass rounded-2xl p-4">
+                    <div className="font-heading text-3xl font-bold text-primary-400">10K+</div>
+                    <div className="text-white/60 text-sm">Readers Reached</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-center">
+                <div className="relative">
+                  <div className="w-80 h-80 rounded-2xl overflow-hidden neon-glow">
+                    <img
+                      src="/stevie_headshot_287.jpg"
+                      alt="Stevie Johnson"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
+                    <Button className="px-8 py-3 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 text-white font-heading font-semibold hover:scale-105 transition-all duration-300" asChild>
+                      <a href="mailto:steviejohnson101@gmail.com?subject=Literary%20Inquiry">
+                        <Mail className="w-4 h-4 mr-2" />
+                        Contact Author
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Card>
+      </section>
+
       <style jsx>{`
-        @keyframes slide-in-from-top-2 {
-          from {
-            transform: translateY(-8px);
-            opacity: 0;
-          }
-          to {
-            transform: translateY(0);
-            opacity: 1;
-          }
+        .perspective-1000 {
+          perspective: 1000px;
         }
-        .animate-in {
-          animation-fill-mode: both;
+        .preserve-3d {
+          transform-style: preserve-3d;
         }
-        .slide-in-from-top-2 {
-          animation-name: slide-in-from-top-2;
+        .backface-hidden {
+          backface-visibility: hidden;
         }
-        .duration-300 {
-          animation-duration: 300ms;
+        .rotate-y-180 {
+          transform: rotateY(180deg);
         }
       `}</style>
     </ModernLayout>
