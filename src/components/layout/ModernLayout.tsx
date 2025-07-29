@@ -7,7 +7,6 @@ import {
   NavigationMenuList,
 } from "../ui/navigation-menu";
 import { Sun, Moon, Menu, X } from "lucide-react";
-import { SignInModal } from "../auth/SignInModal";
 
 interface ModernLayoutProps {
   children: React.ReactNode;
@@ -22,7 +21,6 @@ export const ModernLayout = ({
   toggleDarkMode = () => {},
   activeNavItem = "home"
 }: ModernLayoutProps) => {
-  const [showSignInModal, setShowSignInModal] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -109,13 +107,6 @@ export const ModernLayout = ({
               }
             </Button>
             
-            {/* Sign In Button */}
-            <Button 
-              className="hidden sm:flex px-6 py-2 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 text-white font-heading font-medium hover:scale-105 transition-all duration-300 neon-glow"
-              onClick={() => setShowSignInModal(true)}
-            >
-              Sign In
-            </Button>
 
             {/* Mobile Menu Button */}
             <Button 
@@ -151,17 +142,6 @@ export const ModernLayout = ({
                   {item.charAt(0).toUpperCase() + item.slice(1)}
                 </a>
               ))}
-              <div className="pt-2 border-t border-white/10">
-                <Button 
-                  className="w-full px-4 py-3 rounded-xl bg-gradient-to-r from-primary-500 to-accent-500 text-white font-heading font-medium"
-                  onClick={() => {
-                    setShowSignInModal(true);
-                    setIsMobileMenuOpen(false);
-                  }}
-                >
-                  Sign In
-                </Button>
-              </div>
             </div>
           </div>
         )}
@@ -175,7 +155,7 @@ export const ModernLayout = ({
       </main>
 
       {/* Modern Footer */}
-      <footer className="relative mt-32 py-8 glass-dark">
+      <footer className="relative mt-16 py-6 glass-dark">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <p className="text-white/40 font-body text-sm">
             © 2025 Stevie Johnson • Designed for Excellence
@@ -183,13 +163,6 @@ export const ModernLayout = ({
         </div>
       </footer>
 
-      {/* Sign In Modal */}
-      {showSignInModal && (
-        <SignInModal 
-          darkMode={darkMode}
-          onClose={() => setShowSignInModal(false)}
-        />
-      )}
     </div>
   );
 };

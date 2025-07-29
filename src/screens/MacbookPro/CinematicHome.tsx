@@ -166,8 +166,8 @@ export const CinematicHome = () => {
               {/* BIO WITH CINEMATIC REVEAL */}
               <div className="space-y-4">
                 <p className="text-xl text-white/90 font-body leading-relaxed max-w-lg">
-                  <strong className="text-holographic">20+ years of stage and screen experience.</strong>
-                  <br />Member of SAG-AFTRA and Actors' Equity.
+                  <strong className="text-holographic">30+ years of stage and screen experience.</strong>
+                  <br />Member of SAG-AFTRA.
                 </p>
                 <p className="text-lg text-white/70 font-body max-w-lg">
                   A father, artist, and visionary bringing passion and authenticity to every project.
@@ -197,15 +197,12 @@ export const CinematicHome = () => {
             <div className="flex flex-col sm:flex-row items-start gap-6">
               <Button 
                 className="group px-10 py-5 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 text-white font-heading font-semibold text-lg hover:scale-105 transition-all duration-500 holographic-border screen-glow"
-                onClick={() => {
-                  const theaterElement = document.querySelector('.cinematic-theater-main');
-                  if (theaterElement) {
-                    theaterElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                  }
-                }}
+                asChild
               >
-                <Play className="w-6 h-6 mr-3" />
-                Enter the Theater
+                <a href="/actor">
+                  <Play className="w-6 h-6 mr-3" />
+                  Enter the Theater
+                </a>
               </Button>
               <Button className="px-10 py-5 rounded-full glass-strong text-white font-heading font-medium text-lg hover-lift cinematic-theater" asChild>
                 <a href="/actor">Full Portfolio Experience</a>
