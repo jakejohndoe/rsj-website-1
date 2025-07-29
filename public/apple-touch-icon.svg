@@ -1,0 +1,49 @@
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- High-resolution version for Apple devices -->
+  <defs>
+    <radialGradient id="bgApple" cx="0.3" cy="0.3" r="0.8">
+      <stop offset="0%" style="stop-color:#F4D03F"/>
+      <stop offset="50%" style="stop-color:#D4AF37"/>
+      <stop offset="100%" style="stop-color:#B7950B"/>
+    </radialGradient>
+    <linearGradient id="textApple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#5D4037"/>
+      <stop offset="50%" style="stop-color:#8B4513"/>
+      <stop offset="100%" style="stop-color:#A0522D"/>
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#8B4513" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background with rounded corners for iOS -->
+  <rect x="10" y="10" width="160" height="160" rx="25" fill="url(#bgApple)" stroke="#8B4513" stroke-width="4"/>
+  
+  <!-- Theater mask curves -->
+  <path d="M40 60 Q90 40 140 60 Q110 70 90 70 Q70 70 40 60" fill="#8B4513" opacity="0.2"/>
+  <path d="M50 65 Q90 50 130 65" stroke="#8B4513" stroke-width="2" opacity="0.3" fill="none"/>
+  
+  <!-- Stylized "S" with more detail -->
+  <path d="M50 70 Q70 60 90 80 Q110 100 130 90" stroke="url(#textApple)" stroke-width="12" fill="none" stroke-linecap="round" filter="url(#shadow)"/>
+  
+  <!-- Stylized "J" with quill flourish -->
+  <path d="M110 70 L110 110 Q110 130 85 125" stroke="url(#textApple)" stroke-width="12" fill="none" stroke-linecap="round" filter="url(#shadow)"/>
+  <path d="M100 70 L120 70" stroke="url(#textApple)" stroke-width="8" fill="none" stroke-linecap="round"/>
+  
+  <!-- Quill details -->
+  <circle cx="75" cy="115" r="4" fill="#8B4513" opacity="0.7"/>
+  <path d="M75 115 Q70 120 65 125" stroke="#8B4513" stroke-width="2" opacity="0.5"/>
+  
+  <!-- Book spines -->
+  <rect x="30" y="100" width="6" height="40" fill="#8B4513" opacity="0.4"/>
+  <rect x="38" y="105" width="4" height="30" fill="#8B4513" opacity="0.4"/>
+  <rect x="44" y="110" width="4" height="20" fill="#8B4513" opacity="0.4"/>
+  
+  <!-- Performance stars -->
+  <path d="M140 40 L142 46 L148 46 L143 50 L145 56 L140 53 L135 56 L137 50 L132 46 L138 46 Z" fill="#F4D03F" opacity="0.8"/>
+  <path d="M150 55 L151 58 L154 58 L152 60 L153 63 L150 61 L147 63 L148 60 L146 58 L149 58 Z" fill="#F4D03F" opacity="0.6"/>
+  
+  <!-- Academic laurel accent -->
+  <path d="M45 45 Q50 40 55 45 Q50 50 45 45" fill="#8B4513" opacity="0.3"/>
+  <path d="M125 45 Q130 40 135 45 Q130 50 125 45" fill="#8B4513" opacity="0.3"/>
+</svg>
