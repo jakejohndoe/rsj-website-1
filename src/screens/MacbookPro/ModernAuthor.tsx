@@ -55,7 +55,7 @@ export const ModernAuthor = () => {
         {/* COMPACT STATS ROW */}
         <div className="flex flex-wrap justify-center gap-4 mb-8">
           {[
-            { value: "4", label: "Books", icon: BookOpen },
+            { value: "2", label: "Books", icon: BookOpen },
             { value: "2+", label: "Genres", icon: Award },
             { value: "4.6★", label: "Rating", icon: Star },
             { value: "10K+", label: "Readers", icon: Globe }
@@ -223,7 +223,7 @@ export const ModernAuthor = () => {
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
                   <div className="text-center glass rounded-2xl p-4">
-                    <div className="font-heading text-3xl font-bold text-accent-400">4</div>
+                    <div className="font-heading text-3xl font-bold text-accent-400">2</div>
                     <div className="text-white/60 text-sm">Books Published</div>
                   </div>
                   <div className="text-center glass rounded-2xl p-4">
