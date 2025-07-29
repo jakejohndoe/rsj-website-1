@@ -5,7 +5,6 @@ import { Card } from "../../components/ui/card";
 import { ChevronLeft, ChevronRight, Play, ExternalLink, Instagram, Youtube, Star, Award, Film } from "lucide-react";
 
 export const CinematicHome = () => {
-  const [darkMode, setDarkMode] = useState(true);
   const [activeVideoIndex, setActiveVideoIndex] = useState(0);
   const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -109,8 +108,6 @@ export const CinematicHome = () => {
 
   return (
     <ModernLayout 
-      darkMode={darkMode} 
-      toggleDarkMode={() => setDarkMode(!darkMode)}
       activeNavItem="home"
     >
       {/* PARTICLE FIELD DISABLED TO PREVENT JUMPINESS */}
@@ -120,7 +117,7 @@ export const CinematicHome = () => {
       {/* 🎭 CINEMATIC HERO SECTION */}
       <section 
         ref={heroRef}
-        className="relative min-h-screen overflow-hidden"
+        className="relative min-h-screen overflow-hidden mb-16"
         style={{
           transform: scrollY > 0 ? `translateY(${parallaxOffset}px)` : 'translateY(0)',
         }}

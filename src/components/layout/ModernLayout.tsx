@@ -6,19 +6,15 @@ import {
   NavigationMenuItem,
   NavigationMenuList,
 } from "../ui/navigation-menu";
-import { Sun, Moon, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 interface ModernLayoutProps {
   children: React.ReactNode;
-  darkMode?: boolean;
-  toggleDarkMode?: () => void;
   activeNavItem?: string;
 }
 
 export const ModernLayout = ({ 
   children,
-  darkMode = true,
-  toggleDarkMode = () => {},
   activeNavItem = "home"
 }: ModernLayoutProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -46,7 +42,7 @@ export const ModernLayout = ({
   }, []);
 
   return (
-    <div className={`min-h-screen font-body ${darkMode ? 'dark' : ''}`}>
+    <div className="min-h-screen font-body dark flex flex-col">
       {/* Fixed Header with Glass Effect */}
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled 
@@ -95,17 +91,6 @@ export const ModernLayout = ({
 
           {/* Right Side Actions */}
           <div className="flex items-center space-x-3">
-            {/* Theme Toggle */}
-            <Button 
-              className="w-10 h-10 rounded-full glass hover-glow transition-all duration-300"
-              onClick={toggleDarkMode}
-              aria-label="Toggle theme"
-            >
-              {darkMode 
-                ? <Sun className="w-5 h-5 text-accent-400" /> 
-                : <Moon className="w-5 h-5 text-primary-500" />
-              }
-            </Button>
             
 
             {/* Mobile Menu Button */}
@@ -148,17 +133,17 @@ export const ModernLayout = ({
       </header>
 
       {/* Main Content */}
-      <main className="relative pt-20">
+      <main className="flex-1 relative pt-20 pb-24">
         <div className="max-w-7xl mx-auto px-6">
           {children}
         </div>
       </main>
 
-      {/* Modern Footer */}
-      <footer className="relative mt-16 py-6 glass-dark">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <p className="text-white/40 font-body text-sm">
-            © 2025 Stevie Johnson • Designed for Excellence
+      {/* Simple Footer */}
+      <footer className="relative bg-black/80 backdrop-blur-sm border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-6 py-8">
+          <p className="text-center text-white/50 text-sm">
+            © 2025 Stevie Johnson • All Rights Reserved
           </p>
         </div>
       </footer>
