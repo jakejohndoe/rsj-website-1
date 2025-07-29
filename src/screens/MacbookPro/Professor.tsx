@@ -115,12 +115,13 @@ export const Professor = () => {
         </div>
       </section>
 
-      {/* MAIN LAYOUT - CREATIVE COURSE GRID + STUDENT FEEDBACK */}
-      <section className="pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {/* OPTIMIZED LAYOUT - BETTER SPACE UTILIZATION */}
+      <section className="pb-12">
+        {/* TOP SECTION - COURSE CATALOG WITH BETTER PROPORTIONS */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-8">
           
-          {/* LEFT SECTION - ENHANCED COURSE GRID (2/3 width) */}
-          <div className="lg:col-span-2 space-y-6">
+          {/* LEFT SECTION - ENHANCED COURSE GRID (3/5 width) */}
+          <div className="lg:col-span-3 space-y-6">
             <div className="flex items-center justify-between">
               <h2 className="font-heading text-3xl font-bold text-holographic">Course Catalog</h2>
               <div className="flex items-center gap-2">
@@ -129,25 +130,25 @@ export const Professor = () => {
               </div>
             </div>
 
-            {/* CREATIVE 2x2 COURSE GRID */}
+            {/* CREATIVE 2x2 COURSE GRID - OPTIMIZED SPACING */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {professorData.courses.map((course, index) => (
                 <Card 
                   key={course.code}
-                  className="glass rounded-2xl p-5 hover-lift group cursor-pointer transition-all duration-500 hover:scale-105 relative overflow-hidden"
+                  className="glass rounded-2xl p-4 hover-lift group cursor-pointer transition-all duration-500 hover:scale-105 relative overflow-hidden"
                   onClick={() => setSelectedCourse(selectedCourse === index ? null : index)}
                 >
                   {/* Course Level Indicator */}
-                  <div className={`absolute top-0 right-0 w-20 h-20 -mr-6 -mt-6 rotate-45 ${
+                  <div className={`absolute top-0 right-0 w-16 h-16 -mr-4 -mt-4 rotate-45 ${
                     course.level === 'Beginner' ? 'bg-green-500/20' :
                     course.level === 'Intermediate' ? 'bg-yellow-500/20' :
                     'bg-red-500/20'
                   }`} />
                   
                   <div className="relative z-10">
-                    <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-start justify-between mb-2">
                       <div>
-                        <span className="text-accent-400 font-mono font-bold text-lg">{course.code}</span>
+                        <span className="text-accent-400 font-mono font-bold text-base">{course.code}</span>
                         <div className="flex items-center gap-2 mt-1">
                           <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
                             course.level === 'Beginner' ? 'bg-green-500/30 text-green-300' :
@@ -165,10 +166,10 @@ export const Professor = () => {
                       </div>
                     </div>
                     
-                    <h3 className="font-heading text-lg font-bold text-white group-hover:text-primary-400 transition-colors mb-2">
+                    <h3 className="font-heading text-base font-bold text-white group-hover:text-primary-400 transition-colors mb-2">
                       {course.title}
                     </h3>
-                    <p className="text-white/60 text-sm leading-relaxed mb-4">{course.description}</p>
+                    <p className="text-white/60 text-sm leading-relaxed mb-3">{course.description}</p>
                     
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-1">
@@ -183,7 +184,7 @@ export const Professor = () => {
                   
                   {/* Expanded Details */}
                   {selectedCourse === index && (
-                    <div className="mt-4 pt-4 border-t border-white/10 animate-in slide-in-from-top-2 duration-300">
+                    <div className="mt-3 pt-3 border-t border-white/10 animate-in slide-in-from-top-2 duration-300">
                       <div className="grid grid-cols-2 gap-4 text-xs text-white/50 mb-3">
                         <div>
                           <span className="font-medium">Format:</span>
@@ -202,57 +203,35 @@ export const Professor = () => {
                 </Card>
               ))}
             </div>
-
-            {/* TEACHING PHILOSOPHY ENHANCED */}
-            <Card className="glass rounded-2xl p-6 mt-8 border-l-4 border-accent-400">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 rounded-full bg-gradient-to-r from-accent-500 to-primary-500">
-                  <Zap className="w-5 h-5 text-white" />
-                </div>
-                <h3 className="font-heading text-xl font-bold text-holographic">Teaching Philosophy</h3>
-              </div>
-              <p className="text-white/80 leading-relaxed mb-4">
-                <span className="text-accent-400 font-semibold">"Education should be transformative."</span> I believe in creating 
-                inclusive spaces where students develop both technical skills and creative confidence through practical, 
-                hands-on learning experiences combined with personalized feedback and mentorship.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {professorData.rateMyProfessors.tags.map((tag, index) => (
-                  <span key={index} className="px-3 py-1 rounded-full bg-primary-500/20 text-primary-300 text-xs">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </Card>
           </div>
 
-          {/* RIGHT SECTION - STUDENT FEEDBACK & CREDENTIALS */}
-          <div className="space-y-6">
-            {/* RATEMYPROFESSORS SHOWCASE */}
-            <Card className="glass rounded-2xl p-6 border border-yellow-400/30 bg-yellow-400/5">
+          {/* RIGHT SECTION - STUDENT FEEDBACK COMPACT (2/5 width) */}
+          <div className="lg:col-span-2 space-y-5">
+            {/* RATEMYPROFESSORS SHOWCASE - COMPACT */}
+            <Card className="glass rounded-2xl p-5 border border-yellow-400/30 bg-yellow-400/5">
               <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
                   <div className="p-2 rounded-full bg-yellow-400/20">
-                    <Star className="w-5 h-5 text-yellow-400 fill-current" />
+                    <Star className="w-4 h-4 text-yellow-400 fill-current" />
                   </div>
                   <div>
-                    <h3 className="font-heading text-lg font-bold text-white">Student Reviews</h3>
-                    <p className="text-yellow-400 text-sm">RateMyProfessors.com</p>
+                    <h3 className="font-heading text-base font-bold text-white">Student Reviews</h3>
+                    <p className="text-yellow-400 text-xs">RateMyProfessors.com</p>
                   </div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-yellow-400">{professorData.rateMyProfessors.rating}</div>
+                  <div className="text-2xl font-bold text-yellow-400">{professorData.rateMyProfessors.rating}</div>
                   <div className="text-white/50 text-xs">{professorData.rateMyProfessors.totalReviews} reviews</div>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
-                <div className="text-center p-3 rounded-lg glass">
-                  <div className="text-green-400 font-bold text-lg">{professorData.rateMyProfessors.wouldTakeAgain}%</div>
+              <div className="grid grid-cols-2 gap-3 mb-4 text-sm">
+                <div className="text-center p-2 rounded-lg glass">
+                  <div className="text-green-400 font-bold text-base">{professorData.rateMyProfessors.wouldTakeAgain}%</div>
                   <div className="text-white/60 text-xs">Would Take Again</div>
                 </div>
-                <div className="text-center p-3 rounded-lg glass">
-                  <div className="text-blue-400 font-bold text-lg">{professorData.rateMyProfessors.difficulty}/5</div>
+                <div className="text-center p-2 rounded-lg glass">
+                  <div className="text-blue-400 font-bold text-base">{professorData.rateMyProfessors.difficulty}/5</div>
                   <div className="text-white/60 text-xs">Difficulty</div>
                 </div>
               </div>
@@ -265,26 +244,23 @@ export const Professor = () => {
               </Button>
             </Card>
 
-            {/* AUTHENTIC STUDENT TESTIMONIALS */}
+            {/* COMPACT STUDENT TESTIMONIALS */}
             <div>
-              <h3 className="font-heading text-lg font-bold text-holographic mb-4">What Students Say</h3>
+              <h3 className="font-heading text-base font-bold text-holographic mb-3">What Students Say</h3>
               <div className="space-y-3">
-                {professorData.rateMyProfessors.reviews.map((review, index) => (
-                  <Card key={index} className="glass rounded-xl p-4 group hover-lift transition-all duration-300">
-                    <div className="flex items-start gap-3">
-                      <Quote className="w-4 h-4 text-accent-400 flex-shrink-0 mt-1" />
+                {professorData.rateMyProfessors.reviews.slice(0, 2).map((review, index) => (
+                  <Card key={index} className="glass rounded-xl p-3 group hover-lift transition-all duration-300">
+                    <div className="flex items-start gap-2">
+                      <Quote className="w-3 h-3 text-accent-400 flex-shrink-0 mt-1" />
                       <div className="flex-1">
-                        <p className="text-white/80 text-sm leading-relaxed mb-3">
-                          "{review.text}"
+                        <p className="text-white/80 text-xs leading-relaxed mb-2">
+                          "{review.text.length > 100 ? review.text.substring(0, 100) + '...' : review.text}"
                         </p>
                         <div className="flex items-center justify-between">
-                          <div>
-                            <span className="text-primary-400 text-xs font-medium">{review.course}</span>
-                            <span className="text-white/40 text-xs ml-2">{review.semester}</span>
-                          </div>
+                          <span className="text-primary-400 text-xs font-medium">{review.course}</span>
                           <div className="flex gap-1">
                             {[...Array(review.rating)].map((_, i) => (
-                              <Star key={i} className="w-3 h-3 text-yellow-400 fill-current" />
+                              <Star key={i} className="w-2 h-2 text-yellow-400 fill-current" />
                             ))}
                           </div>
                         </div>
@@ -294,26 +270,55 @@ export const Professor = () => {
                 ))}
               </div>
             </div>
-
-            {/* COMPACT ACADEMIC CREDENTIALS */}
-            <Card className="glass rounded-xl p-6">
-              <div className="flex items-center gap-3 mb-4">
-                <GraduationCap className="w-5 h-5 text-accent-400" />
-                <h3 className="font-heading text-lg font-bold text-holographic">Academic Background</h3>
-              </div>
-              <div className="space-y-2">
-                {professorData.education.map((edu, index) => (
-                  <div key={index} className="flex items-center justify-between p-2 rounded-lg glass text-sm">
-                    <div>
-                      <div className="font-medium text-white">{edu.degree}</div>
-                      <div className="text-white/60 text-xs">{edu.institution}</div>
-                    </div>
-                    <span className="text-accent-400 text-xs font-mono">{edu.year}</span>
-                  </div>
-                ))}
-              </div>
-            </Card>
           </div>
+        </div>
+
+        {/* FULL-WIDTH SECTIONS - BETTER SPACE USAGE */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          
+          {/* TEACHING PHILOSOPHY - EXPANDED */}
+          <Card className="glass rounded-2xl p-6 border-l-4 border-accent-400">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2 rounded-full bg-gradient-to-r from-accent-500 to-primary-500">
+                <Zap className="w-5 h-5 text-white" />
+              </div>
+              <h3 className="font-heading text-xl font-bold text-holographic">Teaching Philosophy</h3>
+            </div>
+            <p className="text-white/80 leading-relaxed mb-4">
+              <span className="text-accent-400 font-semibold">"Education should be transformative."</span> I believe in creating 
+              inclusive spaces where students develop both technical skills and creative confidence through practical, 
+              hands-on learning experiences combined with personalized feedback and mentorship.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {professorData.rateMyProfessors.tags.map((tag, index) => (
+                <span key={index} className="px-3 py-1 rounded-full bg-primary-500/20 text-primary-300 text-xs">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </Card>
+
+          {/* ACADEMIC BACKGROUND - PROMINENTLY DISPLAYED */}
+          <Card className="glass rounded-2xl p-6 border-l-4 border-primary-400">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2 rounded-full bg-gradient-to-r from-primary-500 to-accent-500">
+                <GraduationCap className="w-5 h-5 text-white" />
+              </div>
+              <h3 className="font-heading text-xl font-bold text-holographic">Academic Credentials</h3>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {professorData.education.map((edu, index) => (
+                <div key={index} className="p-4 rounded-xl glass hover-lift transition-all duration-300 group">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-accent-400 text-xs font-mono font-bold group-hover:text-primary-400 transition-colors">{edu.year}</span>
+                    <Award className="w-4 h-4 text-white/40 group-hover:text-accent-400 transition-colors" />
+                  </div>
+                  <div className="font-semibold text-white text-sm mb-1 group-hover:text-holographic transition-colors">{edu.degree}</div>
+                  <div className="text-white/60 text-xs leading-relaxed">{edu.institution}</div>
+                </div>
+              ))}
+            </div>
+          </Card>
         </div>
       </section>
 
