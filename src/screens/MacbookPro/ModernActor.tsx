@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ModernLayout } from "../../components/layout/ModernLayout";
 import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
-import { Play, Award, Calendar, MapPin, ExternalLink, Download, Instagram, Youtube, Film, ChevronRight } from "lucide-react";
+import { Play, Award, Calendar, MapPin, ExternalLink, Download, Instagram, Youtube, Film, ChevronRight, Building2, Users, Megaphone } from "lucide-react";
 
 export const ModernActor = () => {
   const [activeReel, setActiveReel] = useState(0);
@@ -255,25 +255,44 @@ export const ModernActor = () => {
         <Card className="glass rounded-2xl p-8">
           <h2 className="font-heading text-2xl font-bold text-holographic mb-6 text-center">Representation</h2>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="text-center">
-              <h3 className="text-accent-400 text-sm font-bold mb-1">Agent</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="text-center space-y-2">
+              <div className="h-12 flex items-center justify-center mb-2">
+                <Building2 className="w-10 h-10 text-accent-400/60" />
+              </div>
+              <h3 className="text-accent-400 text-sm font-bold">Agent</h3>
               <p className="text-white/70 text-sm">{representation.agent}</p>
             </div>
-            <div className="text-center">
-              <h3 className="text-primary-400 text-sm font-bold mb-1">Manager</h3>
+            <div className="text-center space-y-2">
+              <div className="h-12 flex items-center justify-center mb-2">
+                <img 
+                  src="https://static.wixstatic.com/media/848896_22bc40ae22114817b6107fc3bd8647eb~mv2.png/v1/fill/w_162,h_65,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/BiCOASTALlogoHDR.png"
+                  alt="BiCoastal Talent Agency"
+                  className="h-10 w-auto object-contain filter brightness-0 invert opacity-70"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.nextElementSibling.style.display = 'block';
+                  }}
+                />
+                <Users className="w-10 h-10 text-primary-400/60 hidden" />
+              </div>
+              <h3 className="text-primary-400 text-sm font-bold">Manager</h3>
               <p className="text-white/70 text-sm">{representation.manager}</p>
             </div>
-            <div className="text-center">
-              <h3 className="text-accent-400 text-sm font-bold mb-1">Publicist</h3>
+            <div className="text-center space-y-2">
+              <div className="h-12 flex items-center justify-center mb-2">
+                <Megaphone className="w-10 h-10 text-accent-400/60" />
+              </div>
+              <h3 className="text-accent-400 text-sm font-bold">Publicist</h3>
               <p className="text-white/70 text-sm">{representation.publicist}</p>
             </div>
-            <div className="text-center">
-              <h3 className="text-primary-400 text-sm font-bold mb-1">Location</h3>
-              <p className="text-white/70 text-sm flex items-center justify-center gap-1">
-                <MapPin className="w-3 h-3" />
-                {representation.location}
-              </p>
+            <div className="text-center space-y-2">
+              <div className="h-12 flex items-center justify-center mb-2">
+                <MapPin className="w-10 h-10 text-primary-400/60" />
+              </div>
+              <h3 className="text-primary-400 text-sm font-bold">Location</h3>
+              <p className="text-white/70 text-sm">{representation.location}</p>
             </div>
           </div>
         </Card>
