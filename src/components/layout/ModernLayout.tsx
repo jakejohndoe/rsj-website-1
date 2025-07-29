@@ -133,7 +133,7 @@ export const ModernLayout = ({
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 relative pt-20 pb-24">
+      <main className="flex-1 relative pt-20 pb-32">
         <div className="max-w-7xl mx-auto px-6">
           {children}
         </div>

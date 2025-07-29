@@ -117,7 +117,7 @@ export const CinematicHome = () => {
       {/* 🎭 CINEMATIC HERO SECTION */}
       <section 
         ref={heroRef}
-        className="relative min-h-screen overflow-hidden mb-16"
+        className="relative min-h-screen overflow-hidden mb-24"
         style={{
           transform: scrollY > 0 ? `translateY(${parallaxOffset}px)` : 'translateY(0)',
         }}
@@ -175,7 +175,7 @@ export const CinematicHome = () => {
             {/* CINEMATIC STATS */}
             <div className="grid grid-cols-3 gap-6">
               {[
-                { value: "20+", label: "Years Experience", icon: Award },
+                { value: "30+", label: "Years Experience", icon: Award },
                 { value: "100+", label: "Film/Theatre/TV Credits", icon: Film },
                 { value: "4", label: "Books Published", icon: Star }
               ].map((stat, index) => (
@@ -202,7 +202,7 @@ export const CinematicHome = () => {
                 </a>
               </Button>
               <Button className="px-10 py-5 rounded-full glass-strong text-white font-heading font-medium text-lg hover-lift cinematic-theater" asChild>
-                <a href="/actor">Full Portfolio Experience</a>
+                <a href="/author">Literary Works</a>
               </Button>
             </div>
 
