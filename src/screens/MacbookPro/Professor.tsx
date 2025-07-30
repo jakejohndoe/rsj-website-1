@@ -43,10 +43,10 @@ export const Professor = () => {
       }
     ],
     education: [
-      { degree: "Ph.D in Performance Studies", institution: "Columbia University", year: "2008" },
-      { degree: "MFA - USC", institution: "University of Southern California", year: "2005" },
-      { degree: "MFA in Creative Writing", institution: "New York University", year: "2004" },
-      { degree: "BA in Theater Arts", institution: "University of California", year: "2001" }
+      { degree: "MFA", institution: "USC School of Dramatic Arts", year: "1995" },
+      { degree: "BA (Triple Major)", institution: "Theatre, Speech & Rhetoric", year: "1993" },
+      { degree: "IBP Certification", institution: "Integrative Body Psychotherapy", year: "2010" },
+      { degree: "10+ Years Teaching", institution: "USC School of Dramatic Arts", year: "2017-Present" }
     ],
     rateMyProfessors: {
       rating: 4.8,
@@ -86,20 +86,20 @@ export const Professor = () => {
             <span className="text-holographic">PROFESSOR • STEVIE JOHNSON</span>
           </h1>
           <p className="text-lg text-white/80 font-body max-w-2xl mx-auto mb-2">
-            Theatre & Communication Studies • University of Southern California
+            Assistant Professor of Theatre Practice • USC School of Dramatic Arts
           </p>
           <p className="text-sm text-white/60 font-body">
-            35+ years of transformative education
+            MFA USC '95 • 10+ Years Teaching Excellence
           </p>
         </div>
 
         {/* ENHANCED STATS ROW WITH RATEMYPROFESSORS DATA */}
         <div className="flex flex-wrap justify-center gap-4 mb-8">
           {[
-            /* { value: "4.8★", label: "Rating", icon: Star, color: "text-yellow-400" },
-            { value: "95%", label: "Would Retake", icon: Heart, color: "text-red-400" },
-            { value: "17", label: "Reviews", icon: Users, color: "text-blue-400" }, */
-            { value: "Ph.D", label: "Columbia", icon: Award, color: "text-accent-400" }
+            { value: "MFA", label: "USC '95", icon: GraduationCap, color: "text-accent-400" },
+            { value: "BA", label: "Theatre Arts", icon: BookOpen, color: "text-blue-400" },
+            { value: "10+", label: "Years Teaching", icon: Users, color: "text-green-400" },
+            { value: "IBP", label: "Certified", icon: Award, color: "text-yellow-400" }
           ].map((stat) => (
             <div 
               key={stat.label}
@@ -298,25 +298,31 @@ export const Professor = () => {
             </div> */}
           </Card>
 
-          {/* ACADEMIC BACKGROUND - PROMINENTLY DISPLAYED */}
+          {/* PROFESSIONAL DEVELOPMENT - PROMINENTLY DISPLAYED */}
           <Card className="glass rounded-2xl p-6 border-l-4 border-primary-400">
             <div className="flex items-center gap-3 mb-4">
               <div className="p-2 rounded-full bg-gradient-to-r from-primary-500 to-accent-500">
-                <GraduationCap className="w-5 h-5 text-white" />
+                <Award className="w-5 h-5 text-white" />
               </div>
-              <h3 className="font-heading text-xl font-bold text-holographic">Academic Credentials</h3>
+              <h3 className="font-heading text-xl font-bold text-holographic">Professional Excellence</h3>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {professorData.education.map((edu, index) => (
-                <div key={index} className="p-4 rounded-xl glass hover-lift transition-all duration-300 group">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-accent-400 text-xs font-mono font-bold group-hover:text-primary-400 transition-colors">{edu.year}</span>
-                    <Award className="w-4 h-4 text-white/40 group-hover:text-accent-400 transition-colors" />
-                  </div>
-                  <div className="font-semibold text-white text-sm mb-1 group-hover:text-holographic transition-colors">{edu.degree}</div>
-                  <div className="text-white/60 text-xs leading-relaxed">{edu.institution}</div>
-                </div>
-              ))}
+            <div className="space-y-3 text-sm">
+              <div className="flex items-center gap-2 text-white/80">
+                <GraduationCap className="w-4 h-4 text-accent-400" />
+                <span>Assistant Professor of Theatre Practice, USC</span>
+              </div>
+              <div className="flex items-center gap-2 text-white/80">
+                <Users className="w-4 h-4 text-accent-400" />
+                <span>10+ Years Teaching Experience</span>
+              </div>
+              <div className="flex items-center gap-2 text-white/80">
+                <BookOpen className="w-4 h-4 text-accent-400" />
+                <span>Integrative Body Psychotherapy Certified</span>
+              </div>
+              <div className="flex items-center gap-2 text-white/80">
+                <Award className="w-4 h-4 text-accent-400" />
+                <span>RateMyProfessor Top 21 Ranked (2009-2010)</span>
+              </div>
             </div>
           </Card>
         </div>
