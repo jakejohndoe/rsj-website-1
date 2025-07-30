@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { ModernLayout } from "../../components/layout/ModernLayout";
 import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
-import { ChevronLeft, ChevronRight, Play, ExternalLink, Instagram, Youtube, Star, Award, Film, MessageCircle } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play, ExternalLink, Instagram, Youtube, Star, Award, Film } from "lucide-react";
+import { SiTiktok, SiImdb } from "react-icons/si";
 
 export const CinematicHome = () => {
   const [activeVideoIndex, setActiveVideoIndex] = useState(0);
@@ -31,8 +32,8 @@ export const CinematicHome = () => {
   const socialLinks = [
     { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/holisticactor", color: "from-primary-600 to-primary-700" },
     { icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@steviesumj", color: "from-accent-500 to-accent-600" },
-    { icon: ExternalLink, label: "IMDb", href: "https://www.imdb.com/name/nm0426281/", color: "from-primary-400 to-accent-500" },
-    { icon: MessageCircle, label: "TikTok", href: "https://www.tiktok.com/@holisticactor", color: "from-primary-500 to-accent-400" },
+    { icon: SiImdb, label: "IMDb", href: "https://www.imdb.com/name/nm0426281/", color: "from-primary-400 to-accent-500" },
+    { icon: SiTiktok, label: "TikTok", href: "https://www.tiktok.com/@holisticactor", color: "from-primary-500 to-accent-400" },
   ];
 
   const roles = ["Director", "Actor", "Professor", "Author"];

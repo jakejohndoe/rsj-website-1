@@ -3,6 +3,7 @@ import { ModernLayout } from "../../components/layout/ModernLayout";
 import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
 import { ChevronLeft, ChevronRight, Play, ExternalLink, Instagram, Youtube } from "lucide-react";
+import { SiTiktok, SiImdb } from "react-icons/si";
 
 export const ModernHome = () => {
   const [darkMode, setDarkMode] = useState(true);
@@ -26,9 +27,10 @@ export const ModernHome = () => {
   ];
 
   const socialLinks = [
-    { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/steviejohnson", color: "from-pink-500 to-purple-500" },
-    { icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@steviejohnson", color: "from-red-500 to-red-600" },
-    { icon: ExternalLink, label: "IMDb", href: "https://www.imdb.com/name/steviejohnson", color: "from-yellow-500 to-orange-500" },
+    { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/holisticactor", color: "from-pink-500 to-purple-500" },
+    { icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@steviesumj", color: "from-red-500 to-red-600" },
+    { icon: SiImdb, label: "IMDb", href: "https://www.imdb.com/name/nm0426281/", color: "from-yellow-500 to-orange-500" },
+    { icon: SiTiktok, label: "TikTok", href: "https://www.tiktok.com/@holisticactor", color: "from-purple-500 to-pink-500" },
   ];
 
   const roles = ["Actor", "Author", "Professor", "Director"];

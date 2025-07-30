@@ -25,6 +25,7 @@ import {
   ExternalLink,
   ChevronRight
 } from "lucide-react";
+import { SiTiktok, SiImdb } from "react-icons/si";
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
@@ -105,8 +106,8 @@ export const Contact = () => {
   const socialLinks = [
     { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/holisticactor", handle: "@holisticactor" },
     { icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@steviesumj", handle: "@steviesumj" },
-    { icon: ExternalLink, label: "IMDB", href: "https://www.imdb.com/name/nm0426281/", handle: "nm0426281" },
-    { icon: MessageCircle, label: "TikTok", href: "https://www.tiktok.com/@holisticactor", handle: "@holisticactor" }
+    { icon: SiImdb, label: "IMDB", href: "https://www.imdb.com/name/nm0426281/", handle: "nm0426281" },
+    { icon: SiTiktok, label: "TikTok", href: "https://www.tiktok.com/@holisticactor", handle: "@holisticactor" }
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {

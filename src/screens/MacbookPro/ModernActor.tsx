@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { ModernLayout } from "../../components/layout/ModernLayout";
 import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
-import { Play, Award, Calendar, MapPin, ExternalLink, Download, Instagram, Youtube, Film, ChevronRight, Building2, Users, Megaphone, MessageCircle } from "lucide-react";
+import { Play, Award, Calendar, MapPin, ExternalLink, Download, Instagram, Youtube, Film, ChevronRight, Building2, Users, Megaphone } from "lucide-react";
+import { SiTiktok, SiImdb } from "react-icons/si";
 
 export const ModernActor = () => {
   const [activeReel, setActiveReel] = useState(0);
@@ -162,12 +163,12 @@ export const ModernActor = () => {
                 </Button>
                 <Button className="w-12 h-12 rounded-xl bg-gradient-to-r from-primary-400 to-accent-500 p-0 hover:scale-110 transition-transform duration-300" asChild>
                   <a href="https://www.imdb.com/name/nm0426281/" target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="w-5 h-5 text-white" />
+                    <SiImdb className="w-5 h-5 text-white" />
                   </a>
                 </Button>
                 <Button className="w-12 h-12 rounded-xl bg-gradient-to-r from-primary-500 to-accent-400 p-0 hover:scale-110 transition-transform duration-300" asChild>
                   <a href="https://www.tiktok.com/@holisticactor" target="_blank" rel="noopener noreferrer">
-                    <MessageCircle className="w-5 h-5 text-white" />
+                    <SiTiktok className="w-5 h-5 text-white" />
                   </a>
                 </Button>
               </div>
