@@ -252,7 +252,7 @@ export const ModernAuthor = () => {
                   </div>
                   <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
                     <Button className="px-8 py-3 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 text-white font-heading font-semibold hover:scale-105 transition-all duration-300" asChild>
-                      <a href="mailto:steviejohnson101@gmail.com?subject=Literary%20Inquiry">
+                      <a href="mailto:stevie@steviejohnson.com?subject=Literary%20Inquiry">
                         <Mail className="w-4 h-4 mr-2" />
                         Contact Author
                       </a>

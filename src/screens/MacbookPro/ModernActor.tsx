@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ModernLayout } from "../../components/layout/ModernLayout";
 import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
-import { Play, Award, Calendar, MapPin, ExternalLink, Download, Instagram, Youtube, Film, ChevronRight, Building2, Users, Megaphone } from "lucide-react";
+import { Play, Award, Calendar, MapPin, ExternalLink, Download, Instagram, Youtube, Film, ChevronRight, Building2, Users, Megaphone, MessageCircle } from "lucide-react";
 
 export const ModernActor = () => {
   const [activeReel, setActiveReel] = useState(0);
@@ -144,20 +144,30 @@ export const ModernActor = () => {
             {/* CONTACT BUTTONS */}
             <div className="flex gap-4">
               <Button className="flex-1 h-12 px-6 rounded-xl bg-gradient-to-r from-primary-500 to-accent-500 text-white font-heading font-semibold hover:scale-105 transition-all duration-300" asChild>
-                <a href="mailto:steviejohnson101@gmail.com?subject=Acting%20Inquiry">
+                <a href="mailto:stevie@steviejohnson.com?subject=Acting%20Inquiry">
                   <Download className="w-4 h-4 mr-2" />
                   Contact Booking
                 </a>
               </Button>
               <div className="flex gap-2">
                 <Button className="w-12 h-12 rounded-xl bg-gradient-to-r from-primary-600 to-primary-700 p-0 hover:scale-110 transition-transform duration-300" asChild>
-                  <a href="https://www.instagram.com/steviejohnson" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.instagram.com/holisticactor" target="_blank" rel="noopener noreferrer">
                     <Instagram className="w-5 h-5 text-white" />
                   </a>
                 </Button>
                 <Button className="w-12 h-12 rounded-xl bg-gradient-to-r from-accent-500 to-accent-600 p-0 hover:scale-110 transition-transform duration-300" asChild>
-                  <a href="https://www.youtube.com/@steviejohnson" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.youtube.com/@steviesumj" target="_blank" rel="noopener noreferrer">
                     <Youtube className="w-5 h-5 text-white" />
+                  </a>
+                </Button>
+                <Button className="w-12 h-12 rounded-xl bg-gradient-to-r from-primary-400 to-accent-500 p-0 hover:scale-110 transition-transform duration-300" asChild>
+                  <a href="https://www.imdb.com/name/nm0426281/" target="_blank" rel="noopener noreferrer">
+                    <ExternalLink className="w-5 h-5 text-white" />
+                  </a>
+                </Button>
+                <Button className="w-12 h-12 rounded-xl bg-gradient-to-r from-primary-500 to-accent-400 p-0 hover:scale-110 transition-transform duration-300" asChild>
+                  <a href="https://www.tiktok.com/@holisticactor" target="_blank" rel="noopener noreferrer">
+                    <MessageCircle className="w-5 h-5 text-white" />
                   </a>
                 </Button>
               </div>

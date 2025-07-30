@@ -96,9 +96,9 @@ export const Professor = () => {
         {/* ENHANCED STATS ROW WITH RATEMYPROFESSORS DATA */}
         <div className="flex flex-wrap justify-center gap-4 mb-8">
           {[
-            { value: "4.8★", label: "Rating", icon: Star, color: "text-yellow-400" },
+            /* { value: "4.8★", label: "Rating", icon: Star, color: "text-yellow-400" },
             { value: "95%", label: "Would Retake", icon: Heart, color: "text-red-400" },
-            { value: "17", label: "Reviews", icon: Users, color: "text-blue-400" },
+            { value: "17", label: "Reviews", icon: Users, color: "text-blue-400" }, */
             { value: "Ph.D", label: "Columbia", icon: Award, color: "text-accent-400" }
           ].map((stat) => (
             <div 
@@ -120,8 +120,8 @@ export const Professor = () => {
         {/* TOP SECTION - COURSE CATALOG WITH BETTER PROPORTIONS */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-8">
           
-          {/* LEFT SECTION - ENHANCED COURSE GRID (3/5 width) */}
-          <div className="lg:col-span-3 space-y-6">
+          {/* LEFT SECTION - ENHANCED COURSE GRID - Now full width since right section is commented */}
+          <div className="lg:col-span-5 space-y-6">
             <div className="flex items-center justify-between">
               <h2 className="font-heading text-3xl font-bold text-holographic">Course Catalog</h2>
               <div className="flex items-center gap-2">
@@ -206,9 +206,9 @@ export const Professor = () => {
           </div>
 
           {/* RIGHT SECTION - STUDENT FEEDBACK COMPACT (2/5 width) */}
-          <div className="lg:col-span-2 space-y-5">
+          {/* <div className="lg:col-span-2 space-y-5">
             {/* RATEMYPROFESSORS SHOWCASE - COMPACT */}
-            <Card className="glass rounded-2xl p-5 border border-yellow-400/30 bg-yellow-400/5">
+            {/* <Card className="glass rounded-2xl p-5 border border-yellow-400/30 bg-yellow-400/5">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
                   <div className="p-2 rounded-full bg-yellow-400/20">
@@ -242,10 +242,10 @@ export const Professor = () => {
                   View All Reviews
                 </a>
               </Button>
-            </Card>
+            </Card> */}
 
             {/* COMPACT STUDENT TESTIMONIALS */}
-            <div>
+            {/* <div>
               <h3 className="font-heading text-base font-bold text-holographic mb-3">What Students Say</h3>
               <div className="space-y-3">
                 {professorData.rateMyProfessors.reviews.slice(0, 2).map((review, index) => (
@@ -270,7 +270,7 @@ export const Professor = () => {
                 ))}
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* FULL-WIDTH SECTIONS - BETTER SPACE USAGE */}
@@ -289,13 +289,13 @@ export const Professor = () => {
               inclusive spaces where students develop both technical skills and creative confidence through practical, 
               hands-on learning experiences combined with personalized feedback and mentorship.
             </p>
-            <div className="flex flex-wrap gap-2">
+            {/* <div className="flex flex-wrap gap-2">
               {professorData.rateMyProfessors.tags.map((tag, index) => (
                 <span key={index} className="px-3 py-1 rounded-full bg-primary-500/20 text-primary-300 text-xs">
                   {tag}
                 </span>
               ))}
-            </div>
+            </div> */}
           </Card>
 
           {/* ACADEMIC BACKGROUND - PROMINENTLY DISPLAYED */}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ModernLayout } from "../../components/layout/ModernLayout";
 import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
+import api from "../../services/api";
 import { 
   Mail, 
   Phone, 
@@ -33,6 +34,8 @@ export const Contact = () => {
     subject: "",
     message: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{type: 'success' | 'error' | null, message: string}>({type: null, message: ''});
 
   const contactPurposes = [
     {
@@ -68,7 +71,7 @@ export const Contact = () => {
     {
       icon: Mail,
       title: "Primary Email",
-      value: "steviejohnson101@gmail.com",
+      value: "stevie@steviejohnson.com",
       description: "Best for: General inquiries, collaborations",
       response: "24-48 hours",
       color: "primary"
@@ -100,10 +103,10 @@ export const Contact = () => {
   ];
 
   const socialLinks = [
-    { icon: Instagram, label: "Instagram", href: "#", handle: "@steviejohnson" },
-    { icon: Youtube, label: "YouTube", href: "#", handle: "Stevie Johnson" },
-    { icon: Facebook, label: "Facebook", href: "#", handle: "Stevie Johnson Official" },
-    { icon: Globe, label: "Website", href: "#", handle: "steviejohnson.com" }
+    { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/holisticactor", handle: "@holisticactor" },
+    { icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@steviesumj", handle: "@steviesumj" },
+    { icon: ExternalLink, label: "IMDB", href: "https://www.imdb.com/name/nm0426281/", handle: "nm0426281" },
+    { icon: MessageCircle, label: "TikTok", href: "https://www.tiktok.com/@holisticactor", handle: "@holisticactor" }
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -111,6 +114,42 @@ export const Contact = () => {
       ...formData,
       [e.target.name]: e.target.value
     });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus({type: null, message: ''});
+
+    try {
+      // Simulate email sending - in production, this would call a backend API
+      // For now, we'll just show a success message after a delay
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // In production, you would send to stevie@steviejohnson.com via backend
+      console.log('Sending email to stevie@steviejohnson.com with data:', formData);
+      
+      setSubmitStatus({
+        type: 'success',
+        message: 'Thank you for your message! I\'ll get back to you within 24-48 hours.'
+      });
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        inquiryType: 'general',
+        subject: '',
+        message: ''
+      });
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Sorry, there was an error sending your message. Please try again or contact me directly.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -151,41 +190,6 @@ export const Contact = () => {
         </div>
       </section>
 
-      {/* CONTACT BY PURPOSE */}
-      <section className="pb-8">
-        <div className="text-center mb-6">
-          <h2 className="font-heading text-2xl font-bold text-holographic mb-2">Contact by Purpose</h2>
-          <p className="text-white/60 text-sm">Choose the right contact method for your specific needs</p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          {contactPurposes.map((purpose) => (
-            <Card 
-              key={purpose.id}
-              className="glass rounded-2xl p-4 hover-lift group transition-all duration-300"
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <div className={`p-2 rounded-full ${purpose.color === 'primary' ? 'bg-primary-500/20' : 'bg-accent-500/20'}`}>
-                  <purpose.icon className={`w-4 h-4 ${purpose.color === 'primary' ? 'text-primary-400' : 'text-accent-400'}`} />
-                </div>
-                <div className="flex-1">
-                  <h3 className="font-heading text-base font-bold text-white group-hover:text-primary-400 transition-colors">
-                    {purpose.title}
-                  </h3>
-                  <p className="text-white/60 text-xs">{purpose.description}</p>
-                </div>
-              </div>
-              <div className="space-y-2 text-xs">
-                <div className="flex justify-between">
-                  <span className="text-white/50">Contact:</span>
-                  <span className="text-accent-400 font-medium">{purpose.contact}</span>
-                </div>
-                <p className="text-white/60 text-xs">{purpose.details}</p>
-              </div>
-            </Card>
-          ))}
-        </div>
-      </section>
 
       {/* MAIN CONTACT LAYOUT */}
       <section className="pb-12">
@@ -223,6 +227,8 @@ export const Contact = () => {
                   <a
                     key={social.label}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-2 p-2 rounded-lg glass text-white/70 hover:text-white hover:bg-white/10 transition-all group"
                   >
                     <social.icon className="w-4 h-4" />
@@ -246,7 +252,7 @@ export const Contact = () => {
                 <h3 className="font-heading text-xl font-bold text-holographic">Send a Message</h3>
               </div>
               
-              <form className="space-y-4">
+              <form className="space-y-4" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-white mb-2">
@@ -333,10 +339,11 @@ export const Contact = () => {
                 <div className="flex gap-3">
                   <Button
                     type="submit"
-                    className="flex-1 px-6 py-3 rounded-xl bg-primary-500 text-white hover:bg-primary-600 transition-all"
+                    disabled={isSubmitting}
+                    className="flex-1 px-6 py-3 rounded-xl bg-primary-500 text-white hover:bg-primary-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Send className="w-4 h-4 mr-2" />
-                    Send Message
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                   </Button>
                   <Button
                     type="button"
@@ -347,6 +354,18 @@ export const Contact = () => {
                   </Button>
                 </div>
               </form>
+              
+              {/* Success/Error Messages */}
+              {submitStatus.type && (
+                <div className={`mt-4 p-4 rounded-xl ${submitStatus.type === 'success' ? 'bg-green-500/20 border border-green-500/30' : 'bg-red-500/20 border border-red-500/30'}`}>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className={`w-5 h-5 ${submitStatus.type === 'success' ? 'text-green-400' : 'text-red-400'}`} />
+                    <p className={`text-sm ${submitStatus.type === 'success' ? 'text-green-400' : 'text-red-400'}`}>
+                      {submitStatus.message}
+                    </p>
+                  </div>
+                </div>
+              )}
             </Card>
           </div>
         </div>
